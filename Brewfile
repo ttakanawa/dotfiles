@@ -1,0 +1,15 @@
+tap "exolnet/deprecated"
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/core"
+brew "brew-php-switcher"
+brew "fzf"
+brew "mysql"
+brew "php", link: false
+brew "php@7.2", link: true
+brew "php@7.3"
+brew "pyenv"
+brew "rbenv"
+brew "exolnet/deprecated/php@7.0"
+brew "exolnet/deprecated/php@7.1"
+brew "heroku/brew/heroku"
