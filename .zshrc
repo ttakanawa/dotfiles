@@ -112,13 +112,12 @@ function ssh-ls () {
         sort |
         fzf
     )
-#     if [[ -n "$ssh" ]]; then
-#         read -p "Are you to connect to ${ssh}?  (y/n) :" YN
-#         if [[ "${YN}" = "y" ]]; then
-#             ssh "$ssh"
-#             registerInHistory "ssh ${ssh}"
-#         else
-#             echo "$ssh"
-#         fi
-#     fi
+    if [[ -n "$ssh" ]]; then
+        echo "Are you to connect to ${ssh}?  (y/n) :"
+        if read -q; then
+            ssh "$ssh"
+            registerInHistory "ssh ${ssh}"
+        fi
+        echo "$ssh"
+    fi
 }
