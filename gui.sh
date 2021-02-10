@@ -10,10 +10,12 @@ open https://code.visualstudio.com/Download
 open https://go.chatwork.com/download/
 open http://www.oracle.com/technetwork/java/javase/downloads/index.html
 open https://support.logi.com/hc/en-us/articles/360025297893-Logitech-Options
+open https://www.ableton.com/en/account/
+open https://skylum.com/account/my-software
+open https://slack.com/intl/en-us/downloads/mac
+open https://evernote.com/products/skitch
 
 # Xcode
 open https://itunes.apple.com/jp/app/xcode/id497799835?l=en&mt=12
-# Slack
-open https://itunes.apple.com/jp/app/slack/id803453959?l=en&mt=12
-# Skitch
-open https://itunes.apple.com/jp/app/skitch-snap-mark-up-share/id425955336?l=en&mt=12
+# Line
+open https://apps.apple.com/jp/app/line/id539883307?l=en&mt=12
