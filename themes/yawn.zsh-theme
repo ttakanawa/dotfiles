@@ -71,8 +71,8 @@ __return_status() {
   echo    "%{$reset_color%}"
 }
 
-PROMPT='╭─$(__user)$(__host) $(__current_dir) $(__git_status)
-╰─$(__r_prompt) '
-RPROMPT='$(__return_status)'
+PROMPT="╭─$(__user)$(__host) $(__current_dir) $(__git_status)
+╰─$(__r_prompt) "
+RPROMPT="$(__return_status)"
 
 }
