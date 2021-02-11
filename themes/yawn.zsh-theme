@@ -1,6 +1,7 @@
 # when you load your local file, run below.
 # % antigen theme $HOME/dotfiles themes/yawn --no-local-clone
 setopt prompt_subst
+autoload -U colors && colors
 
 () {
 
