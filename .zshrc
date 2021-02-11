@@ -1,5 +1,4 @@
-autoload -U compinit
-compinit
+autoload -U compinit && compinit
 
 export DOTFILES=$HOME/dotfiles
 
@@ -9,7 +8,7 @@ source $DOTFILES/antigen/antigen.zsh
 antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
-# antigen bundle z
+antigen bundle z
 
 # Bundles from git repos.
 antigen bundle zsh-users/zsh-syntax-highlighting
