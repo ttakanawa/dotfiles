@@ -40,6 +40,8 @@ setopt hist_reduce_blanks
 setopt append_history
 # Add to the history list incrementally
 setopt inc_append_history
+# Use wild card correctly
+setopt nonomatch
 
 # php TODO: manage on brew
 export PATH="/usr/local/opt/php@7.0/bin:$PATH"
