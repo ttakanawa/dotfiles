@@ -85,7 +85,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃
 
 alias ls="ls -G"
-alias git-reset="git reset --hard ORIG_HEAD"
 alias idea="idea ./"
 alias phpstorm="phpstorm ./"
 alias webstorm="webstorm ./"
