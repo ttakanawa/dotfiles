@@ -14,6 +14,7 @@ open https://www.ableton.com/en/account/
 open https://skylum.com/account/my-software
 open https://slack.com/intl/en-us/downloads/mac
 open https://evernote.com/products/skitch
+open https://golang.org/doc/install
 
 # Xcode
 open https://itunes.apple.com/jp/app/xcode/id497799835?l=en&mt=12
