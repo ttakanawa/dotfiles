@@ -85,13 +85,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃
 
 alias ls="ls -G"
-alias idea="idea ./"
-alias phpstorm="phpstorm ./"
-alias goland="goland ./"
-alias pycharm="pycharm ./"
-alias appcode="appcode ./"
-alias rubymine="rubymine ./"
-alias datagrip="datagrip ./"
 
 function docin() {
     local container
