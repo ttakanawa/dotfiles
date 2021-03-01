@@ -1,3 +1,5 @@
 [user]
 	name = yawnkinsfolk
 	email = yawnkinsfolk@gmail.com
+[core]
+    excludesfile = /Users/sugamoshinden/.gitignore_global
