@@ -5,11 +5,16 @@ cd $HOME/dotfiles
 ./ln.sh
 
 if [ `uname` = "Darwin" ]; then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  brew bundle Brewfile
+  # Install homebrew
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+  # Install homebrew all packages I use
+  brew bundle
+
+  # Set global gitignore file to the home directory
   git config --global core.excludesfile ~/.gitignore_global
 
+  # Install nvm
   /bin/bash -c "$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash)"
 
   # https://getcomposer.org/doc/00-intro.md#globally
@@ -18,8 +23,6 @@ if [ `uname` = "Darwin" ]; then
   php composer-setup.php
   php -r "unlink('composer-setup.php');"
   mv composer.phar /usr/local/bin/composer
-
-  /bin/bash ./gui.sh
 fi
 
 git submodule init
