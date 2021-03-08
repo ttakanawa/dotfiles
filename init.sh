@@ -11,9 +11,6 @@ if [ `uname` = "Darwin" ]; then
   # Install homebrew all packages I use
   brew bundle
 
-  # Set global gitignore file to the home directory
-  git config --global core.excludesfile ~/.gitignore_global
-
   # Install nvm
   /bin/bash -c "$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash)"
 
