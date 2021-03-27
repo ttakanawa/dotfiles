@@ -43,9 +43,6 @@ setopt inc_append_history
 # Use wild card correctly
 setopt nonomatch
 
-# visual studio code command
-export PATH="/usr/local/bin/code:$PATH"
-
 # php TODO: manage on brew
 export PATH="/usr/local/opt/php@7.0/bin:$PATH"
 export PATH="/usr/local/opt/php@7.0/sbin:$PATH"
