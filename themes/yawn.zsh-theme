@@ -48,9 +48,12 @@ __current_dir() {
 # Collect indicators, git branch and pring string.
 __git_status() {
   echo -n "%{$fg[yellow]%}"
-  echo -n "$(git_current_branch)"
+#   echo -n "$(git_current_branch)"
+  echo -n "$(git_prompt_info)"
   echo -n "%{$reset_color%}"
 }
+ZSH_THEME_GIT_PROMPT_PREFIX=""
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
 
 __r_prompt() {
   if [[ $USER == 'root' ]]; then
