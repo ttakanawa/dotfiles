@@ -17,7 +17,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 # antigen theme $HOME/dotfiles plugins/nvm
 
 # Load the theme.
-antigen theme yawnkinsfolk/dotfiles themes/yawn
+antigen theme ttakanawa/dotfiles themes/yawn
 
 # Tell Antigen that you're done.
 antigen apply
