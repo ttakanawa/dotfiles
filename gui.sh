@@ -16,6 +16,7 @@ open https://slack.com/intl/en-us/downloads/mac
 open https://evernote.com/products/skitch
 open https://golang.org/doc/install
 open https://discordapp.com/
+open https://pqrs.org/osx/karabiner/
 
 # Xcode
 open https://itunes.apple.com/jp/app/xcode/id497799835?l=en&mt=12
