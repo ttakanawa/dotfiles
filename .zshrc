@@ -43,16 +43,6 @@ setopt inc_append_history
 # Use wild card correctly
 setopt nonomatch
 
-# php TODO: manage on brew
-export PATH="/usr/local/opt/php@7.0/bin:$PATH"
-export PATH="/usr/local/opt/php@7.0/sbin:$PATH"
-#export PATH="/usr/local/opt/php/bin:$PATH"
-#export PATH="/usr/local/opt/php/sbin:$PATH"
-# export PATH=/usr/local/opt/php@7.2/bin:$PATH
-# export PATH=/usr/local/opt/php@7.2/sbin:$PATH
-# export PATH=/usr/local/opt/php@7.3/bin:$PATH
-# export PATH=/usr/local/opt/php@7.3/sbin:$PATH
-
 # java
 if [ `uname` = "Darwin" ]; then
   export JAVA_HOME=$(/usr/libexec/java_home)
