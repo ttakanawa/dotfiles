@@ -2,7 +2,7 @@
 	name = Tomonori Takanawa
 	email = takanawa@hey.com
 [core]
-    excludesfile = /Users/sugamoshinden/.gitignore_global
+    excludesfile = /Users/tknw/.gitignore_global
 	autocrlf = input
 [pull]
 	rebase = false
