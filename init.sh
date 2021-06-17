@@ -17,3 +17,4 @@ fi
 
 git submodule init
 git submodule update
+zsh
