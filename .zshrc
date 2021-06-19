@@ -53,6 +53,13 @@ export ANDROID_SDK="$HOME/Library/Android/sdk"
 export PATH="$ANDROID_SDK/emulator:$PATH"
 export PATH="$ANDROID_SDK/platform-tools:$PATH"
 
+if [ `uname -m` = "arm64" ]; then
+    # visual studio code
+    export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+fi
+
+export PATH="$HOME/bin:$PATH"
+
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
