@@ -80,8 +80,8 @@ function docin() {
         echo Error: You don\'t have any containers.
         return
     fi
-    docker exec -it "$container" /bin/bash
-    registerInHistory "docker exec -it ${container} /bin/bash"
+    docker exec -it "$container" /bin/sh
+    # TODO: save to zsh history
 }
 
 
@@ -97,7 +97,7 @@ function ssh-ls () {
         echo "Are you to connect to ${ssh}?  (y/n) :"
         if read -q; then
             ssh "$ssh"
-            registerInHistory "ssh ${ssh}"
+            # TODO: save to zsh history
         fi
         echo "$ssh"
     fi
