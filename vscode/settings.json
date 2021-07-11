@@ -1,4 +1,4 @@
 {
     "files.autoSave": "afterDelay",
-    "explorer.confirmDelete": false
+    "workbench.colorTheme": "Quiet Light"
 }
