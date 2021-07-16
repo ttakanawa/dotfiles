@@ -67,6 +67,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃
 
 alias ls="ls -G"
+alias lg='lazygit'
 
 function docin() {
     local container
