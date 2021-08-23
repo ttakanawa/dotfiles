@@ -67,7 +67,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃
 
 alias ls="ls -G"
-alias lg='lazygit'
+alias lg="lazygit"
 
 function docin() {
     local container
@@ -81,7 +81,7 @@ function docin() {
         echo Error: You don\'t have any containers.
         return
     fi
-    docker exec -it "$container" /bin/sh
+    docker exec -it "$container" sh
     # TODO: save to zsh history
 }
 
