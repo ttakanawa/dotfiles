@@ -1,4 +1,4 @@
-#!/bin/bash -u
+#!/bin/bash
 
 ln -s $HOME/dotfiles/.zshrc $HOME/
 ln -s $HOME/dotfiles/.gitconfig $HOME/
