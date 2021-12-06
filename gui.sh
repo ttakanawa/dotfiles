@@ -3,6 +3,7 @@
 open http://www.oracle.com/technetwork/java/javase/downloads/index.html
 open https://support.logi.com/hc/en-us/articles/360025297893-Logitech-Options
 open https://skylum.com/account/my-software
+open https://go.dev/doc/install
 
 # Xcode
 open https://itunes.apple.com/jp/app/xcode/id497799835?l=en&mt=12
