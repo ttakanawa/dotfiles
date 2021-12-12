@@ -43,11 +43,6 @@ setopt inc_append_history
 # Use wild card correctly
 setopt nonomatch
 
-# java
-if [ `uname` = "Darwin" ]; then
-  export JAVA_HOME=$(/usr/libexec/java_home)
-fi
-
 # android sdk
 export ANDROID_SDK="$HOME/Library/Android/sdk"
 export PATH="$ANDROID_SDK/emulator:$PATH"
@@ -81,7 +76,7 @@ function docin() {
         echo Error: You don\'t have any containers.
         return
     fi
-    docker exec -it "$container" sh
+    docker exec -it "$container" /bin/bash
     # TODO: save to zsh history
 }
 
