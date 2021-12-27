@@ -1,5 +1,9 @@
 {
+    "workbench.colorTheme": "Visual Studio Light",
     "files.autoSave": "afterDelay",
-    "workbench.colorTheme": "Default Light+",
-    "editor.guides.bracketPairs": true
+    "editor.guides.bracketPairs": true,
+    "workbench.editor.enablePreview": false,
+    "git.autofetch": true,
+    "go.useLanguageServer": true,
+    "explorer.confirmDelete": false
 }
