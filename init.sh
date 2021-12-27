@@ -11,8 +11,8 @@ if [ `uname` = "Darwin" ]; then
   # Install homebrew all packages I use
   brew bundle
 
- # If you generate ssh key
- # ssh-keygen -t rsa -b 4096 -C "takanawa@hey.com"
+  # If you generate ssh key
+  # ssh-keygen -t rsa -b 4096 -C "takanawa@hey.com"
 fi
 
 git submodule init
