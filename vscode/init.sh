@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd $HOME/dotfiles/vscode
+
 VSCODE_SETTING_DIR=~/Library/Application\ Support/Code/User
 
 rm "${VSCODE_SETTING_DIR}/settings.json"
