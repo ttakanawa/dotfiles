@@ -14,4 +14,4 @@ cat extensions | while read line
 do
  code --install-extension $line
 done
-code --list-extensions > extensions
+code --list-extensions > ~/dotfiles/vscode/extensions
