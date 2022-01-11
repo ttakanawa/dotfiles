@@ -6,5 +6,7 @@
     "git.autofetch": true,
     "go.useLanguageServer": true,
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
-    "ruby.intellisense": "rubyLocate"
+    "ruby.intellisense": "rubyLocate",
+    "explorer.confirmDelete": false,
+    "intelephense.files.exclude": []
 }
