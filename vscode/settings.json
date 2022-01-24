@@ -8,5 +8,6 @@
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
     "ruby.intellisense": "rubyLocate",
     "explorer.confirmDelete": false,
-    "intelephense.files.exclude": []
+    "intelephense.files.exclude": [],
+    "editor.hover.enabled": false
 }
