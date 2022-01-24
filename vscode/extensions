@@ -5,9 +5,9 @@ calebporzio.better-phpunit
 donjayamanne.githistory
 eamodio.gitlens
 fabiospampinato.vscode-diff
-felixfbecker.php-debug
 golang.go
 GrapeCity.gc-excelviewer
+humao.rest-client
 IronGeek.vscode-env
 marp-team.marp-vscode
 ms-azuretools.vscode-docker
@@ -19,3 +19,4 @@ redhat.vscode-yaml
 streetsidesoftware.code-spell-checker
 truman.autocomplate-shell
 wingrunr21.vscode-ruby
+xdebug.php-debug
