@@ -10,7 +10,7 @@ ln -s ~/dotfiles/vscode/settings.json "${VSCODE_SETTING_DIR}/settings.json"
 rm "${VSCODE_SETTING_DIR}/keybindings.json"
 ln -s ~/dotfiles/vscode/keybindings.json "${VSCODE_SETTING_DIR}/keybindings.json"
 
-cat extensions | while read line
+cat ~/dotfiles/vscode/extensions | while read line
 do
  code --install-extension $line
 done

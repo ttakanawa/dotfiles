@@ -7,6 +7,7 @@
     "go.useLanguageServer": true,
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
     "ruby.intellisense": "rubyLocate",
-    "gitlens.codeLens.enabled": false,
-    "gitlens.hovers.enabled": false
+    "explorer.confirmDelete": false,
+    "intelephense.files.exclude": [],
+    "editor.hover.enabled": false
 }
