@@ -63,6 +63,8 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 alias ls="ls -G"
 alias lg="lazygit"
+alias git-reset="git reset --hard ORIG_HEAD"
+alias git-undo="git reset --soft HEAD@{1}"
 
 function docin() {
     local container
