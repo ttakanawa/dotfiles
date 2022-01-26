@@ -4,5 +4,3 @@
 [core]
     excludesfile = /Users/tknw/.gitignore_global
 	autocrlf = input
-[pull]
-	rebase = false
