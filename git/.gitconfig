@@ -1,8 +1,6 @@
 [user]
 	name = Tomonori Takanawa
-	email = tomonori.takanawa@rarejob.co.jp
+	email = takanawa@hey.com
 [core]
-    excludesfile = /Users/tomonori.takanawa/.gitignore_global
+    excludesfile = /Users/tknw/.gitignore_global
 	autocrlf = input
-[pull]
-	rebase = false
