@@ -80,7 +80,6 @@ function docin() {
     # TODO: save to zsh history
 }
 
-
 function ssh-ls () {
     local ssh=$(
         less $HOME/.ssh/config |
