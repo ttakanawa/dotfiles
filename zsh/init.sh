@@ -1,7 +1,7 @@
 #!/bin/bash
 
-rm ~/.zshrc
-ln -s ~/dotfiles/zsh/.zshrc ~/.zshrc
+rm $HOME/.zshrc
+ln -s $HOME/dotfiles/zsh/.zshrc $HOME/.zshrc
 
 git submodule init
 git submodule update

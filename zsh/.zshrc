@@ -85,7 +85,7 @@ function docin() {
 
 function ssh-ls () {
     local ssh=$(
-        less ~/.ssh/config |
+        less $HOME/.ssh/config |
         grep -iE "^host[[:space:]]+[^*]" |
         sed -e "s/^Host //" |
         sort |

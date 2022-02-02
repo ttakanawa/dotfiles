@@ -1,7 +1,7 @@
 #!/bin/bash
 
-rm ~/.gitconfig
-ln -s ~/dotfiles/git/.gitconfig ~/.gitconfig
+rm $HOME/.gitconfig
+ln -s $HOME/dotfiles/git/.gitconfig $HOME/.gitconfig
 
-rm ~/.gitignore_global
-ln -s ~/dotfiles/git/.gitignore_global ~/.gitignore_global
+rm $HOME/.gitignore_global
+ln -s $HOME/dotfiles/git/.gitignore_global $HOME/.gitignore_global
