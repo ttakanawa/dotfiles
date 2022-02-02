@@ -8,7 +8,7 @@ $ cd $HOME/dotfiles
 $ ./init.sh
 $ ./homebrew/init.sh
 $ ./git/init.sh
-$ ./zsh/init.sh
 $ ./vscode/init.sh
+$ ./zsh/init.sh
 $ zsh
 ```
