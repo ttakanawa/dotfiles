@@ -9,5 +9,6 @@
     "ruby.intellisense": "rubyLocate",
     "explorer.confirmDelete": false,
     "intelephense.files.exclude": [],
-    "editor.hover.enabled": false
+    "editor.hover.enabled": false,
+    "gitlens.codeLens.enabled": false
 }
