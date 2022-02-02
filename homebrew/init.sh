@@ -8,6 +8,6 @@ if [ `uname` = "Darwin" ]; then
 
   # Install homebrew all packages I use
   brew bundle
-  rm $HOME/dotfiles/Brewfile
-  brew bundle dump
+  rm $HOME/dotfiles/homebrew/Brewfile
+  brew bundle dump --file $HOME/dotfiles/homebrew/Brewfile
 fi
