@@ -10,5 +10,6 @@
     "explorer.confirmDelete": false,
     "intelephense.files.exclude": [],
     "editor.hover.enabled": false,
-    "gitlens.codeLens.enabled": false
+    "gitlens.codeLens.recentChange.enabled": false,
+    "gitlens.codeLens.authors.enabled": false
 }
