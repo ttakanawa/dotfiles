@@ -15,6 +15,7 @@ ms-azuretools.vscode-docker
 ms-vscode-remote.remote-containers
 ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
+octref.vetur
 rebornix.ruby
 redhat.vscode-yaml
 streetsidesoftware.code-spell-checker
