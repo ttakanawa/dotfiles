@@ -75,7 +75,11 @@ function docin() {
         echo Error: You don\'t have any containers.
         return
     fi
-    docker exec -it "$container" sh
+    if [ $# -eq 0 ]; then
+        docker exec -it "$container" bash
+        return
+    fi
+    docker exec -it "$container" "$1"
     # TODO: save to zsh history
 }
 
