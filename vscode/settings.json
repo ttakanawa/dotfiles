@@ -7,7 +7,6 @@
     "go.useLanguageServer": true,
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
     "explorer.confirmDelete": false,
-    "intelephense.files.exclude": [],
     "editor.hover.enabled": false,
     "gitlens.codeLens.recentChange.enabled": false,
     "gitlens.codeLens.authors.enabled": false
