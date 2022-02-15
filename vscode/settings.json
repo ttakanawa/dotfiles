@@ -1,9 +1,7 @@
 {
     "workbench.colorTheme": "Default Light+",
-    "files.autoSave": "afterDelay",
-    "editor.guides.bracketPairs": true,
     "workbench.editor.enablePreview": false,
-    "git.autofetch": true,
+    "files.autoSave": "afterDelay",
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
     "explorer.confirmDelete": false,
     "editor.hover.enabled": false,
