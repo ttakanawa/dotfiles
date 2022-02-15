@@ -4,7 +4,6 @@
     "editor.guides.bracketPairs": true,
     "workbench.editor.enablePreview": false,
     "git.autofetch": true,
-    "go.useLanguageServer": true,
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
     "explorer.confirmDelete": false,
     "editor.hover.enabled": false,
