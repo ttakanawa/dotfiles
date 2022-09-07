@@ -1,6 +1,9 @@
 #!/bin/bash
 
-rm $HOME/.zshrc
+if [ -f $HOME/.zshrc ]; then
+  rm $HOME/.zshrc
+fi
+
 ln -s $HOME/dotfiles/zsh/.zshrc $HOME/.zshrc
 
 git submodule init
