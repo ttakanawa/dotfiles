@@ -22,7 +22,7 @@ antigen theme ttakanawa/dotfiles themes/yawn
 # Tell Antigen that you're done.
 antigen apply
 
-# 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃
+# 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 ^ antigen preferences
 
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
@@ -59,7 +59,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃
+# 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 ^ environment variables
 
 alias lg="lazygit"
 
@@ -100,3 +100,4 @@ function ssh-ls () {
         echo "$ssh"
     fi
 }
+# 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 ^ functions
