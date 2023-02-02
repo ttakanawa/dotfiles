@@ -5,5 +5,14 @@
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
     "explorer.confirmDelete": false,
     "gitlens.currentLine.enabled": false,
-    "gitlens.codeLens.enabled": false
+    "gitlens.codeLens.enabled": false,
+    "phpunit.command": "docker-compose exec CONTAINER",
+    "phpunit.phpunit": "PATH_TO_PHPUNIT",
+    "phpunit.paths": {
+        "${workspaceFolder}/src": "PATH_TO_MOUNTED_DIRECTORY"
+    },
+    "phpunit.args": [
+        "--configuration",
+         "PATH_TO_PHPUNIT_XML"
+    ]
 }
