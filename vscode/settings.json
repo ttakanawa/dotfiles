@@ -4,6 +4,7 @@
     "files.autoSave": "afterDelay",
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
     "explorer.confirmDelete": false,
+    "git.autofetch": "all",
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
     "phpunit.command": "docker-compose exec CONTAINER",
