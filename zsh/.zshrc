@@ -59,13 +59,21 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
-'avg shared (code):         %X KB'$'\n'\
-'avg unshared (data/stack): %D KB'$'\n'\
-'total (sum):               %K KB'$'\n'\
-'max memory:                %M '$MAX_MEMORY_UNITS''$'\n'\
-'page faults from disk:     %F'$'\n'\
-'other page faults:         %R'
+# https://man7.org/linux/man-pages/man1/time.1.html
+TIMEFMT=$'\n'\
+'executed command: %J'$'\n'\
+'Time'$'\n'\
+'  real %E'$'\n'\
+'  user %U'$'\n'\
+'  sys %S'$'\n'\
+'  cpu usage %P'$'\n'\
+'Memory'$'\n'\
+'  avg shared (code):         %X KB'$'\n'\
+'  avg unshared (data/stack): %D KB'$'\n'\
+'  avg total:                 %K KB'$'\n'\
+'  max rss:                   %M KB'$'\n'\
+'  major page faults:         %F times'$'\n'\
+'  minor page faults:         %R times'
 # 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 ^ environment variables
 
 alias lg="lazygit"
@@ -107,4 +115,5 @@ function ssh-ls () {
         echo "$ssh"
     fi
 }
+
 # 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 ^ functions
