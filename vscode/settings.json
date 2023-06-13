@@ -16,14 +16,7 @@
         "--configuration",
          "PATH_TO_PHPUNIT_XML"
     ],
-    "intelephense.files.exclude": [
-        "**/.git/**",
-        "**/.svn/**",
-        "**/.hg/**",
-        "**/CVS/**",
-        "**/.DS_Store/**",
-        "**/node_modules/**",
-        "**/bower_components/**",
-        "**/.history/**"
-    ]
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "scm.autoReveal": false,
+    "plantuml.server": "https://www.plantuml.com/plantuml",
 }
