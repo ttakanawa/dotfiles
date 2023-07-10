@@ -5,18 +5,5 @@
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
     "explorer.confirmDelete": false,
     "git.autofetch": "all",
-    "gitlens.currentLine.enabled": false,
-    "gitlens.codeLens.enabled": false,
-    "phpunit.command": "docker-compose exec CONTAINER",
-    "phpunit.phpunit": "PATH_TO_PHPUNIT",
-    "phpunit.paths": {
-        "${workspaceFolder}/src": "PATH_TO_MOUNTED_DIRECTORY"
-    },
-    "phpunit.args": [
-        "--configuration",
-         "PATH_TO_PHPUNIT_XML"
-    ],
-    "javascript.updateImportsOnFileMove.enabled": "never",
-    "scm.autoReveal": false,
     "plantuml.server": "https://www.plantuml.com/plantuml",
 }
