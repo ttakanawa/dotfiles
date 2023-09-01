@@ -5,6 +5,11 @@ autoload -U colors && colors
 
 () {
 
+# Datetime
+__datetime() {
+  echo -n "%D{%Y/%m/%d} %* "
+}
+
 # Username.
 # If user is root, then pain it in red. Otherwise, just print in yellow.
 __user() {
@@ -74,8 +79,8 @@ __return_status() {
   echo    "%{$reset_color%}"
 }
 
-PROMPT='╭─$(__user)$(__host) $(__current_dir) $(__git_status)
-╰─$(__r_prompt) '
+PROMPT='╭─$(__datetime)$(__user)$(__host) $(__current_dir) $(__git_status)
+╰─$(__r_prompt) $(__return_status)'
 RPROMPT='$(__return_status)'
 
 }
