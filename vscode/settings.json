@@ -6,4 +6,7 @@
     "explorer.confirmDelete": false,
     "git.autofetch": "all",
     "plantuml.server": "https://www.plantuml.com/plantuml",
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 13
 }
