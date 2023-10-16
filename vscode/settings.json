@@ -8,6 +8,7 @@
     "plantuml.server": "https://www.plantuml.com/plantuml",
     "editor.fontFamily": "JetBrains Mono",
     "editor.fontLigatures": true,
+    "editor.fontSize": 13,
     "[markdown]": {
         "editor.unicodeHighlight.invisibleCharacters": true
     },
