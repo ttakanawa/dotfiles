@@ -1,18 +1,13 @@
 {
-    "workbench.colorTheme": "Default Light+",
+    "workbench.colorTheme": "One Dark Pro",
     "workbench.editor.enablePreview": false,
     "files.autoSave": "afterDelay",
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
     "explorer.confirmDelete": false,
     "git.autofetch": "all",
     "plantuml.server": "https://www.plantuml.com/plantuml",
-    "editor.fontFamily": "JetBrains Mono",
-    "editor.fontLigatures": true,
     "editor.fontSize": 13,
-    "[markdown]": {
-        "editor.unicodeHighlight.invisibleCharacters": true
-    },
-    "[plaintext]": {
+    "[markdown, plaintext]": {
         "editor.unicodeHighlight.invisibleCharacters": true
     }
 }
