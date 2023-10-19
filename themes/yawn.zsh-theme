@@ -46,8 +46,8 @@ __git_status() {
   echo -n "$(git_prompt_info)"
   echo -n "%{$reset_color%}"
 }
-# ZSH_THEME_GIT_PROMPT_PREFIX=""
-# ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_PROMPT_PREFIX=""
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
 
 PROMPT='$(__user)@$(__host) $(__current_dir) $(__git_status)
 %# '
