@@ -13,4 +13,5 @@
     "[plaintext]": {
         "editor.unicodeHighlight.invisibleCharacters": true
     }
+    "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false
 }
