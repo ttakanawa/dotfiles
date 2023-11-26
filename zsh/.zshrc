@@ -77,6 +77,7 @@ TIMEFMT=$'\n'\
 # 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 ^ environment variables
 
 alias lg="lazygit"
+alias gget="ghq get"
 
 function docin() {
     local container
@@ -115,5 +116,16 @@ function ssh-ls () {
         echo "$ssh"
     fi
 }
+
+function ghq-fzf() {
+   local src=$(ghq list | fzf --preview "bat --theme=\"Monokai Extended\" --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
+  if [ -n "$src" ]; then
+    BUFFER="cd $(ghq root)/$src"
+    zle accept-line
+  fi
+  zle -R -c
+}
+zle -N ghq-fzf
+bindkey '^]' ghq-fzf
 
 # 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 ^ functions
