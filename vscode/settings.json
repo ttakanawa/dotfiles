@@ -1,10 +1,6 @@
 {
     "workbench.colorTheme": "One Dark Pro",
-    "workbench.editor.enablePreview": false,
     "files.autoSave": "afterDelay",
-    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
-    "explorer.confirmDelete": false,
-    "git.autofetch": "all",
     "plantuml.server": "https://www.plantuml.com/plantuml",
     "editor.fontSize": 13,
     "[markdown]": {
@@ -12,6 +8,29 @@
     },
     "[plaintext]": {
         "editor.unicodeHighlight.invisibleCharacters": true
-    }
-    "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false
+    },
+    "gitlens.currentLine.enabled": false,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.views.commits.files.layout": "tree",
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "phpunit.command": "docker-compose exec CONTAINER",
+    "phpunit.phpunit": "PATH_TO_PHPUNIT",
+    "phpunit.paths": {
+        "${workspaceFolder}/src": "PATH_TO_MOUNTED_DIRECTORY"
+    },
+    "phpunit.args": [
+        "--configuration",
+         "PATH_TO_PHPUNIT_XML"
+    ],
+    "aws.suppressPrompts": {
+        "codeWhispererNewWelcomeMessage": true
+    },
+    "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false,
+    "editor.cursorSurroundingLines": 100,
+    "workbench.iconTheme": "material-icon-theme"
 }
