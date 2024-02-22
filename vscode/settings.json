@@ -33,4 +33,6 @@
     "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false,
     "editor.cursorSurroundingLines": 100,
     "workbench.iconTheme": "material-icon-theme"
+    // "editor.cursorSurroundingLines": 100,
+    "namespaceResolver.sortAlphabetically": true
 }
