@@ -31,8 +31,7 @@
         "codeWhispererNewWelcomeMessage": true
     },
     "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false,
-    "editor.cursorSurroundingLines": 100,
-    "workbench.iconTheme": "material-icon-theme"
-    // "editor.cursorSurroundingLines": 100,
-    "namespaceResolver.sortAlphabetically": true
+    "namespaceResolver.sortAlphabetically": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "material-icon-theme.folders.theme": "classic"
 }
