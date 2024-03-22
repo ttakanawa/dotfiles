@@ -33,5 +33,7 @@
     "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false,
     "namespaceResolver.sortAlphabetically": true,
     "workbench.iconTheme": "material-icon-theme",
-    "material-icon-theme.folders.theme": "classic"
+    "material-icon-theme.folders.theme": "classic",
+    // "workbench.list.openMode": "doubleClick",
+    "workbench.tree.expandMode": "doubleClick"
 }
