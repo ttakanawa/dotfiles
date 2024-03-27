@@ -3,7 +3,6 @@ amazonwebservices.aws-toolkit-vscode
 anan.jetbrains-darcula-theme
 arjun.swagger-viewer
 bmewburn.vscode-intelephense-client
-davidanson.vscode-markdownlint
 eamodio.gitlens
 emallin.phpunit
 esbenp.prettier-vscode
@@ -20,4 +19,5 @@ redhat.vscode-xml
 redhat.vscode-yaml
 streetsidesoftware.code-spell-checker
 vue.volar
+yzhang.markdown-all-in-one
 zhuangtongfa.material-theme
