@@ -9,6 +9,7 @@ esbenp.prettier-vscode
 foxundermoon.shell-format
 GrapeCity.gc-excelviewer
 golang.go
+gruntfuggly.todo-tree
 hashicorp.terraform
 jebbs.plantuml
 marp-team.marp-vscode
@@ -20,5 +21,6 @@ redhat.vscode-xml
 redhat.vscode-yaml
 streetsidesoftware.code-spell-checker
 vue.volar
+wayou.vscode-todo-highlight
 yzhang.markdown-all-in-one
 zhuangtongfa.material-theme
