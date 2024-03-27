@@ -1,6 +1,5 @@
 tap "hashicorp/tap"
 tap "homebrew/bundle"
-tap "homebrew/core"
 tap "homebrew/cask-fonts"
 tap "jesseduffield/lazygit"
 brew "bat"
