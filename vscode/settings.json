@@ -38,4 +38,5 @@
     "workbench.tree.expandMode": "doubleClick",
     "gitlens.ai.experimental.provider": "openai",
     "gitlens.ai.experimental.openai.model": "gpt-3.5-turbo-1106"
+    "editor.hover.enabled": false
 }
