@@ -1,5 +1,9 @@
 {
     "workbench.colorTheme": "One Dark Pro",
+    "workbench.iconTheme": "material-icon-theme",
+    "material-icon-theme.folders.theme": "classic",
+    // "workbench.list.openMode": "doubleClick",
+    "workbench.tree.expandMode": "doubleClick",
     "workbench.colorCustomizations": {
         "editor.wordHighlightBackground": "#00000000",       // カーソルを置いたときに自動的に同じ文字列をハイライトする際の背景色
         "editor.selectionBackground": "#214283",             // 選択時 - 選択範囲の背景色
@@ -8,7 +12,7 @@
         "editor.findMatchBackground": "#114957",             // 検索時 - 現在選択されている検索結果の背景色
         "editor.findMatchBorder": "#ffffff"                  // 検索時 - 現在選択されている検索結果のボーダー色
     },
-    "files.autoSave": "afterDelay",
+    "editor.hover.enabled": false,
     "plantuml.server": "https://www.plantuml.com/plantuml",
     "editor.fontSize": 13,
     "[markdown]": {
@@ -42,9 +46,5 @@
     },
     "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false,
     "namespaceResolver.sortAlphabetically": true,
-    "workbench.iconTheme": "material-icon-theme",
-    "material-icon-theme.folders.theme": "classic",
-    // "workbench.list.openMode": "doubleClick",
-    "workbench.tree.expandMode": "doubleClick",
-    "editor.hover.enabled": false
+    "files.autoSave": "afterDelay"
 }
