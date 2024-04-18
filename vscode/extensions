@@ -13,8 +13,10 @@ gruntfuggly.todo-tree
 hashicorp.terraform
 jebbs.plantuml
 lfs.vscode-emacs-friendly
+marabesi.php-import-checker
 marp-team.marp-vscode
 mechatroner.rainbow-csv
+mehedidracula.php-namespace-resolver
 mhutchie.git-graph
 mosapride.zenkaku
 ms-vscode.makefile-tools
