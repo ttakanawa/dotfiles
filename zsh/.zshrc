@@ -79,6 +79,8 @@ TIMEFMT=$'\n'\
 alias lg="lazygit"
 alias gget="ghq get --shallow"
 alias c="code ."
+alias dc="docker-compose"
+alias p="pstorm ."
 
 function docin() {
     local container
