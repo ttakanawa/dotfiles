@@ -6,3 +6,5 @@
 	autocrlf = input
 [pull]
     rebase = true
+[ghq]
+    root = /Users/tknw/workspace
