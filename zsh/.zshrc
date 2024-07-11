@@ -78,6 +78,7 @@ TIMEFMT=$'\n'\
 
 alias lg="lazygit"
 alias gget="ghq get --shallow"
+alias c="code ."
 
 function docin() {
     local container
