@@ -21,6 +21,7 @@
     "[plaintext]": {
         "editor.unicodeHighlight.invisibleCharacters": true
     },
+    "git.autofetch": "all",
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
     "gitlens.views.commits.files.layout": "tree",
