@@ -45,7 +45,8 @@
     "aws.suppressPrompts": {
         "codeWhispererNewWelcomeMessage": true
     },
-    "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false,
     "namespaceResolver.sortAlphabetically": true,
+    "amazonQ.shareContentWithAWS": false,
+    "amazonQ.telemetry": false,
     "files.autoSave": "afterDelay"
 }
