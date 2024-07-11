@@ -77,7 +77,7 @@ TIMEFMT=$'\n'\
 # 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 🎃 ^ environment variables
 
 alias lg="lazygit"
-alias gget="ghq get"
+alias gget="ghq get --shallow"
 
 function docin() {
     local container
