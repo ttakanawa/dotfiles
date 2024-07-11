@@ -83,45 +83,45 @@ alias dc="docker-compose"
 alias p="pstorm ."
 
 function docin() {
-    local container
-    container=$(docker ps --format "{{.Names}}")
-    if [[ -z "$container" ]]; then
-        echo Error: You don\'t have any containers.
-        return
-    fi
-    container=$(docker ps --format "{{.Names}}" | fzf)
-    if [[ -z "$container" ]]; then
-        echo Error: You don\'t have any containers.
-        return
-    fi
-    if [ $# -eq 0 ]; then
-        docker exec -it "$container" bash
-        return
-    fi
-    docker exec -it "$container" "$1"
-    # TODO: save to zsh history
+  local container
+  container=$(docker ps --format "{{.Names}}")
+  if [[ -z "$container" ]]; then
+    echo Error: You don\'t have any containers.
+    return
+  fi
+  container=$(docker ps --format "{{.Names}}" | fzf)
+  if [[ -z "$container" ]]; then
+    echo Error: You don\'t have any containers.
+    return
+  fi
+  if [ $# -eq 0 ]; then
+    docker exec -it "$container" bash
+    return
+  fi
+  docker exec -it "$container" "$1"
+  # TODO: save to zsh history
 }
 
-function ssh-ls () {
-    local ssh=$(
-        less $HOME/.ssh/config |
-        grep -iE "^host[[:space:]]+[^*]" |
-        sed -e "s/^Host //" |
-        sort |
-        fzf
-    )
-    if [[ -n "$ssh" ]]; then
-        echo "Are you to connect to ${ssh}?  (y/n) :"
-        if read -q; then
-            ssh "$ssh"
-            # TODO: save to zsh history
-        fi
-        echo "$ssh"
+function ssh-ls() {
+  local ssh=$(
+    less $HOME/.ssh/config |
+      grep -iE "^host[[:space:]]+[^*]" |
+      sed -e "s/^Host //" |
+      sort |
+      fzf
+  )
+  if [[ -n "$ssh" ]]; then
+    echo "Are you to connect to ${ssh}?  (y/n) :"
+    if read -q; then
+      ssh "$ssh"
+      # TODO: save to zsh history
     fi
+    echo "$ssh"
+  fi
 }
 
 function ghq-fzf() {
-   local src=$(ghq list | fzf --preview "bat --theme=\"Monokai Extended\" --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
+  local src=$(ghq list | fzf --preview "bat --theme=\"Monokai Extended\" --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
   if [ -n "$src" ]; then
     BUFFER="cd $(ghq root)/$src"
     zle accept-line
@@ -133,7 +133,10 @@ bindkey '^]' ghq-fzf
 
 function git-open() {
   # Check if the current directory is a Git repository
-  git rev-parse --is-inside-work-tree &>/dev/null || { echo "The current directory is not a Git repository."; return; }
+  git rev-parse --is-inside-work-tree &>/dev/null || {
+    echo "The current directory is not a Git repository."
+    return
+  }
 
   # Get the remote URL of the Git repository
   remote_url=$(git config --get remote.origin.url)
