@@ -48,5 +48,6 @@
     "namespaceResolver.sortAlphabetically": true,
     "amazonQ.shareContentWithAWS": false,
     "amazonQ.telemetry": false,
+    ontFamily": "UDEVGothic35NF-Regular",
     "files.autoSave": "afterDelay"
 }
