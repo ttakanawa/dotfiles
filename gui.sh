@@ -1,8 +1,9 @@
 #!/bin/bash -eu
 
 open http://www.oracle.com/technetwork/java/javase/downloads/index.html
-open https://support.logi.com/hc/en-us/articles/360025297893-Logitech-Options
 open https://skylum.com/account/my-software
+
+# Go
 open https://go.dev/doc/install
 
 # Xcode
