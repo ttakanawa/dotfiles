@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ${HOME}/Library/Application\ Support/Code/User
+cd $HOME/Library/Application\ Support/Code/User
 
 if [ -f ./settings.json ]; then
   rm ./settings.json
