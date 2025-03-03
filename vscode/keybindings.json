@@ -19,5 +19,10 @@
     {
         "key": "shift+cmd+g",
         "command": "gitlens.toggleGraph"
+    },
+    {
+        "key": "alt+cmd+t",
+        "command": "-aws.amazonq.generateUnitTests",
+        "when": "aws.codewhisperer.connected"
     }
 ]
