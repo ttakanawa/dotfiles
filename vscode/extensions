@@ -3,7 +3,6 @@ amazonwebservices.aws-toolkit-vscode
 anan.jetbrains-darcula-theme
 arjun.swagger-viewer
 bmewburn.vscode-intelephense-client
-eamodio.gitlens
 emallin.phpunit
 esbenp.prettier-vscode
 foxundermoon.shell-format
@@ -17,7 +16,6 @@ marabesi.php-import-checker
 marp-team.marp-vscode
 mechatroner.rainbow-csv
 mehedidracula.php-namespace-resolver
-mhutchie.git-graph
 mosapride.zenkaku
 ms-vscode.makefile-tools
 pkief.material-icon-theme
