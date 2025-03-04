@@ -25,9 +25,7 @@
     "git.autofetch": "all",
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
-    "gitlens.views.commits.files.layout": "tree",
-    "gitlens.ai.experimental.provider": "openai",
-    "gitlens.ai.experimental.openai.model": "gpt-3.5-turbo-1106",
+    "gitlens.ai.model": "openai:gpt-4o-mini",
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
