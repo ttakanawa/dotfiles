@@ -15,6 +15,7 @@
     // "editor.hover.enabled": false,
     "plantuml.server": "https://www.plantuml.com/plantuml",
     "editor.fontSize": 13,
+    "editor.fontFamily": "UDEVGothic35NF-Regular",
     "[markdown]": {
         "editor.unicodeHighlight.invisibleCharacters": true
     },
@@ -48,6 +49,5 @@
     "namespaceResolver.sortAlphabetically": true,
     "amazonQ.shareContentWithAWS": false,
     "amazonQ.telemetry": false,
-    "editor.fontFamily": "UDEVGothic35NF-Regular",
     "files.autoSave": "afterDelay",
 }
