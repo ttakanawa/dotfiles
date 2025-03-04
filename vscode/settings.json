@@ -12,7 +12,7 @@
         "editor.findMatchBackground": "#114957",             // 検索時 - 現在選択されている検索結果の背景色
         "editor.findMatchBorder": "#ffffff"                  // 検索時 - 現在選択されている検索結果のボーダー色
     },
-    "editor.hover.enabled": false,
+    // "editor.hover.enabled": false,
     "plantuml.server": "https://www.plantuml.com/plantuml",
     "editor.fontSize": 13,
     "[markdown]": {
