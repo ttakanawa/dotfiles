@@ -15,5 +15,9 @@
   {
     "key": "cmd+]",
     "command": "workbench.action.navigateForward"
+  },
+  {
+    "key": "alt+cmd+t",
+    "command": "workbench.action.closeOtherEditors"
   }
 ]
