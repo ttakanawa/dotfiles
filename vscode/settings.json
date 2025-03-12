@@ -47,5 +47,11 @@
     },
     "namespaceResolver.sortAlphabetically": true,
     "amazonQ.shareContentWithAWS": false,
-    "amazonQ.telemetry": false
+    "amazonQ.telemetry": false,
+    "intelephense.codeLens.implementations.enable": true,
+    "intelephense.codeLens.usages.enable": true,
+    "intelephense.codeLens.references.enable": true,
+    "intelephense.codeLens.parent.enable": true,
+    "intelephense.codeLens.overrides.enable": true,
+    "intelephense.compatibility.preferPsalmPhpstanPrefixedAnnotations": true
 }
