@@ -8,7 +8,6 @@ esbenp.prettier-vscode
 foxundermoon.shell-format
 golang.go
 grapecity.gc-excelviewer
-gruntfuggly.todo-tree
 hashicorp.terraform
 jebbs.plantuml
 lfs.vscode-emacs-friendly
@@ -16,7 +15,6 @@ marabesi.php-import-checker
 marp-team.marp-vscode
 mechatroner.rainbow-csv
 mehedidracula.php-namespace-resolver
-mosapride.zenkaku
 ms-vscode.makefile-tools
 pkief.material-icon-theme
 redhat.vscode-xml
