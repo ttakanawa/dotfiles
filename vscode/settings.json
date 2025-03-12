@@ -13,9 +13,9 @@
         "editor.findMatchBorder": "#ffffff" // 検索時 - 現在選択されている検索結果のボーダー色
     },
     "editor.hover.enabled": false,
-    "plantuml.server": "https://www.plantuml.com/plantuml",
     "editor.fontSize": 13,
     "editor.fontFamily": "UDEVGothic35NF-Regular",
+    "plantuml.server": "https://www.plantuml.com/plantuml",
     "[markdown]": {
         "editor.unicodeHighlight.invisibleCharacters": true
     },
