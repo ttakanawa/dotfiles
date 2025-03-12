@@ -5,12 +5,12 @@
     // "workbench.list.openMode": "doubleClick",
     "workbench.tree.expandMode": "doubleClick",
     "workbench.colorCustomizations": {
-        "editor.wordHighlightBackground": "#00000000",       // カーソルを置いたときに自動的に同じ文字列をハイライトする際の背景色
-        "editor.selectionBackground": "#214283",             // 選択時 - 選択範囲の背景色
-        "editor.selectionHighlightBackground": "#00000000",  // 選択時 - 選択範囲以外に存在する同じテキスト
-        "editor.findMatchHighlightBackground": "#2D543F",    // 検索時 - 検索結果の背景色
-        "editor.findMatchBackground": "#114957",             // 検索時 - 現在選択されている検索結果の背景色
-        "editor.findMatchBorder": "#ffffff"                  // 検索時 - 現在選択されている検索結果のボーダー色
+        "editor.wordHighlightBackground": "#00000000", // カーソルを置いたときに自動的に同じ文字列をハイライトする際の背景色
+        "editor.selectionBackground": "#214283", // 選択時 - 選択範囲の背景色
+        "editor.selectionHighlightBackground": "#00000000", // 選択時 - 選択範囲以外に存在する同じテキスト
+        "editor.findMatchHighlightBackground": "#2D543F", // 検索時 - 検索結果の背景色
+        "editor.findMatchBackground": "#114957", // 検索時 - 現在選択されている検索結果の背景色
+        "editor.findMatchBorder": "#ffffff" // 検索時 - 現在選択されている検索結果のボーダー色
     },
     "editor.hover.enabled": false,
     "plantuml.server": "https://www.plantuml.com/plantuml",
