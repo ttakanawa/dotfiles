@@ -54,5 +54,4 @@
     "intelephense.codeLens.parent.enable": true,
     "intelephense.codeLens.overrides.enable": true,
     "intelephense.compatibility.preferPsalmPhpstanPrefixedAnnotations": true
-    
 }
