@@ -16,17 +16,20 @@
     "editor.fontSize": 13,
     "editor.fontFamily": "UDEVGothic35NF-Regular",
     "plantuml.server": "https://www.plantuml.com/plantuml",
+    "git.autofetch": "all",
+    "gitlens.currentLine.enabled": false,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.ai.model": "openai:gpt-4o-mini",
     "[markdown]": {
         "editor.unicodeHighlight.invisibleCharacters": true
     },
     "[plaintext]": {
         "editor.unicodeHighlight.invisibleCharacters": true
     },
-    "git.autofetch": "all",
-    "gitlens.currentLine.enabled": false,
-    "gitlens.codeLens.enabled": false,
-    "gitlens.ai.model": "openai:gpt-4o-mini",
     "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[html]": {
@@ -51,4 +54,5 @@
     "intelephense.codeLens.parent.enable": true,
     "intelephense.codeLens.overrides.enable": true,
     "intelephense.compatibility.preferPsalmPhpstanPrefixedAnnotations": true
+    
 }
