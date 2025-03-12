@@ -2,22 +2,34 @@
 [
   {
     "key": "cmd+[",
-    "command": "-workbench.action.previousEditor"
-  },
-  {
-    "key": "cmd+[",
     "command": "workbench.action.navigateBack"
   },
   {
-    "key": "cmd+]",
-    "command": "-workbench.action.nextEditor"
-  },
+    "key": "cmd+[",
+    "command": "-workbench.action.previousEditor"
+  }, // negative
   {
     "key": "cmd+]",
     "command": "workbench.action.navigateForward"
   },
   {
+    "key": "cmd+]",
+    "command": "-workbench.action.nextEditor"
+  }, // negative
+  {
     "key": "alt+cmd+t",
     "command": "workbench.action.closeOtherEditors"
+  },
+  {
+    "key": "cmd+l",
+    "command": "workbench.action.gotoLine"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "-workbench.action.gotoLine"
+  }, // negative
+  {
+    "key": "cmd+f10",
+    "command": "editor.action.showDefinitionPreviewHover"
   }
 ]
