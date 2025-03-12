@@ -42,9 +42,6 @@
          "PATH_TO_PHPUNIT_XML"
     ],
     "files.autoSave": "afterDelay",
-    "aws.suppressPrompts": {
-        "codeWhispererNewWelcomeMessage": true
-    },
     "namespaceResolver.sortAlphabetically": true,
     "amazonQ.shareContentWithAWS": false,
     "amazonQ.telemetry": false,
