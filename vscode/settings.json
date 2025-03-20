@@ -35,7 +35,7 @@
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
-    "phpunit.command": "docker-compose exec CONTAINER",
+    "phpunit.command": "docker compose exec CONTAINER",
     "phpunit.phpunit": "PATH_TO_PHPUNIT",
     "phpunit.paths": {
         "${workspaceFolder}/src": "PATH_TO_MOUNTED_DIRECTORY"
