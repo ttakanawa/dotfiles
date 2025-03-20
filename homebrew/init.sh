@@ -10,8 +10,5 @@ if [ $(uname) = "Darwin" ]; then
   # Install homebrew all packages I use
   brew bundle --file ${BREWFILE}
 
-  if [ -f ${BREWFILE} ]; then
-    rm ${BREWFILE}
-  fi
-  brew bundle dump --no-vscode --file ${BREWFILE}
+  $HOME/dotfiles/homebrew/dump.sh
 fi
