@@ -12,3 +12,8 @@ fi
 ./homebrew/init.sh
 ./vscode/init.sh
 zsh
+
+# put iCloud symlink
+ln -s $HOME/Library/Mobile\ Documents/com\~apple\~CloudDocs $HOME/iCloud
+# put Obsidian symlink
+ln -s $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents $HOME/Obsidian
