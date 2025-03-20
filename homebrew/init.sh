@@ -13,5 +13,5 @@ if [ $(uname) = "Darwin" ]; then
   if [ -f ${BREWFILE} ]; then
     rm ${BREWFILE}
   fi
-  brew bundle dump --file ${BREWFILE}
+  brew bundle dump --no-vscode --file ${BREWFILE}
 fi
