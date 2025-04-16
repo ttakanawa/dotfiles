@@ -1,7 +1,7 @@
 targets='
 .zshrc
-.config
 .zshenv
+.config
 '
 
 for target in ${targets}; do
