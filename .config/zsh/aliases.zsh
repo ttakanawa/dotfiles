@@ -87,7 +87,7 @@ function ssh-ls() {
   if [[ -n "$ssh" ]]; then
     echo "Are you to connect to ${ssh}?  (y/n) :"
     if read -q; then
-      ssh "$ssh"
+      wezterm ssh "$ssh"
       # TODO: save to zsh history
     fi
     echo "$ssh"
