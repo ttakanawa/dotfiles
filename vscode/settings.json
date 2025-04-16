@@ -1,31 +1,13 @@
 {
-    "workbench.colorTheme": "One Dark Pro",
-    "workbench.iconTheme": "material-icon-theme",
-    "material-icon-theme.folders.theme": "classic",
+    "workbench.colorTheme": "Default Light Modern",
     // "workbench.list.openMode": "doubleClick",
     "workbench.tree.expandMode": "doubleClick",
     "editor.hover.enabled": false,
     "editor.fontSize": 13,
     "editor.fontFamily": "UDEVGothic35NF-Regular",
-    "plantuml.server": "https://www.plantuml.com/plantuml",
     "git.autofetch": "all",
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
-    "[markdown]": {
-        "editor.unicodeHighlight.invisibleCharacters": true
-    },
-    "[plaintext]": {
-        "editor.unicodeHighlight.invisibleCharacters": true
-    },
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[html]": {
-        "editor.defaultFormatter": "vscode.html-language-features"
-    },
     "phpunit.command": "docker compose exec CONTAINER",
     "phpunit.phpunit": "PATH_TO_PHPUNIT",
     "phpunit.paths": {
@@ -36,9 +18,6 @@
          "PATH_TO_PHPUNIT_XML"
     ],
     "files.autoSave": "afterDelay",
-    "namespaceResolver.sortAlphabetically": true,
-    "amazonQ.shareContentWithAWS": false,
-    "amazonQ.telemetry": false,
     "intelephense.codeLens.implementations.enable": true,
     "intelephense.codeLens.usages.enable": true,
     "intelephense.codeLens.references.enable": true,
