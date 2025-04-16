@@ -2,7 +2,7 @@
 	name = Tomonori Takanawa
 	email = takanawa@hey.com
 [core]
-    excludesfile = /Users/tknw/.gitignore_global
+    excludesfile = ~/.config/git/.gitignore
 	autocrlf = input
 [pull]
     rebase = true
