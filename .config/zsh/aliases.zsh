@@ -1,31 +1,10 @@
 # Aliases
 alias lg="lazygit"
+alias ld="lazydocker"
 alias gget="ghq get"
-alias dcu="docker compose up -d"
-alias dcs="docker compose stop"
 alias c="cursor ."
 
 # Functions
-function docin() {
-  local container
-  container=$(docker ps --format "{{.Names}}")
-  if [[ -z "$container" ]]; then
-    echo Error: You don\'t have any containers.
-    return
-  fi
-  container=$(docker ps --format "{{.Names}}" | fzf)
-  if [[ -z "$container" ]]; then
-    echo Error: You don\'t have any containers.
-    return
-  fi
-  if [ $# -eq 0 ]; then
-    docker exec -it "$container" bash
-    return
-  fi
-  docker exec -it "$container" "$1"
-  # TODO: save to zsh history
-}
-
 function awsin() {
   local profile=$(aws configure list-profiles | fzf --height=10 --prompt="Select AWS Profile: ")
   aws sso login --profile "$profile"
@@ -105,7 +84,6 @@ function ghq-fzf() {
 zle -N ghq-fzf
 bindkey '^]' ghq-fzf
 
-
 function git-open() {
   # Check if the current directory is a Git repository
   git rev-parse --is-inside-work-tree &>/dev/null || {
@@ -155,4 +133,4 @@ function go-ls() {
   export PATH=$GOROOT/bin:$PATH
   go version
   # TODO: save to zsh history
-} 
+}
