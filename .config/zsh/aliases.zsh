@@ -84,7 +84,7 @@ function ghq-fzf() {
 zle -N ghq-fzf
 bindkey '^]' ghq-fzf
 
-function git-open() {
+function g() {
   # Check if the current directory is a Git repository
   git rev-parse --is-inside-work-tree &>/dev/null || {
     echo "The current directory is not a Git repository."
@@ -114,9 +114,6 @@ function git-open() {
   # Open in browser
   open "$open_url" || xdg-open "$open_url" || start "$open_url"
 }
-# Bind the git-open function to ESC key
-zle -N git-open
-bindkey '^[' git-open
 
 function go-install() {
   go install golang.org/dl/$1@latest
