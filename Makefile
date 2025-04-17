@@ -17,6 +17,7 @@ rebase: fetch
 
 .PHONY: set
 set:
+	@if [ -z "${EMAIL}" ]; then echo "ERROR: EMAIL environment variable is not set"; exit 1; fi
 	@git config user.email "${EMAIL}"
 
 .PHONY: unset
