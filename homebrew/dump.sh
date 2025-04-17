@@ -3,9 +3,7 @@
 cd $HOME/dotfiles
 BREWFILE=$HOME/dotfiles/homebrew/Brewfile
 
-if [ $(uname) = "Darwin" ]; then
-  if [ -f ${BREWFILE} ]; then
-    rm ${BREWFILE}
-  fi
-  brew bundle dump --no-vscode --file ${BREWFILE}
+if [ -f ${BREWFILE} ]; then
+  rm ${BREWFILE}
 fi
+brew bundle dump --no-vscode --file ${BREWFILE}
