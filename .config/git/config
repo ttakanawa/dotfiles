@@ -7,4 +7,4 @@
 [pull]
     rebase = true
 [ghq]
-    root = /Users/tknw/workspace
+    root = ~/workspace
