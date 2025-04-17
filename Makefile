@@ -8,7 +8,6 @@ fetch:
 	@git checkout master
 	@git merge upstream/master
 	@git push origin master
-	@git checkout -
 
 .PHONY: rebase
 rebase: fetch
