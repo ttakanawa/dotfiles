@@ -15,7 +15,7 @@
     },
     "phpunit.args": [
         "--configuration",
-         "PATH_TO_PHPUNIT_XML"
+        "PATH_TO_PHPUNIT_XML"
     ],
     "files.autoSave": "afterDelay",
     "intelephense.codeLens.implementations.enable": true,
