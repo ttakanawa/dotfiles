@@ -1,6 +1,5 @@
 {
     "workbench.colorTheme": "Default Light Modern",
-    // "workbench.list.openMode": "doubleClick",
     "workbench.tree.expandMode": "doubleClick",
     "editor.hover.enabled": false,
     "editor.fontSize": 13,
