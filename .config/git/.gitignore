@@ -1,3 +1,13 @@
 .DS_Store
 .idea/
 .vscode
+
+# Ignore everything under .config
+.config/*
+# But don't ignore these specific directories
+!.config/git/
+!.config/lazygit/
+!.config/nvim/
+!.config/sheldon/
+!.config/wezterm/
+!.config/zsh/
