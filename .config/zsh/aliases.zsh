@@ -3,6 +3,8 @@ alias lg="lazygit"
 alias ld="lazydocker"
 alias gget="ghq get"
 alias c="cursor ."
+alias v="nvim ."
+alias vim="nvim ."
 
 # Functions
 function awsin() {
