@@ -6,6 +6,7 @@
 .config/*
 # But don't ignore these specific directories
 !.config/git/
+!.config/lazydocker/
 !.config/lazygit/
 !.config/nvim/
 !.config/sheldon/
