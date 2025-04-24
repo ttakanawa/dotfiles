@@ -1,10 +1,14 @@
 {
-    "workbench.colorTheme": "Default Light Modern",
-    // "workbench.list.openMode": "doubleClick",
-    "workbench.tree.expandMode": "doubleClick",
+    "editor.guides.indentation": false,
+    "editor.renderWhitespace": "all",
+    "editor.guides.bracketPairs": "active",
     "editor.hover.enabled": false,
     "editor.fontSize": 13,
     "editor.fontFamily": "UDEVGothic35NF-Regular",
+    "workbench.colorTheme": "Default Light Modern",
+    "workbench.tree.expandMode": "doubleClick",
+    "workbench.tree.indent": 16,
+    "files.autoSave": "afterDelay",
     "git.autofetch": "all",
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
@@ -15,9 +19,8 @@
     },
     "phpunit.args": [
         "--configuration",
-         "PATH_TO_PHPUNIT_XML"
+        "PATH_TO_PHPUNIT_XML"
     ],
-    "files.autoSave": "afterDelay",
     "intelephense.codeLens.implementations.enable": true,
     "intelephense.codeLens.usages.enable": true,
     "intelephense.codeLens.references.enable": true,
