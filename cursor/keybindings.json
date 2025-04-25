@@ -38,20 +38,10 @@
     "when": "listFocus && !inputFocus && !treestickyScrollFocused"
   },
   {
-    "key": "down",
-    "command": "-list.focusDown",
-    "when": "listFocus && !inputFocus && !treestickyScrollFocused"
-  }, // negative
-  {
     "key": "k",
     "command": "list.focusUp",
     "when": "listFocus && !inputFocus && !treestickyScrollFocused"
   },
-  {
-    "key": "up",
-    "command": "-list.focusUp",
-    "when": "listFocus && !inputFocus && !treestickyScrollFocused"
-  }, // negative
   {
     "key": "-",
     "command": "workbench.files.action.collapseExplorerFolders",
