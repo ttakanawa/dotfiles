@@ -30,10 +30,26 @@ function ecsin() {
   fi
 
   # クラスターに関連するタスクのリストを取得して fzf で選択
-  local task=$(aws --profile "$profile" ecs list-tasks --cluster "$cluster" --query "taskArns[]" --output text | sed 's|.*/||' | fzf --height=10 --prompt="Select ECS Task: ")
+  local task=$(aws --profile "$profile" ecs list-tasks --cluster "$cluster" --query "taskArns[]" --output text | tr '\t' '\n' | sed 's|.*/||' | fzf --height=10 --prompt="Select ECS Task: ")
 
   if [ -z "$task" ]; then
     echo "No ECS task selected. Aborting."
+    return 1
+  fi
+
+  # コンテナ名を fzf に選択
+  local container=$(aws --profile "$profile" ecs describe-tasks --cluster "$cluster" --tasks "$task" --query "tasks[0].containers[].name" --output text | tr '\t' '\n' | fzf --height=10 --prompt="Select Container: ")
+
+  if [ -z "$container" ]; then
+    echo "No container selected. Aborting."
+    return 1
+  fi
+
+  # 実行するコマンドを fzf に選択
+  local command=$(echo -e "/bin/sh\n/bin/bash" | fzf --height=10 --prompt="Select Command: ")
+
+  if [ -z "$command" ]; then
+    echo "No command selected. Aborting."
     return 1
   fi
 
@@ -42,9 +58,9 @@ function ecsin() {
   local cmd="aws --profile $profile ecs execute-command \\
       --cluster $cluster \\
       --task $task \\
-      --container app \\
+      --container $container \\
       --interactive \\
-      --command \"/bin/sh\""
+      --command \"$command\""
 
   # コマンドを出力
   echo "$cmd"
@@ -52,9 +68,9 @@ function ecsin() {
   # コマンド実行
   aws --profile "$profile" ecs execute-command --cluster "$cluster" \
     --task "$task" \
-    --container app \
+    --container "$container" \
     --interactive \
-    --command "/bin/sh"
+    --command "$command"
 }
 
 function ssh-ls() {
