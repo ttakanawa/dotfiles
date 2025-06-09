@@ -73,6 +73,26 @@ function ecsin() {
     --command "$command"
 }
 
+function docin() {
+  local container
+  container=$(docker ps --format "{{.Names}}")
+  if [[ -z "$container" ]]; then
+    echo Error: You don\'t have any containers.
+    return
+  fi
+  container=$(docker ps --format "{{.Names}}" | fzf)
+  if [[ -z "$container" ]]; then
+    echo Error: You don\'t have any containers.
+    return
+  fi
+  if [ $# -eq 0 ]; then
+    docker exec -it "$container" bash
+    return
+  fi
+  docker exec -it "$container" "$1"
+  # TODO: save to zsh history
+}
+
 function ssh-ls() {
   local ssh=$(
     less $HOME/.ssh/config |
