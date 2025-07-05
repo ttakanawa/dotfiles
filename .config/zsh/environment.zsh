@@ -26,4 +26,12 @@ export PATH="$(brew --prefix)/opt/python@3.11/libexec/bin:$PATH"
 
 export PATH="/Applications/WezTerm.app/Contents/MacOS:$PATH"
 
+# bun completions
+[ -s "/Users/tknw/.bun/_bun" ] && source "/Users/tknw/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+
 typeset -U PATH 
