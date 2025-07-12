@@ -4,6 +4,9 @@ local wezterm = require 'wezterm'
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+-- Font
+config.font = wezterm.font 'UDEV Gothic 35NF'
+
 -- This is where you actually apply your config choices
 local act = wezterm.action
 config.keys = {
