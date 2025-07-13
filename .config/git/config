@@ -1,6 +1,6 @@
 [user]
 	name = Tomonori Takanawa
-	email = t@tknw.org
+	email = t@tknw.tw
 [core]
     excludesfile = ~/.config/git/.gitignore
 	autocrlf = input
