@@ -4,7 +4,7 @@
     "editor.guides.bracketPairs": "active",
     "editor.hover.enabled": false,
     "editor.fontSize": 13,
-    "editor.fontFamily": "UDEV Gothic 35NF",
+    "editor.fontFamily": "UDEVGothic35NF-Regular",
     "workbench.colorTheme": "GitHub Dark Dimmed",
     "workbench.tree.expandMode": "doubleClick",
     "workbench.tree.indent": 16,
@@ -26,8 +26,5 @@
     "intelephense.codeLens.references.enable": true,
     "intelephense.codeLens.parent.enable": true,
     "intelephense.codeLens.overrides.enable": true,
-    "intelephense.compatibility.preferPsalmPhpstanPrefixedAnnotations": true,
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    }
+    "intelephense.compatibility.preferPsalmPhpstanPrefixedAnnotations": true
 }
