@@ -6,7 +6,7 @@ export PATH="$ANDROID_SDK/emulator:$PATH"
 export PATH="$ANDROID_SDK/platform-tools:$PATH"
 
 export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
-# export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home"
 
@@ -33,5 +33,6 @@ export PATH="/Applications/WezTerm.app/Contents/MacOS:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 
 typeset -U PATH 
