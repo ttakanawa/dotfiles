@@ -35,4 +35,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 
-typeset -U PATH 
+typeset -U PATH
