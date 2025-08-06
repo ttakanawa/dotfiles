@@ -33,6 +33,9 @@ config.keys = {
   
   -- Close pane
   { key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentPane { confirm = true } },
+
+  -- Shift + Enter to create a new line
+  { key = 'Enter', mods = 'SHIFT', action = wezterm.action.SendString('\n') },
 }
 
 -- and finally, return the configuration to wezterm
