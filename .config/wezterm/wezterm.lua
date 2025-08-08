@@ -18,6 +18,9 @@ config.inactive_pane_hsb = {
   brightness = 0.3,
 }
 
+-- Scrollback lines
+config.scrollback_lines = 50000
+
 -- This is where you actually apply your config choices
 local act = wezterm.action
 config.keys = {
