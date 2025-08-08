@@ -27,8 +27,6 @@ setopt hist_reduce_blanks
 setopt append_history
 # Add to the history list incrementally
 setopt inc_append_history
-# But no share
-unsetopt share_history
 # Use wild card correctly
 setopt nonomatch
 
