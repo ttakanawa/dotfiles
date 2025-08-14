@@ -8,6 +8,7 @@
 !.config/git/
 !.config/lazydocker/
 !.config/lazygit/
+!.config/mise/
 !.config/nvim/
 !.config/sheldon/
 !.config/wezterm/
