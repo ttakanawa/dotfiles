@@ -40,7 +40,7 @@
 
   // Other keybindings
   {
-    "key": "cmd+f1",
+    "key": "alt+cmd+x",
     "command": "editor.action.showDefinitionPreviewHover"
   },
   {
