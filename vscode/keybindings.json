@@ -21,14 +21,6 @@
     "command": "workbench.action.closeOtherEditors"
   },
   {
-    "key": "alt+cmd+;",
-    "command": "workbench.action.gotoLine"
-  },
-  {
-    "key": "ctrl+g",
-    "command": "-workbench.action.gotoLine"
-  }, // negative
-  {
     "key": "cmd+f1",
     "command": "editor.action.showDefinitionPreviewHover"
   },
