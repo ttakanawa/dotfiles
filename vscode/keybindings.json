@@ -38,22 +38,8 @@
     "command": "-workbench.action.nextEditor"
   }, // negative
   {
-    "key": "alt+cmd+t",
-    "command": "workbench.action.closeOtherEditors"
-  },
-  {
     "key": "cmd+f1",
     "command": "editor.action.showDefinitionPreviewHover"
-  },
-  {
-    "key": "j",
-    "command": "list.focusDown",
-    "when": "listFocus && !inputFocus && !treestickyScrollFocused"
-  },
-  {
-    "key": "k",
-    "command": "list.focusUp",
-    "when": "listFocus && !inputFocus && !treestickyScrollFocused"
   },
   {
     "key": "-",
