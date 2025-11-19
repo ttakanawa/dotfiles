@@ -37,6 +37,8 @@
     "key": "cmd+]",
     "command": "-workbench.action.nextEditor"
   }, // negative
+
+  // Other keybindings
   {
     "key": "cmd+f1",
     "command": "editor.action.showDefinitionPreviewHover"
