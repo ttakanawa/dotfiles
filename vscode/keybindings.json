@@ -20,7 +20,7 @@
     "when": "editorFocus && !activeEditorGroupEmpty && !terminalFocus || !activeEditorGroupEmpty && !terminalFocus && activeEditor == 'workbench.editor.reviewchanges'"
   },
 
-  // Cmd + [ to navigate back in history
+  // Cmd + [ ] to navigate in history
   {
     "key": "cmd+[",
     "command": "workbench.action.navigateBack"
