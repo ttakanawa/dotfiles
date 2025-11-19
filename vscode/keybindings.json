@@ -28,7 +28,7 @@
   {
     "key": "cmd+[",
     "command": "-workbench.action.previousEditor"
-  }, // negative
+  },
   {
     "key": "cmd+]",
     "command": "workbench.action.navigateForward"
@@ -36,7 +36,7 @@
   {
     "key": "cmd+]",
     "command": "-workbench.action.nextEditor"
-  }, // negative
+  },
 
   // Other keybindings
   {
