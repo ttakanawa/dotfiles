@@ -4,6 +4,10 @@ local wezterm = require 'wezterm'
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+-- Enable macOS IME support and forward Ctrl key events to the IME
+config.use_ime = true
+config.macos_forward_to_ime_modifier_mask = "CTRL"
+
 -- Font
 config.font = wezterm.font 'UDEV Gothic 35NF'
 
@@ -33,7 +37,7 @@ config.keys = {
   { key = "l", mods = "CTRL|SHIFT", action = act.SplitPane {direction = "Right"} },
   { key = "k", mods = "CTRL|SHIFT", action = act.SplitPane {direction = "Up"} },
   { key = "j", mods = "CTRL|SHIFT", action = act.SplitPane {direction = "Down"} },
-  
+
   -- Close pane
   { key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentPane { confirm = true } },
 
