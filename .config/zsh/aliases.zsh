@@ -120,7 +120,13 @@ function ghq-fzf() {
   zle -R -c
 }
 zle -N ghq-fzf
-bindkey '^]' ghq-fzf
+bindkey '^[g' ghq-fzf
+
+function open-code() {
+  cursor .
+}
+zle -N open-code
+bindkey '^[c' open-code
 
 function g() {
   # Check if the current directory is a Git repository
