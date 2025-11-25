@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 
 -- Enable macOS IME support and forward Ctrl key events to the IME
 config.use_ime = true
-config.macos_forward_to_ime_modifier_mask = "CTRL"
+config.macos_forward_to_ime_modifier_mask = "CTRL|SHIFT"
 
 -- Font
 config.font = wezterm.font 'UDEV Gothic 35NF'
