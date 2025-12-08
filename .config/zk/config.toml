@@ -30,7 +30,7 @@ ne = 'zk new --no-input "$ZK_NOTEBOOK_DIR/ideas" --title $argv'
 
 journal = "zk edit --sort created- journal --interactive"
 
-up = "cd $ZK_NOTEBOOK_DIR; git add -A; git commit -am 'updating'; git push; cd -"
+update = "cd $ZK_NOTEBOOK_DIR; git add -A; git commit -am 'updating'; git push; cd -"
 
 rm = "zk list --interactive --quiet --format path --determine0 $argv | xargs -0 rm -vf --"
 
