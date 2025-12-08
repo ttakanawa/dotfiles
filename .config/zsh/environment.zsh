@@ -32,4 +32,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 
+export ZK_NOTEBOOK_DIR="$HOME/workspace/notes"
+
 typeset -U PATH
