@@ -17,14 +17,13 @@ fi
 
 export PATH="$HOME/bin:$PATH"
 
-
 export PATH=/usr/local/go/bin:$PATH
 export PATH="$(brew --prefix)/opt/python@3.11/libexec/bin:$PATH"
 
 export PATH="/Applications/WezTerm.app/Contents/MacOS:$PATH"
 
 # bun completions
-[ -s "/Users/tknw/.bun/_bun" ] && source "/Users/tknw/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -33,5 +32,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 
 export ZK_NOTEBOOK_DIR="$HOME/workspace/notes"
+
+# Added by Antigravity
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
 typeset -U PATH
