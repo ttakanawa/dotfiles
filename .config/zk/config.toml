@@ -13,6 +13,7 @@ template = "daily.md"
 [format.markdown]
 hashtags = true
 colon-tags = true
+link-format = "wiki"
 
 [filter]
 recents = "--sort created- --created-after 'last two weeks'"
