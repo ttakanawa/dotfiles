@@ -5,6 +5,7 @@
 # Ignore everything under .config
 .config/*
 # But don't ignore these specific directories
+!.config/doom/
 !.config/git/
 !.config/lazydocker/
 !.config/lazygit/
@@ -14,3 +15,6 @@
 !.config/wezterm/
 !.config/zsh/
 !.config/zk/
+
+# Doom Emacs: Ignore auto-generated files
+.config/doom/.local/

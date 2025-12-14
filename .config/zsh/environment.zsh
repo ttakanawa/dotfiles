@@ -1,5 +1,8 @@
 export EDITOR="nvim"
 
+# doom emacs
+export PATH="$HOME/.config/emacs/bin:$PATH"
+
 # android sdk
 export ANDROID_SDK="$HOME/Library/Android/sdk"
 export PATH="$ANDROID_SDK/emulator:$PATH"
