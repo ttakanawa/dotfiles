@@ -10,6 +10,10 @@ filename = "{{ format-date now '%Y-%m-%d'}}"
 extension = "md"
 template = "daily.md"
 
+[format.markdown]
+hashtags = true
+colon-tags = true
+
 [filter]
 recents = "--sort created- --created-after 'last two weeks'"
 
@@ -22,7 +26,7 @@ ls = "zk edit --interactive"
 
 t = "zk edit --interactive --tag $argv"
 
-config = 'c "$HOME/.dotfiles/zk/config.toml"'
+config = 'nvim "$HOME/.config/zk/config.toml"'
 
 daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal"'
 
@@ -30,7 +34,26 @@ ne = 'zk new --no-input "$ZK_NOTEBOOK_DIR/ideas" --title $argv'
 
 journal = "zk edit --sort created- journal --interactive"
 
-update = "cd $ZK_NOTEBOOK_DIR; git add -A; git commit -am 'updating'; git push; cd -"
+update = "cd $ZK_NOTEBOOK_DIR; git pull; git add -A; git commit -am 'updating'; git push; cd -"
 
 rm = "zk list --interactive --quiet --format path --determine0 $argv | xargs -0 rm -vf --"
 
+[lsp]
+
+[lsp.diagnostics]
+# Report titles of wiki-links as hints.
+wiki-title = "hint"
+# Warn for dead links between notes.
+dead-link = "error"
+# Warn when a note links to itself.
+self-link = "warning"
+# Report if backlinks are missing (shown at end of file).
+missing-backlink = { level = "hint", position = "bottom" }
+
+[lsp.completion]
+# Show the note title in the completion pop-up, or fallback on its path if empty.
+note-label = "{{title-or-path}}"
+# Filter out the completion pop-up using the note title or its path.
+note-filter-text = "{{title}} {{path}}"
+# Show the note filename without extension as detail.
+note-detail = "{{filename-stem}}"
