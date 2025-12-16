@@ -9,33 +9,27 @@
     "key": "ctrl+shift+tab",
     "command": "workbench.action.previousEditor"
   },
-  {
-    "key": "ctrl+tab",
-    "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
-    "when": "editorFocus && !activeEditorGroupEmpty && !terminalFocus || !activeEditorGroupEmpty && !terminalFocus && activeEditor == 'workbench.editor.reviewchanges'"
-  },
-  {
-    "key": "ctrl+shift+tab",
-    "command": "-workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
-    "when": "editorFocus && !activeEditorGroupEmpty && !terminalFocus || !activeEditorGroupEmpty && !terminalFocus && activeEditor == 'workbench.editor.reviewchanges'"
-  },
 
   // Cmd + [ ] to navigate in history
   {
     "key": "cmd+[",
     "command": "workbench.action.navigateBack"
   },
-  {
-    "key": "cmd+[",
-    "command": "-workbench.action.previousEditor"
-  },
+  
   {
     "key": "cmd+]",
     "command": "workbench.action.navigateForward"
   },
+
+   // ctrl + ←/→ to navigate in history
+   {
+    "key": "ctrl+left",
+    "command": "workbench.action.navigateBack"
+  },
+  
   {
-    "key": "cmd+]",
-    "command": "-workbench.action.nextEditor"
+    "key": "ctrl+right",
+    "command": "workbench.action.navigateForward"
   },
 
   // Other keybindings
@@ -51,5 +45,11 @@
   {
     "key": "alt+cmd+e",
     "command": "workbench.files.action.showActiveFileInExplorer"
+  },
+
+  // Toggle column selection mode
+  {
+    "key": "cmd+shift+c",
+    "command": "editor.action.toggleColumnSelection"
   }
 ]
