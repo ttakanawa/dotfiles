@@ -50,19 +50,40 @@
     "command": "workbench.action.moveEditorToRightGroup"
   },
 
-  // Other keybindings
+  // hint
   {
     "key": "f1",
     "command": "editor.action.showDefinitionPreviewHover"
   },
+
+  // collapse folder
   {
     "key": "-",
     "command": "workbench.files.action.collapseExplorerFolders",
     "when": "listFocus && !inputFocus && !treestickyScrollFocused"
   },
+
+  // focus the active file in explorer
   {
     "key": "alt+cmd+e",
     "command": "workbench.files.action.showActiveFileInExplorer"
+  },
+
+  // cursor move
+  {
+    "key": "alt+g alt+b",
+    "command": "editor.action.jumpToBracket",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+j",
+    "command": "cursorMove",
+    "args": { "to": "down", "by": "line", "value": 5 }
+  },
+  {
+    "key": "ctrl+alt+k",
+    "command": "cursorMove",
+    "args": { "to": "up", "by": "line", "value": 5 }
   },
 
   // Toggle column selection mode
