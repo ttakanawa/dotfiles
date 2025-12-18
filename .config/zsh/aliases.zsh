@@ -122,12 +122,6 @@ function ghq-fzf() {
 zle -N ghq-fzf
 bindkey '^[g' ghq-fzf
 
-function open-code() {
-  cursor .
-}
-zle -N open-code
-bindkey '^[c' open-code
-
 function g() {
   # Check if the current directory is a Git repository
   git rev-parse --is-inside-work-tree &>/dev/null || {
