@@ -5,6 +5,7 @@
     "editor.hover.enabled": false,
     "editor.fontSize": 13,
     "editor.fontFamily": "UDEVGothic35NF-Regular",
+    "editor.lineNumbers": "relative",
     "workbench.colorTheme": "GitHub Dark Dimmed",
     "workbench.tree.expandMode": "doubleClick",
     "workbench.tree.indent": 16,
