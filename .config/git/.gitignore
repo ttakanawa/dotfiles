@@ -16,5 +16,9 @@
 !.config/zsh/
 !.config/zk/
 
+# Raycast: Ignore everything except script_commands
+.config/raycast/*
+!.config/raycast/script_commands/
+
 # Doom Emacs: Ignore auto-generated files
 .config/doom/.local/
