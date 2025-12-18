@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Check for files without trailing newline
+
+files_without_newline=()
+
+for file in $(git diff --cached --name-only --diff-filter=ACM); do
+    # Skip binary files
+    if git diff --cached --numstat "$file" | grep -q "^-"; then
+        continue
+    fi
+
+    # Check if file exists and is not empty
+    if [ -s "$file" ]; then
+        # Check if file ends with newline
+        if [ -n "$(tail -c 1 "$file")" ]; then
+            files_without_newline+=("$file")
+        fi
+    fi
+done
+
+if [ ${#files_without_newline[@]} -gt 0 ]; then
+    echo "🤖 Error: The following files do not end with a newline:"
+    for file in "${files_without_newline[@]}"; do
+        echo "  - $file"
+    done
+    exit 1
+fi
+
+exit 0

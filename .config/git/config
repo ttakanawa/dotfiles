@@ -4,6 +4,7 @@
 [core]
     excludesfile = ~/.config/git/.gitignore
 	autocrlf = input
+	hooksPath = ~/.config/git/hooks
 [pull]
     rebase = true
 [ghq]
