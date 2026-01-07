@@ -52,7 +52,7 @@
 
   // hint
   {
-    "key": "f1",
+    "key": "ctrl+t",
     "command": "editor.action.showDefinitionPreviewHover"
   },
 
