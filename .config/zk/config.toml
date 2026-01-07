@@ -16,6 +16,12 @@ extension = "md"
 # The charset used for random IDs.
 id-charset = "alphanum"
 
+# Length of the random IDs.
+id-length = 8
+
+# Case of the random IDs.
+id-case = "lower"
+
 [group.daily]
 paths = ["journal"]
 
