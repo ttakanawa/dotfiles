@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/notify-waiting.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/notify-complete.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bun x ccusage statusline"
+  },
+  "alwaysThinkingEnabled": true,
+  "preferredNotifChannel": "terminal_bell"
+}
