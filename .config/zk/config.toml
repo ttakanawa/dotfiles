@@ -50,7 +50,7 @@ recent = "zk edit --sort created- --created-after 'last two weeks' --interactive
 
 ls = "zk edit --interactive" 
 
-t = "zk edit --interactive --tag $argv"
+t = "zk edit --interactive --tag \"$(zk tag list | grep -v '^Found' | sed 's/ ([0-9]*)$//' | fzf)\""
 
 config = 'nvim "$HOME/.config/zk/config.toml"'
 
