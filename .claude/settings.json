@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/notify-waiting.sh"
+            "command": "~/.claude/scripts/notify-waiting.sh"
           }
         ]
       }
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/notify-complete.sh"
+            "command": "~/.claude/scripts/notify-complete.sh"
           }
         ]
       }

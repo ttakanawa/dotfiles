@@ -19,10 +19,7 @@
 .claude/*
 !.claude/settings.json
 !.claude/commands/
-.claude/commands/*
-!.claude/commands/commit.md
-!.claude/notify-complete.sh
-!.claude/notify-waiting.sh
+!.claude/scripts/
 
 # Raycast: Ignore everything except script_commands
 .config/raycast/*
