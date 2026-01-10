@@ -2,6 +2,7 @@
 description: Create a git commit with staged changes
 argument-hint: optional message context
 allowed-tools: Bash, Read
+model: sonnet
 ---
 
 Review the currently staged changes and create an appropriate commit:
