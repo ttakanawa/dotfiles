@@ -2,6 +2,7 @@ targets='
 .zshrc
 .zshenv
 .config
+.claude
 '
 
 for target in ${targets}; do

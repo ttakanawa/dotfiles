@@ -32,8 +32,6 @@ export PATH="/Applications/WezTerm.app/Contents/MacOS:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
-
 export ZK_NOTEBOOK_DIR="$HOME/workspace/notes"
 
 # Added by Antigravity

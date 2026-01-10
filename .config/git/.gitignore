@@ -15,14 +15,14 @@
 !.config/wezterm/
 !.config/zsh/
 !.config/zk/
-!.config/claude/
-.config/claude/*
-!.config/claude/settings.json
-!.config/claude/agents/
-!.config/claude/commands/
-!.config/claude/CLAUDE.md
-!.config/claude/notify-complete.sh
-!.config/claude/notify-waiting.sh
+# Claude Code
+.claude/*
+!.claude/settings.json
+!.claude/commands/
+.claude/commands/*
+!.claude/commands/commit.md
+!.claude/notify-complete.sh
+!.claude/notify-waiting.sh
 
 # Raycast: Ignore everything except script_commands
 .config/raycast/*

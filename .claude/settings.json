@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_CONFIG_DIR/notify-waiting.sh"
+            "command": "~/.claude/notify-waiting.sh"
           }
         ]
       }
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_CONFIG_DIR/notify-complete.sh"
+            "command": "~/.claude/notify-complete.sh"
           }
         ]
       }
@@ -26,5 +26,6 @@
     "command": "bun x ccusage statusline"
   },
   "alwaysThinkingEnabled": true,
-  "preferredNotifChannel": "terminal_bell"
+  "preferredNotifChannel": "terminal_bell",
+  "model": "opus"
 }
