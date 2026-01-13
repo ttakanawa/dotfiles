@@ -22,8 +22,6 @@ fi
 TIME=$(date "+%-l:%M %p")
 DIR_NAME=$(basename "$CWD")
 {
-  echo "${TIME} [${DIR_NAME}]"
-  echo ""
-  echo "$PROMPT"
+  echo "${TIME} [${DIR_NAME}] $PROMPT"
   echo ""
 } >> "$JOURNAL_FILE"
