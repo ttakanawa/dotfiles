@@ -54,11 +54,11 @@ t = "zk edit --interactive --tag \"$(zk tag list | grep -v '^Found' | sed 's/ ([
 
 config = 'nvim "$HOME/.config/zk/config.toml"'
 
-daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal"; zk update'
+daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal";'
 
 ne = 'zk new --no-input "$ZK_NOTEBOOK_DIR/ideas" --title $argv'
 
-nel = 'zk new --no-input "$ZK_NOTEBOOK_DIR/literature"; zk update'
+nel = 'zk new --no-input "$ZK_NOTEBOOK_DIR/literature";'
 
 journal = "zk edit --sort created- journal --interactive"
 
