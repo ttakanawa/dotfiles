@@ -19,7 +19,7 @@ if [[ ! -f "$JOURNAL_FILE" ]]; then
 fi
 
 # Append prompt log entry
-TIME=$(date "+%-l:%M %p")
+TIME=$(date "+%H:%M")
 DIR_NAME=$(basename "$CWD")
 {
   echo "${TIME} [${DIR_NAME}] $PROMPT"
