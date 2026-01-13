@@ -64,7 +64,7 @@ journal = "zk edit --sort created- journal --interactive"
 
 literature = "zk edit --sort created- literature --interactive"
 
-update = "cd $ZK_NOTEBOOK_DIR; git pull; git add -A; git commit -am 'updating'; git push; cd -"
+update = "cd $ZK_NOTEBOOK_DIR; git pull; git add -A; git commit -am 'update'; git push; cd -"
 
 rm = "zk list --interactive --quiet --format path --determine0 $argv | xargs -0 rm -vf --"
 
