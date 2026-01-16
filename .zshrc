@@ -8,8 +8,9 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*:*:make:*' tag-order 'targets'
 
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
