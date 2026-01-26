@@ -8,7 +8,13 @@ local config = wezterm.config_builder()
 config.use_ime = true
 config.macos_forward_to_ime_modifier_mask = "CTRL|SHIFT"
 
+-- Window
+config.window_decorations = "RESIZE"
+config.initial_cols = 120
+config.initial_rows = 28
+
 -- Font
+config.font_size = 13
 config.font = wezterm.font 'UDEV Gothic 35NF'
 
 -- Split line color
