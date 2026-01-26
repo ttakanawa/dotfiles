@@ -10,6 +10,7 @@
     "workbench.tree.expandMode": "doubleClick",
     "workbench.tree.indent": 16,
     "files.autoSave": "afterDelay",
+    "files.insertFinalNewline": true,
     "git.autofetch": "all",
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
