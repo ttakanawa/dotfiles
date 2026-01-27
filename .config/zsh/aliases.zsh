@@ -112,7 +112,7 @@ function ssh-ls() {
 }
 
 function ghq-fzf() {
-  local src=$(ghq list | fzf --preview "bat --theme=\"Monokai Extended\" --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
+  local src=$(ghq list | fzf --preview "bat --theme=ansi --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
   if [ -n "$src" ]; then
     BUFFER="cd $(ghq root)/$src"
     zle accept-line
