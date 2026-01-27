@@ -13,6 +13,18 @@ config.window_decorations = "RESIZE"
 config.initial_cols = 120
 config.initial_rows = 28
 
+-- Transparent titlebar background
+config.window_frame = {
+  inactive_titlebar_bg = "none",
+  active_titlebar_bg = "none",
+}
+
+-- Hide new tab button in tab bar
+config.show_new_tab_button_in_tab_bar = false
+
+-- Color scheme
+config.color_scheme = 'nord'
+
 -- Font
 config.font_size = 13
 config.font = wezterm.font 'UDEV Gothic 35NF'
