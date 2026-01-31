@@ -3,6 +3,7 @@ bun = "latest"
 node = "latest"
 python = "latest"
 uv = "latest"
+php = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
