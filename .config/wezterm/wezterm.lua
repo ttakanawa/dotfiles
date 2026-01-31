@@ -1,5 +1,5 @@
 -- Pull in the wezterm API
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -10,35 +10,42 @@ config.macos_forward_to_ime_modifier_mask = "CTRL|SHIFT"
 
 -- Window
 config.window_decorations = "RESIZE"
-config.initial_cols = 120
-config.initial_rows = 28
+
+config.hide_tab_bar_if_only_one_tab = true
 
 -- Transparent titlebar background
 config.window_frame = {
-  inactive_titlebar_bg = "none",
-  active_titlebar_bg = "none",
+	inactive_titlebar_bg = "none",
+	active_titlebar_bg = "none",
 }
 
 -- Hide new tab button in tab bar
 config.show_new_tab_button_in_tab_bar = false
 
 -- Color scheme
-config.color_scheme = 'nord'
+config.color_scheme = "Catppuccin Frappe"
+config.colors = {
+	compose_cursor = "#a6d189",
+}
 
 -- Font
 config.font_size = 13
-config.font = wezterm.font 'UDEV Gothic 35NF'
+config.font = wezterm.font("UDEV Gothic 35NF")
 
 -- Split line color
-config.colors = {
-  split = 'white',
-}
+-- config.colors = { split = "white" }
 
 -- Dim inactive panes
-config.inactive_pane_hsb = {
-  saturation = 0.8,
-  brightness = 0.3,
-}
+-- config.inactive_pane_hsb = {
+-- 	saturation = 0.8,
+-- 	brightness = 0.3,
+-- }
+
+-- .config/wezterm/wezterm.lua の抜粋
+config.default_prog = { "/bin/zsh", "-l", "-c", "tmux attach -t tknw || tmux new -s tknw" }
+
+config.unix_domains = { { name = "unix" } }
+config.default_gui_startup_args = { "connect", "unix" }
 
 -- Scrollback lines
 config.scrollback_lines = 50000
@@ -46,21 +53,24 @@ config.scrollback_lines = 50000
 -- This is where you actually apply your config choices
 local act = wezterm.action
 config.keys = {
-  -- Move cursor
-  { key = "LeftArrow", mods = "META", action = act.SendKey { key = "b", mods = "META" } },
-  { key = "RightArrow", mods = "META", action = act.SendKey { key = "f", mods = "META" } },
+	-- Move cursor
+	{ key = "LeftArrow", mods = "META", action = act.SendKey({ key = "b", mods = "META" }) },
+	{ key = "RightArrow", mods = "META", action = act.SendKey({ key = "f", mods = "META" }) },
 
-  -- Switch panes
-  { key = "h", mods = "CTRL|SHIFT", action = act.SplitPane {direction = "Left"} },
-  { key = "l", mods = "CTRL|SHIFT", action = act.SplitPane {direction = "Right"} },
-  { key = "k", mods = "CTRL|SHIFT", action = act.SplitPane {direction = "Up"} },
-  { key = "j", mods = "CTRL|SHIFT", action = act.SplitPane {direction = "Down"} },
+	-- Switch panes
+	-- { key = "h", mods = "CTRL|SHIFT", action = act.SplitPane({ direction = "Left" }) },
+	-- { key = "l", mods = "CTRL|SHIFT", action = act.SplitPane({ direction = "Right" }) },
+	-- { key = "k", mods = "CTRL|SHIFT", action = act.SplitPane({ direction = "Up" }) },
+	-- { key = "j", mods = "CTRL|SHIFT", action = act.SplitPane({ direction = "Down" }) },
 
-  -- Close pane
-  { key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentPane { confirm = true } },
+	-- Close pane
+	-- { key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
 
-  -- Shift + Enter to create a new line
-  { key = 'Enter', mods = 'SHIFT', action = wezterm.action.SendString('\n') },
+	-- Close pane
+	{ key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
+	-- Shift + Enter to create a new line
+	{ key = "Enter", mods = "SHIFT", action = wezterm.action.SendString("\n") },
+
 }
 
 -- and finally, return the configuration to wezterm
