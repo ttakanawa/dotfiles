@@ -15,11 +15,17 @@
 !.config/wezterm/
 !.config/zsh/
 !.config/zk/
+
 # Claude Code
 .claude/*
 !.claude/settings.json
 !.claude/commands/
 !.claude/scripts/
+
+# tmux
+!.config/tmux/
+.config/tmux/*
+!.config/tmux/tmux.conf
 
 # Raycast: Ignore everything except script_commands
 .config/raycast/*
