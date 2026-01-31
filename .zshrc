@@ -36,3 +36,4 @@ bindkey -e
 source ~/.config/zsh/plugins.zsh
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/environment.zsh
+source ~/.config/zsh/secret_env.zsh

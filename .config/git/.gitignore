@@ -27,6 +27,9 @@
 .config/tmux/*
 !.config/tmux/tmux.conf
 
+# Secret env
+.config/zsh/secret_env.zsh
+
 # Raycast: Ignore everything except script_commands
 .config/raycast/*
 !.config/raycast/script_commands/
