@@ -31,6 +31,8 @@ setopt inc_append_history
 # Use wild card correctly
 setopt nonomatch
 
+bindkey -e
+
 source ~/.config/zsh/plugins.zsh
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/environment.zsh
