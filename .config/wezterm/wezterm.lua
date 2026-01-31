@@ -71,6 +71,39 @@ config.keys = {
 	-- Shift + Enter to create a new line
 	{ key = "Enter", mods = "SHIFT", action = wezterm.action.SendString("\n") },
 
+	-- Resize window (Option + Shift + H/J/K/L)
+	{
+		key = "j",
+		mods = "ALT|SHIFT",
+		action = wezterm.action_callback(function(window)
+			local dim = window:get_dimensions()
+			window:set_inner_size(dim.pixel_width, dim.pixel_height + 50)
+		end),
+	},
+	{
+		key = "k",
+		mods = "ALT|SHIFT",
+		action = wezterm.action_callback(function(window)
+			local dim = window:get_dimensions()
+			window:set_inner_size(dim.pixel_width, dim.pixel_height - 50)
+		end),
+	},
+	{
+		key = "l",
+		mods = "ALT|SHIFT",
+		action = wezterm.action_callback(function(window)
+			local dim = window:get_dimensions()
+			window:set_inner_size(dim.pixel_width + 50, dim.pixel_height)
+		end),
+	},
+	{
+		key = "h",
+		mods = "ALT|SHIFT",
+		action = wezterm.action_callback(function(window)
+			local dim = window:get_dimensions()
+			window:set_inner_size(dim.pixel_width - 50, dim.pixel_height)
+		end),
+	},
 }
 
 -- and finally, return the configuration to wezterm
