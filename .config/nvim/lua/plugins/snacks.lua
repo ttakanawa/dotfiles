@@ -11,6 +11,9 @@ return {
           hidden = true,
           ignored = true,
         },
+        grep = {
+          hidden = true,
+        },
         recent = {
           filter = { cwd = true },
         },
