@@ -12,4 +12,9 @@ BODY=$(
 ) 2>/dev/null || BODY=""
 
 # WezTerm Notification
-printf "\033]777;notify;%s;%s\033\\" "Claude Code Finished - ${TIME}" "$BODY" > /dev/tty
+TITLE="Claude Code Finished - ${TIME}"
+if [ -n "$TMUX" ]; then
+  printf '\033]777;notify;%s;%s\033\\' "$TITLE" "$BODY" > "$(tmux display-message -p '#{client_tty}')"
+else
+  printf '\033]777;notify;%s;%s\033\\' "$TITLE" "$BODY" > /dev/tty
+fi
