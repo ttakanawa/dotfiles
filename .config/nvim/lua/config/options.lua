@@ -3,3 +3,5 @@
 -- Add any additional options here
 
 vim.opt.conceallevel = 0
+vim.g.root_spec = { "cwd" }
+
