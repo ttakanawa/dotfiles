@@ -20,7 +20,6 @@ return {
           enabled = true,
           indentscope_color = "",
         },
-        neotree = true,
         notify = true,
         nvim_surround = true,
         nvimtree = true,
