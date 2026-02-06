@@ -41,11 +41,27 @@ config.font = wezterm.font("UDEV Gothic 35NF")
 -- 	brightness = 0.3,
 -- }
 
--- .config/wezterm/wezterm.lua の抜粋
-config.default_prog = { "/bin/zsh", "-l", "-c", "tmux attach -t tknw || tmux new -s tknw" }
+-- tmux commands
+local tmux_new_session = "tmux new -s $(uuidgen | cut -c 1-8)"
+local tmux_attach_or_new = "tmux attach 2>/dev/null || " .. tmux_new_session
 
-config.unix_domains = { { name = "unix" } }
-config.default_gui_startup_args = { "connect", "unix" }
+-- tmux session management
+wezterm.on("gui-startup", function(cmd)
+	local mux = wezterm.mux
+	local windows = mux.all_windows()
+
+	if #windows == 0 then
+		-- On fresh wezterm startup: attach to existing session if available, otherwise create new
+		mux.spawn_window({
+			args = { "/bin/zsh", "-l", "-c", tmux_attach_or_new },
+		})
+	else
+		-- When opening additional window (e.g., cmd+n): always create new session
+		mux.spawn_window({
+			args = { "/bin/zsh", "-l", "-c", tmux_new_session },
+		})
+	end
+end)
 
 -- Scrollback lines
 config.scrollback_lines = 50000
@@ -53,6 +69,15 @@ config.scrollback_lines = 50000
 -- This is where you actually apply your config choices
 local act = wezterm.action
 config.keys = {
+	-- New window with new tmux session
+	{
+		key = "n",
+		mods = "CMD",
+		action = wezterm.action.SpawnCommandInNewWindow({
+			args = { "/bin/zsh", "-l", "-c", tmux_new_session },
+		}),
+	},
+
 	-- Move cursor
 	{ key = "LeftArrow", mods = "META", action = act.SendKey({ key = "b", mods = "META" }) },
 	{ key = "RightArrow", mods = "META", action = act.SendKey({ key = "f", mods = "META" }) },
