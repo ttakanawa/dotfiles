@@ -6,6 +6,10 @@ return {
     opts = {
       flavour = "frappe",
       transparent_background = true,
+      term_colors = true,
+      float = {
+        transparent = true,
+      },
       integrations = {
         aerial = true,
         barbar = true,
@@ -29,6 +33,10 @@ return {
         render_markdown = true,
         telescope = {
           enabled = true,
+        },
+        snacks = {
+          enabled = true,
+          indent_scope_color = "",
         },
         which_key = true,
       },
