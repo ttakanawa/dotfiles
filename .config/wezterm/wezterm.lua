@@ -53,9 +53,18 @@ wezterm.on("gui-startup", function(cmd)
 
 	if #windows == 0 then
 		-- On fresh wezterm startup: attach to existing session if available, otherwise create new
-		mux.spawn_window({
+		local tab, pane, window = mux.spawn_window({
 			args = { "/bin/zsh", "-l", "-c", tmux_attach_or_new },
 		})
+		-- Set initial window size to 80% of screen, centered
+		local screen = wezterm.gui.screens().active
+		local ratio = 0.8
+		local width = math.floor(screen.width * ratio)
+		local height = math.floor(screen.height * ratio)
+		window:gui_window():set_inner_size(width, height)
+		window
+			:gui_window()
+			:set_position(math.floor((screen.width - width) / 2), math.floor((screen.height - height) / 2))
 	else
 		-- When opening additional window (e.g., cmd+n): always create new session
 		mux.spawn_window({
