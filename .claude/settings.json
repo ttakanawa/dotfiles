@@ -36,6 +36,5 @@
     "command": "bun x ccusage statusline"
   },
   "alwaysThinkingEnabled": true,
-  "preferredNotifChannel": "terminal_bell",
-  "model": "opus"
+  "preferredNotifChannel": "terminal_bell"
 }
