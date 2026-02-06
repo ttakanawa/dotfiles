@@ -6,17 +6,19 @@
 local map = vim.keymap.set
 local opts = { silent = true }
 
--- 行移動
-map("i", "<C-a>", "<C-o>^", opts)   -- 行頭（非空白）
-map("i", "<C-e>", "<C-o>$", opts)   -- 行末
+-- Line movement
+map("i", "<C-a>", "<C-o>^", opts) -- Beginning of line (non-whitespace)
+map("i", "<C-e>", "<C-o>$", opts) -- End of line
 
--- カーソル移動
-map("i", "<C-b>", "<Left>", opts)   -- 左
-map("i", "<C-f>", "<Right>", opts)  -- 右
-map("i", "<C-p>", "<Up>", opts)     -- 上
-map("i", "<C-n>", "<Down>", opts)   -- 下
+-- Cursor movement
+map("i", "<C-b>", "<Left>", opts) -- Left
+map("i", "<C-f>", "<Right>", opts) -- Right
+map("i", "<C-p>", "<Up>", opts) -- Up
+map("i", "<C-n>", "<Down>", opts) -- Down
 
--- 削除系（Emacs互換）
-map("i", "<C-d>", "<Del>", opts)    -- 次の文字を削除
-map("i", "<C-h>", "<BS>", opts)     -- 前の文字を削除
-map("i", "<C-k>", "<C-o>D", opts)   -- カーソル以降を削除
+-- Deletion (Emacs compatible)
+map("i", "<C-d>", "<Del>", opts) -- Delete next character
+map("i", "<C-h>", "<BS>", opts) -- Delete previous character
+map("i", "<C-k>", "<C-o>D", opts) -- Delete to end of line
+
+-- Copy file path
