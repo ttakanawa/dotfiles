@@ -12,7 +12,6 @@ return {
       },
       integrations = {
         aerial = true,
-        barbar = true,
         cmp = true,
         diffview = true,
         fzf = true,
@@ -28,7 +27,6 @@ return {
         nvim_surround = true,
         nvimtree = true,
         treesitter_context = true,
-        treesitter = true,
         ufo = true,
         render_markdown = true,
         telescope = {
