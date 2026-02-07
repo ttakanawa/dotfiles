@@ -4,6 +4,7 @@ alias ld="lazydocker"
 alias gget="ghq get"
 alias v="nvim ."
 alias vim="nvim ."
+alias cc="claude"
 
 # Functions
 function awsin() {
