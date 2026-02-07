@@ -70,6 +70,9 @@ map("v", "<leader>y", function()
     start_line, end_line = end_line, start_line
   end
 
-  local result = relative_path .. "#L" .. start_line .. "-L" .. end_line
+  local result = relative_path .. "#L" .. start_line
+  if start_line ~= end_line then
+    result = result .. "-" .. end_line
+  end
   copy_to_clipboard(result, "Path with range copied")
 end, { desc = "Copy relative path with selection range to clipboard" })
