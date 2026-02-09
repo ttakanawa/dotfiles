@@ -94,8 +94,6 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
   - neovim/nvim-lspconfig - LSP configuration
 - `markdown.lua`
   - MeanderingProgrammer/render-markdown.nvim - In-buffer markdown rendering
-- `markdown-preview.lua`
-  - iamcco/markdown-preview.nvim - Browser markdown preview
 - `snacks.lua`
   - folke/snacks.nvim - Utility collection
 - `telescope.lua`
