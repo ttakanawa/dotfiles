@@ -5,7 +5,6 @@
 # Ignore everything under .config
 .config/*
 # But don't ignore these specific directories
-!.config/doom/
 !.config/git/
 !.config/lazydocker/
 !.config/lazygit/
@@ -34,6 +33,3 @@
 # Raycast: Ignore everything except script_commands
 .config/raycast/*
 !.config/raycast/script_commands/
-
-# Doom Emacs: Ignore auto-generated files
-.config/doom/.local/
