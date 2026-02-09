@@ -4,4 +4,5 @@
 
 vim.opt.conceallevel = 0
 vim.g.root_spec = { "cwd" }
+vim.g.lazyvim_php_lsp = "intelephense"
 
