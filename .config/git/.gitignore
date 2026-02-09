@@ -26,6 +26,7 @@
 !.config/tmux/
 .config/tmux/*
 !.config/tmux/tmux.conf
+!.config/tmux/install-plugins.sh
 
 # Secret env
 .config/zsh/secret_env.zsh
