@@ -17,23 +17,12 @@ return {
         transparent = true,
       },
       integrations = {
-        aerial = true,
-        cmp = true,
-        diffview = true,
-        fzf = true,
         gitsigns = true,
-        harpoon = true,
-        markdown = true,
         mason = true,
         mini = {
           enabled = true,
           indentscope_color = "",
         },
-        notify = true,
-        nvim_surround = true,
-        nvimtree = true,
-        treesitter_context = true,
-        ufo = true,
         render_markdown = true,
         telescope = {
           enabled = true,
