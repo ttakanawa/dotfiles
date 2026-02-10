@@ -7,6 +7,12 @@ return {
       flavour = "frappe",
       transparent_background = true,
       term_colors = true,
+      custom_highlights = function(colors)
+        return {
+          ["@markup.strong"] = { fg = colors.text, bold = true },
+          ["@markup.italic"] = { fg = colors.text, italic = true },
+        }
+      end,
       float = {
         transparent = true,
       },
