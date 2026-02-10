@@ -17,16 +17,7 @@ return {
         transparent = true,
       },
       integrations = {
-        gitsigns = true,
         mason = true,
-        mini = {
-          enabled = true,
-          indentscope_color = "",
-        },
-        render_markdown = true,
-        telescope = {
-          enabled = true,
-        },
         snacks = {
           enabled = true,
           indent_scope_color = "",
