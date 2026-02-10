@@ -88,8 +88,6 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
 - `catppuccin.lua`
   - catppuccin/nvim - Color scheme
   - LazyVim/LazyVim - Colorscheme setting
-- `cmp.lua`
-  - hrsh7th/nvim-cmp - Completion engine
 - `lsp.lua`
   - neovim/nvim-lspconfig - LSP configuration
 - `markdown.lua`
