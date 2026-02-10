@@ -2,8 +2,8 @@
 alias lg="lazygit"
 alias ld="lazydocker"
 alias gget="ghq get"
-alias v="nvim ."
-alias vim="nvim ."
+alias v="nvim"
+alias vim="nvim"
 alias cc="claude"
 
 # Functions
