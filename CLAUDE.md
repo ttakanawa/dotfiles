@@ -103,3 +103,66 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
 
 - catppuccin/tmux
 - tmux-plugins/tmux-cpu
+
+## CLI Tools (Homebrew)
+
+Keep this section in sync with brew formulae in `homebrew/Brewfile`. When formulae are added or removed, update this section accordingly. Casks are not covered here.
+
+Prefer these tools over their traditional counterparts when running shell commands.
+
+### Preferred replacements — always use these instead of the defaults
+
+| Tool | Replaces | Description |
+| ------ | ---------- | ------------- |
+| `bat` | `cat` | File viewer with syntax highlighting and line numbers |
+| `fd` | `find` | Fast, user-friendly file finder (e.g. `fd '\.json$'`) |
+| `ripgrep` (`rg`) | `grep` | Fast regex search across files |
+| `fzf` | — | Fuzzy finder for interactive filtering of any list |
+| `zoxide` (`z`) | `cd` | Smart directory jumper that learns from usage |
+| `jq` | — | JSON processor for querying and transforming JSON |
+| `tree` | `ls -R` | Display directory structure as a tree |
+
+### Git & GitHub
+
+| Tool | Description |
+| ------ | ------------- |
+| `git` | Version control |
+| `gh` | GitHub CLI — PRs, issues, releases, Actions, API calls |
+| `ghq` | Git repository manager — clone/list repos under a unified root (`ghq get`, `ghq list`) |
+| `lazygit` | Terminal UI for git — interactive staging, branching, rebasing |
+| `diff-so-fancy` | Better-looking git diffs (configured as git pager) |
+
+### Media & Files
+
+| Tool | Description |
+| ------ | ------------- |
+| `ffmpeg` | Audio/video conversion, transcoding, and streaming |
+| `imagemagick` (`magick`) | Image manipulation — resize, convert, composite |
+| `exiftool` | Read/write metadata of images, videos, PDFs |
+| `fselect` | SQL-like queries over files (e.g. `fselect name, size from . where name = '*.log'`) |
+
+### Development & Infrastructure
+
+| Tool | Description |
+| ------ | ------------- |
+| `neovim` (`nvim`) | Primary text editor (LazyVim config) |
+| `tmux` | Terminal multiplexer — sessions, windows, panes |
+| `direnv` | Auto-load/unload `.envrc` environment variables per directory |
+| `sheldon` | Zsh plugin manager |
+| `pipx` | Install and run Python CLI tools in isolated environments |
+| `railway` | Railway.app CLI for deploying and managing services |
+| `zk` | Zettelkasten plain-text note management |
+
+### System & Monitoring
+
+| Tool | Description |
+| ------ | ------------- |
+| `bottom` (`btm`) | System resource monitor (CPU, memory, network, processes) |
+| `lazydocker` | Terminal UI for Docker — containers, images, volumes, logs |
+
+### Hardware
+
+| Tool | Description |
+| ------ | ------------- |
+| `qmk` | QMK keyboard firmware toolchain |
+| `macism` | macOS input source (IME) switcher from the command line |
