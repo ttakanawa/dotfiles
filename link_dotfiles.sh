@@ -3,6 +3,7 @@ targets='
 .zshenv
 .config
 .claude
+.markdownlint.yaml
 '
 
 for target in ${targets}; do

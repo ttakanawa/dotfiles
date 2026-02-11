@@ -6,6 +6,7 @@ Dotfiles repository.
 
 ```
 .
+├── .markdownlint.yaml           # markdownlint config
 ├── .zshenv                      # Sets XDG_CONFIG_HOME
 ├── .zshrc                       # Zsh main config (sources .config/zsh/)
 ├── .config/
@@ -63,10 +64,11 @@ Dotfiles repository.
 
 ```
 $HOME/
-├── .zshrc    → dotfiles/.zshrc
-├── .zshenv   → dotfiles/.zshenv
-├── .config/  → dotfiles/.config/   # = ~/.config/ (XDG_CONFIG_HOME)
-└── .claude/  → dotfiles/.claude/
+├── .markdownlint.yaml → dotfiles/.markdownlint.yaml
+├── .zshrc             → dotfiles/.zshrc
+├── .zshenv            → dotfiles/.zshenv
+├── .config/           → dotfiles/.config/   # = ~/.config/ (XDG_CONFIG_HOME)
+└── .claude/           → dotfiles/.claude/
 ```
 
 ## .gitignore
