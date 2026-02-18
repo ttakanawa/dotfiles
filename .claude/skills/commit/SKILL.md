@@ -1,8 +1,11 @@
 ---
+name: commit
 description: Create a git commit with staged changes
 argument-hint: optional message context
+disable-model-invocation: true
 allowed-tools: Bash, Read
 model: sonnet
+context: fork
 ---
 
 Review the currently staged changes and create an appropriate commit:
@@ -24,10 +27,11 @@ Review the currently staged changes and create an appropriate commit:
      - Use bullet points (hyphen or asterisk) if needed
      - Put issue tracker references at bottom if applicable
 4. Do not add co-author attribution to the commit message
-7. **Present the commit message to the user for review before committing**
+5. **Present the commit message to the user for review before committing**
    - Use the following format to clearly separate the commit message from explanations:
 
    Example:
+
    ```
    Proposed commit message:
 
@@ -46,11 +50,12 @@ Review the currently staged changes and create an appropriate commit:
    - Explains what and why the change was made
    ```
 
-8. Wait for the user's approval
-9. Once approved, create the commit with the reviewed message
-10. After creating the commit, run `git show -s <commit-hash>` and display the result with clear formatting:
+6. Wait for the user's approval
+7. Once approved, create the commit with the reviewed message
+8. After creating the commit, run `git show -s <commit-hash>` and display the result with clear formatting:
 
    Example:
+
    ```
    Commit created successfully!
 

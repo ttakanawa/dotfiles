@@ -33,7 +33,7 @@ Dotfiles repository.
 │   └── raycast/script_commands/ # Raycast script commands
 ├── .claude/
 │   ├── settings.json            # Claude Code hooks & status line
-│   ├── commands/                # Slash commands
+│   ├── skills/                  # Skills
 │   └── scripts/                 # Hook scripts (notification, logging)
 ├── homebrew/
 │   ├── Brewfile                 # Homebrew package list
