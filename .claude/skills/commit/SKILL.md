@@ -3,7 +3,7 @@ name: commit
 description: Create a git commit with staged changes
 argument-hint: optional message context
 disable-model-invocation: true
-allowed-tools: Bash, Read
+allowed-tools: Bash(git add:*), Bash(git commit:*), Bash(git diff:*), Bash(git status:*), Bash(git show:*), Read
 model: sonnet
 context: fork
 ---
