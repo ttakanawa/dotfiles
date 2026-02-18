@@ -5,7 +5,6 @@ argument-hint: optional message context
 disable-model-invocation: true
 allowed-tools: Bash(git add:*), Bash(git commit:*), Bash(git diff:*), Bash(git status:*), Bash(git show:*), Read
 model: sonnet
-context: fork
 ---
 
 Review the currently staged changes and create an appropriate commit:
