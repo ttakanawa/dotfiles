@@ -22,19 +22,6 @@ id-length = 8
 # Case of the random IDs.
 id-case = "lower"
 
-[group.daily]
-paths = ["journal"]
-
-[group.daily.note]
-filename = "{{ format-date now '%Y-%m-%d'}}"
-template = "daily.md"
-
-[group.literature]
-paths = ["literature"]
-
-[group.literature.note]
-template = "literature.md"
-
 [format.markdown]
 hashtags = true
 colon-tags = true
