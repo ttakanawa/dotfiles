@@ -43,6 +43,8 @@ config = 'nvim "$HOME/.config/zk/config.toml"'
 
 daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal";'
 
+now = 'echo "$(date "+%H:%M") $argv" >> "$(zk list --quiet --format "{{abs-path}}" --sort created- --limit 1 journal)"'
+
 ne = 'zk new --no-input "$ZK_NOTEBOOK_DIR/ideas" --title $argv'
 
 nel = 'zk new --no-input "$ZK_NOTEBOOK_DIR/literature";'
