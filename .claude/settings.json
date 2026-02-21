@@ -35,6 +35,9 @@
     "type": "command",
     "command": "bun x ccusage statusline"
   },
+  "attribution": {
+    "commit": ""
+  },
   "alwaysThinkingEnabled": true,
   "preferredNotifChannel": "terminal_bell"
 }
