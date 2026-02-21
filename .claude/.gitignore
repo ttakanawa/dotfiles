@@ -1,0 +1,18 @@
+# Ignore everything
+*
+
+!.gitignore
+
+!settings.json
+
+!agents/
+!agents/**
+
+!commands/
+!commands/**
+
+!rules/
+!rules/**
+
+!scripts/
+!scripts/**

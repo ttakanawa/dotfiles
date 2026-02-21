@@ -10,6 +10,7 @@ Configuration files for my computer.
 ├── .zshenv                      # Sets XDG_CONFIG_HOME
 ├── .zshrc                       # Zsh main config (sources .config/zsh/)
 ├── .config/
+│   ├── .gitignore               # Ignore non-dotfiles dirs (gh, emacs, etc.)
 │   ├── zsh/
 │   │   ├── plugins.zsh          # sheldon, zoxide, direnv, mise init
 │   │   ├── aliases.zsh          # Aliases & fzf utility functions
@@ -32,6 +33,7 @@ Configuration files for my computer.
 │   ├── zk/                      # Zettelkasten note config & templates
 │   └── raycast/script_commands/ # Raycast script commands
 ├── .claude/
+│   ├── .gitignore               # Allowlist for tracked Claude Code files
 │   ├── settings.json            # Claude Code hooks & status line
 │   ├── skills/                  # Skills
 │   └── scripts/                 # Hook scripts (notification, logging)

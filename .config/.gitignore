@@ -1,0 +1,41 @@
+# Ignore everything
+*
+
+# Track this gitignore
+!.gitignore
+
+# Tracked directories
+!git/
+!git/**
+!lazydocker/
+!lazydocker/**
+!lazygit/
+!lazygit/**
+!mise/
+!mise/**
+!nvim/
+!nvim/**
+!sheldon/
+!sheldon/**
+!wezterm/
+!wezterm/**
+!zk/
+!zk/**
+
+# tmux: only track specific files
+!tmux/
+tmux/*
+!tmux/tmux.conf
+!tmux/install-plugins.sh
+
+# Secret env (do not track)
+!zsh/
+!zsh/**
+zsh/secret_env.zsh
+
+# Raycast: only track script_commands
+!raycast/
+!raycast/**
+raycast/*
+!raycast/script_commands/
+!raycast/script_commands/**

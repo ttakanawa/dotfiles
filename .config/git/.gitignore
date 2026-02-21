@@ -1,38 +1,3 @@
 .DS_Store
 .idea/
 .vscode
-
-# Ignore everything under .config
-.config/*
-# But don't ignore these specific directories
-!.config/git/
-!.config/lazydocker/
-!.config/lazygit/
-!.config/mise/
-!.config/nvim/
-!.config/sheldon/
-!.config/wezterm/
-!.config/zsh/
-!.config/zk/
-
-# Claude Code
-.claude/*
-!.claude/settings.json
-!.claude/agents/
-!.claude/commands/
-!.claude/skills/
-!.claude/rules/
-!.claude/scripts/
-
-# tmux
-!.config/tmux/
-.config/tmux/*
-!.config/tmux/tmux.conf
-!.config/tmux/install-plugins.sh
-
-# Secret env
-.config/zsh/secret_env.zsh
-
-# Raycast: Ignore everything except script_commands
-.config/raycast/*
-!.config/raycast/script_commands/
