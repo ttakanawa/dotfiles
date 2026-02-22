@@ -5,6 +5,9 @@ alias gget="ghq get"
 alias v="nvim"
 alias vim="nvim"
 alias c="claude"
+alias c-dev='claude --system-prompt "$(cat ~/.claude/contexts/dev.md)"'
+alias c-review='claude --system-prompt "$(cat ~/.claude/contexts/review.md)"'
+alias c-research='claude --system-prompt "$(cat ~/.claude/contexts/research.md)"'
 
 # Functions
 function awsin() {

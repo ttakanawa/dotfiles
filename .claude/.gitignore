@@ -11,6 +11,9 @@
 !commands/
 !commands/**
 
+!contexts/
+!contexts/**
+
 !rules/
 !rules/**
 

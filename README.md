@@ -36,6 +36,7 @@ Configuration files for my computer.
 │   ├── .gitignore               # Allowlist for tracked Claude Code files
 │   ├── settings.json            # Claude Code hooks & status line
 │   ├── skills/                  # Skills
+│   ├── contexts/                # Context profiles (dev, research, review)
 │   └── scripts/                 # Hook scripts (notification, logging)
 ├── homebrew/
 │   ├── Brewfile                 # Homebrew package list
