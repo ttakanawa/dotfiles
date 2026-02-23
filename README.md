@@ -35,6 +35,7 @@ Configuration files for my computer.
 ├── .claude/
 │   ├── .gitignore               # Allowlist for tracked Claude Code files
 │   ├── settings.json            # Hooks, status line, attribution, preferences
+│   ├── agents/                  # Custom agents
 │   ├── contexts/                # Context profiles (dev, research, review)
 │   ├── skills/                  # Reusable skill definitions
 │   └── scripts/                 # Hook scripts (notification, logging)
