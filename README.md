@@ -36,6 +36,7 @@ Configuration files for my computer.
 │   ├── .gitignore               # Allowlist for tracked Claude Code files
 │   ├── settings.json            # Hooks, status line, attribution, preferences
 │   ├── agents/                  # Custom agents
+│   ├── commands/                # Slash commands
 │   ├── contexts/                # Context profiles (dev, research, review)
 │   ├── rules/                   # Global rules (auto-loaded)
 │   ├── skills/                  # Reusable skill definitions
