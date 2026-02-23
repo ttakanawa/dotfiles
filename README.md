@@ -34,9 +34,9 @@ Configuration files for my computer.
 │   └── raycast/script_commands/ # Raycast script commands
 ├── .claude/
 │   ├── .gitignore               # Allowlist for tracked Claude Code files
-│   ├── settings.json            # Claude Code hooks & status line
-│   ├── skills/                  # Skills
+│   ├── settings.json            # Hooks, status line, attribution, preferences
 │   ├── contexts/                # Context profiles (dev, research, review)
+│   ├── skills/                  # Reusable skill definitions
 │   └── scripts/                 # Hook scripts (notification, logging)
 ├── homebrew/
 │   ├── Brewfile                 # Homebrew package list
