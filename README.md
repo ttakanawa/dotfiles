@@ -174,3 +174,51 @@ Prefer these tools over their traditional counterparts when running shell comman
 | ------ | ------------- |
 | `qmk` | QMK keyboard firmware toolchain |
 | `macism` | macOS input source (IME) switcher from the command line |
+
+## Claude Code
+
+### Rules
+
+<https://code.claude.com/docs/en/memory>
+
+| Rule | Description |
+| ------ | ------------- |
+| `writing-style.md` | Mixed Japanese-English text spacing conventions |
+| `agents.md` | Agent orchestration guidelines — when to use which agent, parallel execution |
+
+### Agents
+
+<https://code.claude.com/docs/en/sub-agents>
+
+| Agent | Description |
+| ------ | ------------- |
+| `architect` | System design, scalability, technical decisions |
+| `tdd-guide` | Test-driven development (write-tests-first) |
+| `code-reviewer` | Code quality, security, maintainability review |
+| `security-reviewer` | OWASP Top 10, secrets detection, vulnerability remediation |
+
+### Skills
+
+<https://code.claude.com/docs/en/skills>
+
+| Skill | Description |
+| ------ | ------------- |
+| `coding-standards` | Universal coding standards and best practices (KISS, DRY, YAGNI) |
+
+### Commands
+
+<https://code.claude.com/docs/en/skills>
+
+| Command | Description |
+| ------ | ------------- |
+| `/commit` | Analyze staged changes and create commit interactively |
+
+### Contexts
+
+<https://code.claude.com/docs/en/cli-reference#cli-flags>
+
+| Context | Mode | Focus |
+| ------ | ------------- | ------ |
+| `dev` | Active development | Implementation, coding, building features |
+| `research` | Exploration | Understanding before acting |
+| `review` | Code review | Quality, security, maintainability |
