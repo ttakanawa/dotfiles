@@ -34,6 +34,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 export ZK_NOTEBOOK_DIR="$HOME/workspace/notes"
 
+# Claude Code
+export CLAUDE_CODE_DISABLE_AUTO_MEMORY=0
+
 # Added by Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
