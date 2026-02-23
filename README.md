@@ -37,6 +37,7 @@ Configuration files for my computer.
 │   ├── settings.json            # Hooks, status line, attribution, preferences
 │   ├── agents/                  # Custom agents
 │   ├── contexts/                # Context profiles (dev, research, review)
+│   ├── rules/                   # Global rules (auto-loaded)
 │   ├── skills/                  # Reusable skill definitions
 │   └── scripts/                 # Hook scripts (notification, logging)
 ├── homebrew/
