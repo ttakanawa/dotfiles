@@ -1,6 +1,6 @@
 # Commit
 
-Review the currently staged changes and create an appropriate commit through an interactive process.
+Analyze the currently staged changes and create an appropriate commit through an interactive process.
 
 ## Commit Message Format
 
@@ -26,7 +26,7 @@ Note: Attribution disabled globally via ~/.claude/settings.json.
 
 1. Run  `git diff --staged` to understand the exact changes.
 1. Analyze the nature of the changes.
-1. Generate a commit message and present it to the user for review.
+1. Generate a commit message and present it to the user for confirmation.
 
    ```
     Proposed commit message:
@@ -37,7 +37,7 @@ Note: Attribution disabled globally via ~/.claude/settings.json.
     ```
 
 1. **CRITICAL: Wait for the user's explicit approval.** Do not proceed to commit until the user says "ok", "yes", or approves it.
-1. Once approved, execute the commit with the reviewed message.
+1. Once approved, execute the commit with the approved message.
 1. After creating the commit successfully, run `git show -s <commit-hash>` and display the output wrapped in clear visual dividers like this:
 
     ```
