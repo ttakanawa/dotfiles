@@ -150,9 +150,30 @@ function git-remote-url() {
 }
 
 function g() {
-  local url
-  url=$(git-remote-url) || return
-  open "$url" || xdg-open "$url" || start "$url"
+  if [ $# -eq 0 ]; then
+    local url
+    url=$(git-remote-url) || return
+    open "$url" || xdg-open "$url" || start "$url"
+    return
+  fi
+
+  local host
+  host=$(git remote get-url origin | sed -E 's#(https?://|git@)([^:/]+).*#\2#')
+  if glab auth status --hostname "$host" >/dev/null 2>&1; then
+    if [ $# -ge 2 ]; then
+      local url
+      url=$(git-remote-url) || return
+      open "$url/-/blob/$1/$2"
+    else
+      glab repo view --web -b "$1"
+    fi
+  else
+    if [ $# -ge 2 ]; then
+      gh browse "$2" --branch "$1"
+    else
+      gh browse "$1"
+    fi
+  fi
 }
 
 function go-install() {
