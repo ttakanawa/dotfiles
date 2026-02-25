@@ -2,3 +2,24 @@ git:
   pagers:
     - colorArg: always
       pager: diff-so-fancy
+customCommands:
+  - key: "G"
+    description: "Open file at commit in browser"
+    command: "zsh -c 'source ~/.config/zsh/aliases.zsh && g {{.SelectedSubCommit.Hash}} {{.SelectedCommitFile.Name}}'"
+    context: "commitFiles"
+  - key: "G"
+    description: "Open branch in browser"
+    command: "zsh -c 'source ~/.config/zsh/aliases.zsh && g {{.SelectedLocalBranch.Name}}'"
+    context: "localBranches"
+  - key: "G"
+    description: "Open commit in browser"
+    command: "zsh -c 'source ~/.config/zsh/aliases.zsh && g {{.SelectedSubCommit.Hash}}'"
+    context: "subCommits"
+  - key: "G"
+    description: "Open commit in browser"
+    command: "zsh -c 'source ~/.config/zsh/aliases.zsh && g {{.SelectedLocalCommit.Hash}}'"
+    context: "commits"
+  - key: "G"
+    description: "Open repository in browser"
+    command: "zsh -c 'source ~/.config/zsh/aliases.zsh && g'"
+    context: "global"
