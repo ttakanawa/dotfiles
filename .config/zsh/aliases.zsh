@@ -125,35 +125,34 @@ function ghq-fzf() {
 zle -N ghq-fzf
 bindkey '^[g' ghq-fzf
 
-function g() {
-  # Check if the current directory is a Git repository
+function git-remote-url() {
   git rev-parse --is-inside-work-tree &>/dev/null || {
-    echo "The current directory is not a Git repository."
-    return
+    echo "The current directory is not a Git repository." >&2
+    return 1
   }
 
-  # Get the remote URL of the Git repository
+  local remote_url
   remote_url=$(git config --get remote.origin.url)
 
+  local open_url
   if [[ $remote_url == http* ]]; then
-    # If the URL is http, use it as is
     open_url=$remote_url
   elif [[ $remote_url == git@* ]]; then
-    # If the URL is in git@ format, convert it to http format
     open_url=$(echo $remote_url | sed -E 's/git@([^:]+):(.+)/https:\/\/\1\/\2/')
   elif [[ $remote_url == ssh://git@* ]]; then
-    # If the URL is in ssh:// format, convert it to http format
     open_url=$(echo $remote_url | sed -E 's/ssh:\/\/git@([^\/]+)\/(.+)/https:\/\/\1\/\2/')
   else
-    echo "Unknown Git repository URL format."
-    return
+    echo "Unknown Git repository URL format." >&2
+    return 1
   fi
 
-  # For GitHub URLs, remove .git (applicable to other Git hosting services as well)
-  open_url=${open_url%.git}
+  echo "${open_url%.git}"
+}
 
-  # Open in browser
-  open "$open_url" || xdg-open "$open_url" || start "$open_url"
+function g() {
+  local url
+  url=$(git-remote-url) || return
+  open "$url" || xdg-open "$url" || start "$url"
 }
 
 function go-install() {
