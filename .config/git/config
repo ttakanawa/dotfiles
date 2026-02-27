@@ -9,3 +9,22 @@
     rebase = true
 [ghq]
     root = ~/workspace
+
+; Redirect connections to github.com/<ORGANIZATION> via <HOST> defined in ~/.ssh/config
+; [url "git@<HOST>:<ORGANIZATION>/"]
+; 	insteadOf = git@github.com:<ORGANIZATION>/
+; 	insteadOf = ssh://git@github.com/<ORGANIZATION>/
+; 	insteadOf = https://github.com/<ORGANIZATION>/
+
+; Expected ~/.ssh/config entry:
+; host <HOST>
+;   hostname github.com
+;   user git
+;   identityfile ~/.ssh/id_rsa_random
+;   identitiesonly yes
+; host github.com
+;   hostname github.com
+;   user git
+;   identityfile ~/.ssh/id_rsa
+;   identitiesonly yes
+
