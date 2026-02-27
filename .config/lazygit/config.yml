@@ -5,7 +5,7 @@ git:
 customCommands:
   - key: "G"
     description: "Open file at commit in browser"
-    command: "zsh -c 'source ~/.config/zsh/aliases.zsh && g {{.SelectedSubCommit.Hash}} {{.SelectedCommitFile.Name}}'"
+    command: "zsh -c 'source ~/.config/zsh/aliases.zsh && g {{if .SelectedSubCommit}}{{.SelectedSubCommit.Hash}}{{else}}{{.SelectedLocalCommit.Hash}}{{end}} {{.SelectedCommitFile.Name}}'"
     context: "commitFiles"
   - key: "G"
     description: "Open branch in browser"
