@@ -131,8 +131,12 @@ function git-remote-url() {
     return 1
   }
 
+  local remote="${1:-origin}"
   local remote_url
-  remote_url=$(git config --get remote.origin.url)
+  remote_url=$(git config --get "remote.${remote}.url") || {
+    echo "Remote '${remote}' not found." >&2
+    return 1
+  }
 
   local open_url
   if [[ $remote_url == http* ]]; then
@@ -157,23 +161,40 @@ function g() {
     return
   fi
 
+  # Strip remote prefix from branch (e.g. upstream/main → main) and track the remote
+  local branch="$1"
+  local remote="origin"
+  local r
+  for r in $(git remote 2>/dev/null); do
+    if [[ "$branch" == "$r/"* ]]; then
+      remote="$r"
+      branch="${branch#$r/}"
+      break
+    fi
+  done
+
+  local url
+  url=$(git-remote-url "$remote") || return
+
   local host
-  host=$(git remote get-url origin | sed -E 's#(https?://|git@)([^:/]+).*#\2#')
+  host=$(echo "$url" | sed -E 's#https?://([^/]+).*#\1#')
+
+  local open_url
   if glab auth status --hostname "$host" >/dev/null 2>&1; then
     if [ $# -ge 2 ]; then
-      local url
-      url=$(git-remote-url) || return
-      open "$url/-/blob/$1/$2"
+      open_url="$url/-/blob/$branch/$2"
     else
-      glab repo view --web -b "$1"
+      open_url="$url/-/tree/$branch"
     fi
   else
     if [ $# -ge 2 ]; then
-      gh browse "$2" --branch "$1"
+      open_url="$url/blob/$branch/$2"
     else
-      gh browse "$1"
+      open_url="$url/tree/$branch"
     fi
   fi
+
+  open "$open_url" || xdg-open "$open_url" || start "$open_url"
 }
 
 function go-install() {
