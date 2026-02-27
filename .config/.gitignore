@@ -17,6 +17,8 @@
 !nvim/**
 !sheldon/
 !sheldon/**
+!ssh/
+!ssh/**
 !wezterm/
 !wezterm/**
 !zk/

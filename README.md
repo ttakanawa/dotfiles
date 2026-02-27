@@ -30,6 +30,8 @@ Configuration files for my computer.
 │   │   └── config
 │   ├── lazygit/config.yml
 │   ├── mise/config.toml         # Runtime version manager
+│   ├── ssh/
+│   │   └── config.base          # SSH base config (loaded via Include in ~/.ssh/config)
 │   ├── zk/                      # Zettelkasten note config & templates
 │   └── raycast/script_commands/ # Raycast script commands
 ├── .claude/

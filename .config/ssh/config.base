@@ -1,0 +1,32 @@
+# Add "Include ~/.config/ssh/config.base" at the end of ~/.ssh/config
+
+Host *
+
+  # --- Authentication ---
+  # Store and retrieve passphrases via macOS Keychain
+  UseKeychain yes
+  # Automatically add keys to ssh-agent on first use
+  AddKeysToAgent yes
+
+  # --- Connection ---
+  # Send keepalive packets every 60 seconds
+  ServerAliveInterval 60
+  # Enable TCP-level keepalive for early disconnect detection
+  TCPKeepAlive yes
+  # Time out after 10 seconds when establishing a connection
+  ConnectTimeout 10
+
+  # --- Multiplexing ---
+  # REQUIRED: mkdir -p ~/.ssh/sockets && chmod 700 ~/.ssh/sockets
+  # Automatically create a master socket on the first connection
+  ControlMaster auto
+  # Path for the master socket (%r=user, %h=host, %p=port)
+  ControlPath ~/.ssh/sockets/%r@%h:%p
+  # Keep the socket open for 10 minutes after the last session closes
+  ControlPersist 10m
+
+  # --- Security ---
+  # Disable agent forwarding to prevent key exposure through jump hosts; use ProxyJump instead
+  ForwardAgent no
+  # Hash hostnames in known_hosts to prevent information leakage
+  HashKnownHosts yes
