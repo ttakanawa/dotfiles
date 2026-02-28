@@ -192,6 +192,8 @@ Prefer these tools over their traditional counterparts when running shell comman
 
 <https://code.claude.com/docs/en/sub-agents>
 
+Keep this section in sync with `.claude/agents/`. When agents are added or removed, update both this section and `.claude/rules/agents.md` accordingly.
+
 | Agent | Description |
 | ------ | ------------- |
 | `architect` | System design, scalability, technical decisions |
