@@ -2,6 +2,8 @@
 
 Configuration files for my computer.
 
+All documentation and comments in this repository are written in English.
+
 ## File Tree
 
 ```
