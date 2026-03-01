@@ -3,6 +3,7 @@ name: daily-summary
 description: Summarize Claude Code interactions for a given date using Agent Teams
 argument-hint: "date: today, yesterday, or YYYY-MM-DD"
 disable-model-invocation: true
+allowed-tools: Bash(tmux display-message:*), Bash(date:*), Bash(mkdir:*), Bash(~/.claude/skills/daily-summary/*), Read, Write, AskUserQuestion, Agent, TeamCreate, TeamDelete, TaskCreate, TaskUpdate, TaskList, SendMessage
 ---
 
 # Daily Summary
@@ -53,7 +54,6 @@ Extract unique project + session pairs for the target date:
 This produces: `[{project: "/Users/.../dotfiles", sessions: ["uuid1", "uuid2"]}, ...]`
 
 If the result is empty, report "No sessions found for the specified date" and stop.
-
 
 ## Phase 3 — Create Team and Tasks
 
