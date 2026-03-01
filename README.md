@@ -190,6 +190,7 @@ Prefer these tools over their traditional counterparts when running shell comman
 | ------ | ------------- |
 | `writing-style.md` | Mixed Japanese-English text spacing conventions |
 | `agents.md` | Agent orchestration guidelines — when to use which agent, parallel execution |
+| `ask-user-question.md` | Always use AskUserQuestion tool for user questions |
 
 ### Agents
 
