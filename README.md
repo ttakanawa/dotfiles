@@ -36,6 +36,7 @@ Configuration files for my computer.
 │   └── raycast/script_commands/ # Raycast script commands
 ├── .claude/
 │   ├── .gitignore               # Allowlist for tracked Claude Code files
+│   ├── CLAUDE.md                # Claude Code project instructions (communication rules)
 │   ├── settings.json            # Hooks, status line, attribution, preferences
 │   ├── agents/                  # Custom agents
 │   ├── commands/                # Slash commands
