@@ -32,6 +32,5 @@
   "attribution": {
     "commit": ""
   },
-  "alwaysThinkingEnabled": true,
-  "preferredNotifChannel": "terminal_bell"
+  "alwaysThinkingEnabled": true
 }
