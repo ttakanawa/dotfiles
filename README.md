@@ -28,8 +28,8 @@ All documentation and comments in this repository are written in English.
 │   ├── wezterm/wezterm.lua
 │   ├── sheldon/plugins.toml     # Zsh plugin manager config
 │   ├── git/
-│   │   ├── .gitignore           # Global gitignore (via core.excludesFile)
-│   │   └── config
+│   │   ├── config
+│   │   └── ignore               # Global gitignore (XDG standard, auto-loaded by git)
 │   ├── lazygit/config.yml
 │   ├── mise/config.toml         # Runtime version manager
 │   ├── ssh/
@@ -84,7 +84,7 @@ $HOME/
 
 ## .gitignore
 
-Allowlist pattern. When adding or removing tracked paths under the symlinked directories, update `.config/git/.gitignore` accordingly.
+Allowlist pattern. When adding or removing tracked paths under the symlinked directories, update `.config/.gitignore` accordingly.
 
 ## Terminal
 
