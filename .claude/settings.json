@@ -32,5 +32,54 @@
   "attribution": {
     "commit": ""
   },
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(which:*)",
+      "Bash(wc:*)",
+      "Bash(pwd)",
+      "Bash(date:*)",
+      "Bash(diff:*)",
+      "Bash(jq:*)",
+      "Bash(tree:*)",
+      "Bash(* --version)",
+      "Bash(* --help *)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git show:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git ls-files:*)",
+      "Bash(git remote -v:*)",
+      "Bash(git config --get:*)",
+      "Bash(git shortlog:*)",
+      "Bash(git tag -l:*)",
+      "Bash(brew list:*)",
+      "Bash(brew info:*)",
+      "Bash(brew search:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr status:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(gh issue list:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh issue status:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh repo list:*)",
+      "Bash(gh release list:*)",
+      "Bash(gh release view:*)",
+      "Bash(gh search:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./config/credentials.json)",
+      "Read(./build)"
+    ]
+  },
   "alwaysThinkingEnabled": true
 }
