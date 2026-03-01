@@ -215,6 +215,7 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 | `/commit-diff` | Analyze staged changes and create a commit with a Conventional Commits message |
 | `/update-commit-message` | Regenerate a commit message and update via interactive rebase |
 | `/v` | Neovim environment guide (plugins, keymaps, config) |
+| `/daily-summary` | Summarize Claude Code interactions for a date range using Agent Teams |
 
 ### Contexts
 
