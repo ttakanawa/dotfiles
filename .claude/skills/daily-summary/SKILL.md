@@ -94,8 +94,8 @@ Extract messages from each session file and save to tmp:
 
   ```bash
   TMP_DIR=~/.claude/skills/daily-summary/tmp/$TARGET_DATE
-  ~/.claude/skills/daily-summary/extract-user-messages.sh "$SESSION_FILE" > "$TMP_DIR/${SESSION_ID}-user.txt"
-  ~/.claude/skills/daily-summary/extract-assistant-messages.sh "$SESSION_FILE" > "$TMP_DIR/${SESSION_ID}-assistant.txt"
+  ~/.claude/skills/daily-summary/extract-user-messages.sh "$SESSION_FILE" > "$TMP_DIR/${SESSION_ID}-user.jsonl"
+  ~/.claude/skills/daily-summary/extract-assistant-messages.sh "$SESSION_FILE" > "$TMP_DIR/${SESSION_ID}-assistant.jsonl"
   ```
 
 ### 4d. Summary Format
@@ -129,7 +129,7 @@ After all teammates have reported back, combine their summaries into a single re
 Fill in:
 
 1. **Header**: Date, total projects count, total sessions count
-2. **Hourly Breakdown**: List all 24 hours (`00:00`–`23:00`). Using the session time ranges (`HH:MM–HH:MM`) from teammate summaries, group sessions into 1-hour buckets. For each hour with sessions, generate a table row with projects count, sessions count, and a brief summary (project name + topic). For hours without sessions, set projects to `0`, sessions to `0`, and summary to `N/A`. A session that spans multiple hours should appear in each hour it touches.
+2. **Hourly Breakdown**: List all 24 hours (`00:00`–`23:00`). Using the session time ranges (`HH:MM–HH:MM`) from teammate summaries, group sessions into 1-hour buckets. For each hour with sessions, generate a table row with projects count, sessions count, and a brief summary. For hours without sessions, set projects to `0`, sessions to `0`, and summary to `N/A`. A session that spans multiple hours should appear in each hour it touches. Summary format: `[project-name] topic1, topic2; [project-name2] topic1` — wrap each project name in `[]`, list multiple topics with commas, and separate projects with semicolons.
 3. **Per-project sections**: Insert each teammate's summary under its project heading
 
 Write the report to `~/.claude/skills/daily-summary/output/YYYY-MM-DD.md`.
