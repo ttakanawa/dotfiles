@@ -211,7 +211,6 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 
 | Skill | Description |
 | ------ | ------------- |
-| `coding-standards` | Universal coding standards and best practices (KISS, DRY, YAGNI) |
 | `/commit-diff` | Analyze staged changes and create a commit with a Conventional Commits message |
 | `/update-commit-message` | Regenerate a commit message and update via interactive rebase |
 | `/v` | Neovim environment guide (plugins, keymaps, config) |
