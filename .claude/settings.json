@@ -48,7 +48,22 @@
       "Bash(gh repo list:*)",
       "Bash(gh release list:*)",
       "Bash(gh release view:*)",
-      "Bash(gh search:*)"
+      "Bash(gh search:*)",
+      "Bash(glab mr list:*)",
+      "Bash(glab mr view:*)",
+      "Bash(glab mr status:*)",
+      "Bash(glab mr checks:*)",
+      "Bash(glab mr diff:*)",
+      "Bash(glab issue list:*)",
+      "Bash(glab issue view:*)",
+      "Bash(glab issue status:*)",
+      "Bash(glab ci list:*)",
+      "Bash(glab ci view:*)",
+      "Bash(glab ci status:*)",
+      "Bash(glab repo view:*)",
+      "Bash(glab repo list:*)",
+      "Bash(glab release list:*)",
+      "Bash(glab release view:*)"
     ],
     "deny": [
       "Read(./.env)",
