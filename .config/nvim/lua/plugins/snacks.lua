@@ -21,6 +21,7 @@ return {
         },
         grep = {
           hidden = true,
+          regex = false,
         },
         recent = {
           filter = { cwd = true },
