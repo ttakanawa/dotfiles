@@ -215,6 +215,7 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 | `/update-commit-message` | Regenerate a commit message and update via interactive rebase |
 | `/v` | Neovim environment guide (plugins, keymaps, config) |
 | `/daily-summary` | Summarize Claude Code interactions for a date range using Agent Teams |
+| `/amiforked` | Check if the current session was forked and show the original session ID |
 
 ### Contexts
 
