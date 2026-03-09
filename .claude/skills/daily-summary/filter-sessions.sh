@@ -6,8 +6,8 @@
 set -euo pipefail
 
 DATE="$1"
-START_MS=$(( $(date -j -f "%Y-%m-%d" "$DATE" "+%s") * 1000 ))
-END_MS=$(( $(date -j -v+1d -f "%Y-%m-%d" "$DATE" "+%s") * 1000 ))
+START_MS=$(( $(date -j -f "%Y-%m-%d %H:%M:%S" "$DATE 00:00:00" "+%s") * 1000 ))
+END_MS=$(( $(date -j -v+1d -f "%Y-%m-%d %H:%M:%S" "$DATE 00:00:00" "+%s") * 1000 ))
 
 jq -c "select(.timestamp >= ${START_MS} and .timestamp < ${END_MS}) | {project, sessionId}" \
   ~/.claude/history.jsonl \
