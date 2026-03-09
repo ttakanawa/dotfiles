@@ -7,10 +7,8 @@ Located in `~/.claude/agents/`.
 No user prompt needed.
 
 | Agent | Purpose | When to Use |
-|-------|---------|-------------|
+| ------- | --------- | ------------- |
 | architect | System design | Architectural decisions |
-| code-reviewer | Code review | After writing code, before commits |
-| security-reviewer | Security analysis | Before commits |
 | tdd-guide | Test-driven development | New features, bug fixes |
 
 ## Parallel Task Execution

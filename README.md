@@ -206,8 +206,6 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 | ------ | ------------- |
 | `architect` | System design, scalability, technical decisions |
 | `tdd-guide` | Test-driven development (write-tests-first) |
-| `code-reviewer` | Code quality, security, maintainability review |
-| `security-reviewer` | OWASP Top 10, secrets detection, vulnerability remediation |
 
 ### Skills
 
@@ -215,6 +213,7 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 
 | Skill | Description |
 | ------ | ------------- |
+| `/code-review` | Unified code review for GitLab MRs, GitHub PRs, commits, or git diffs |
 | `/commit-diff` | Analyze staged changes and create a commit with a Conventional Commits message |
 | `/update-commit-message` | Regenerate a commit message and update via interactive rebase |
 | `/v` | Neovim environment guide (plugins, keymaps, config) |
