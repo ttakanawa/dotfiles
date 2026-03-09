@@ -134,7 +134,7 @@ Fill in:
 
 Write the report to `~/.claude/skills/daily-summary/output/YYYY-MM-DD.md`.
 
-Display the full report content to the user.
+Display the full report content to the user, followed by the saved file path.
 
 ## Phase 6 — Cleanup
 
