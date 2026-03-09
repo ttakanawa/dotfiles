@@ -182,6 +182,10 @@ Prefer these tools over their traditional counterparts when running shell comman
 
 ## Claude Code
 
+### MCP Servers
+
+Global MCP servers are configured in `~/.claude.json` under `mcpServers`.
+
 ### Rules
 
 <https://code.claude.com/docs/en/memory>
