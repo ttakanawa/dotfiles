@@ -21,6 +21,9 @@ map("i", "<C-d>", "<Del>", opts) -- Delete next character
 map("i", "<C-h>", "<BS>", opts) -- Delete previous character
 map("i", "<C-k>", "<C-o>D", opts) -- Delete to end of line
 
+-- Save without triggering autocmds
+vim.api.nvim_create_user_command("W", "noautocmd w", {})
+
 -- Copy file path
 local function copy_to_clipboard(path, description)
   if path and path ~= "" then
