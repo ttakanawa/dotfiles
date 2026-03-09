@@ -6,13 +6,12 @@
 
 ## Hourly Breakdown
 
-| Hour | Projects | Sessions | Summary |
-|------|----------|----------|---------|
-| 00:00 | 0 | 0 | N/A |
-| ... | ... | ... | ... |
-| HH:00 | N | M | [project-name] topic1, topic2; [project-name2] topic1 |
-| ... | ... | ... | ... |
-| 23:00 | 0 | 0 | N/A |
+### HH:00
+- **project-name** (M sessions): topic1, topic2
+- **project-name2** (M sessions): topic1
+
+### HH:00–HH:00
+No sessions.
 
 ---
 

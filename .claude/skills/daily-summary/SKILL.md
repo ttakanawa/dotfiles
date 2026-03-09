@@ -129,7 +129,7 @@ After all teammates have reported back, combine their summaries into a single re
 Fill in:
 
 1. **Header**: Date, total projects count, total sessions count
-2. **Hourly Breakdown**: List all 24 hours (`00:00`–`23:00`). Using the session time ranges (`HH:MM–HH:MM`) from teammate summaries, group sessions into 1-hour buckets. For each hour with sessions, generate a table row with projects count, sessions count, and a brief summary. For hours without sessions, set projects to `0`, sessions to `0`, and summary to `N/A`. A session that spans multiple hours should appear in each hour it touches. Summary format: `[project-name] topic1, topic2; [project-name2] topic1` — wrap each project name in `[]`, list multiple topics with commas, and separate projects with semicolons.
+2. **Hourly Breakdown**: Using the session time ranges (`HH:MM–HH:MM`) from teammate summaries, group sessions into 1-hour buckets. A session that spans multiple hours should appear in each hour it touches. For each hour with sessions, create a `### HH:00` heading followed by a bullet list of projects: `- **project-name** (N sessions): topic1, topic2`. Consecutive hours without sessions should be collapsed into a single `### HH:00–HH:00` heading with the text `No sessions.` underneath. Isolated single hours without sessions also use a heading with `No sessions.`.
 3. **Per-project sections**: Insert each teammate's summary under its project heading
 
 Write the report to `~/.claude/skills/daily-summary/output/YYYY-MM-DD.md`.
