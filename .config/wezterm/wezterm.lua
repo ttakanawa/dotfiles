@@ -58,7 +58,7 @@ wezterm.on("gui-startup", function(cmd)
 		})
 		-- Set initial window size to 80% of screen, centered
 		local screen = wezterm.gui.screens().active
-		local ratio = 0.8
+		local ratio = 0.95
 		local width = math.floor(screen.width * ratio)
 		local height = math.floor(screen.height * ratio)
 		window:gui_window():set_inner_size(width, height)
