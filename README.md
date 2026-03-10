@@ -124,9 +124,10 @@ Global MCP servers are configured in `~/.claude.json` under `mcpServers`.
 
 | Rule | Description |
 | ------ | ------------- |
-| `writing-style.md` | Mixed Japanese-English text spacing conventions |
 | `agents.md` | Agent orchestration guidelines — when to use which agent, parallel execution |
 | `ask-user-question.md` | Always use AskUserQuestion tool for user questions |
+| `markdown.md` | Markdown formatting rules — code block indentation, table separators (scoped to `**/*.md`) |
+| `writing-style.md` | Mixed Japanese-English text spacing conventions |
 
 ### Agents
 
