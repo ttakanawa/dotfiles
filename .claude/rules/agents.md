@@ -6,10 +6,17 @@ Located in `~/.claude/agents/`.
 
 No user prompt needed.
 
-| Agent | Purpose | When to Use |
-| ------- | --------- | ------------- |
-| architect | System design | Architectural decisions |
-| tdd-guide | Test-driven development | New features, bug fixes |
+| Agent | Model | Purpose | When to Use |
+| ------- | ------- | --------- | ------------- |
+| architect | Opus | System design | Architectural decisions |
+| tdd-guide | Sonnet | Test-driven development | New features, bug fixes |
+| review-architecture | Opus | Architecture review | `/code-review` or standalone |
+| review-guidelines | Opus | Guidelines compliance review | `/code-review` or standalone |
+| review-security | Opus | Security review | `/code-review` or standalone |
+| review-code-quality | Sonnet | Code quality review | `/code-review` or standalone |
+| review-performance | Sonnet | Performance review | `/code-review` or standalone |
+| review-readability | Haiku | Readability review | `/code-review` or standalone |
+| review-license | Haiku | License review | `/code-review` or standalone |
 
 ## Parallel Task Execution
 

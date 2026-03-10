@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Unified code review for GitLab MRs, GitHub PRs, commit hashes, or git diffs. Covers code quality, security, performance, readability, best practices, and licensing.
+description: Unified code review for GitLab MRs, GitHub PRs, commit hashes, or git diffs. Covers architecture, guidelines, security, code quality, performance, readability, and licensing.
 ---
 
 # Code Review
@@ -42,8 +42,8 @@ Review the file list and line counts to understand the scope.
 Before starting the review, ask the user how to execute it using AskUserQuestion:
 
 | Mode | Description | When available |
-|------|-------------|---------------|
-| **Subagents** | Spawn a subagent per checklist category for parallel review | Always |
+| ------ | ------------- | --------------- |
+| **Subagents** | Spawn a subagent per checklist category for parallel review. **Note:** background subagents cannot request tool permissions interactively — if the user has not pre-approved Read/Bash, agents may fail. Warn the user of this risk when presenting this option. | Always |
 | **Teammates** | Spawn a teammate per checklist category for parallel review | Only when `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` env var is `"1"` or `"true"` |
 | **Inline** | Review everything sequentially in the current conversation | Always |
 
@@ -56,62 +56,66 @@ echo $CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS
 - If the value is `"1"` or `"true"`, present all three options.
 - Otherwise, present only Subagents and Inline.
 
-When using **Subagents** or **Teammates**, spawn one per checklist category (security, code-quality, performance, best-practices, readability, license). Each receives the diff context and its checklist, then reports findings independently. Aggregate all results at the end.
+### Step 5: Execute review
 
-### Step 5: Prioritize review order
+#### Subagents / Teammates
 
-1. **Test files first** — Read tests to understand expected behavior and specs before reviewing implementation.
-2. **Review points** — If MR/PR description highlights specific areas, prioritize those.
-3. **Largest changes first** — Files with the most changed lines deserve the most attention.
+Spawn one agent per checklist category using the dedicated review agents defined in `~/.claude/agents/`. Each agent has its own model and tools configured via frontmatter, so the correct model is used automatically.
 
-### Step 6: Review file by file
+| Agent | Category |
+| ------ | ------ |
+| `review-architecture` | Architecture |
+| `review-guidelines` | Guidelines |
+| `review-security` | Security |
+| `review-code-quality` | Code Quality |
+| `review-performance` | Performance |
+| `review-readability` | Readability |
+| `review-license` | License |
 
-For each file:
+Each agent's prompt **must** include all of the following context so the agent can work without fetching it:
 
-```bash
-git diff <target>...<source> -- <file_path>
-```
+1. **Diff output** — The full diff from Step 2
+2. **File list with line counts** — The `--stat` output from Step 3
+3. **PR/MR description** — Title, description, and review points (if applicable)
 
-If the diff alone is insufficient, read the full file to understand:
+Spawn all agents in parallel. Once all agents complete, aggregate their results.
 
-- Imports and dependencies
-- Call sites and callers
-- Surrounding context
+#### Inline
 
-### Step 7: Apply checklists
+Review everything sequentially in the current conversation:
 
-Apply the checklists under [checklists/](checklists/) in order of severity:
+1. **Prioritize review order**
+   - Read test files first to understand expected behavior and specs.
+   - If MR/PR description highlights specific areas, prioritize those.
+   - Review files with the most changed lines first.
 
-1. [security.md](checklists/security.md) — CRITICAL
-2. [code-quality.md](checklists/code-quality.md) — HIGH
-3. [performance.md](checklists/performance.md) — MEDIUM
-4. [best-practices.md](checklists/best-practices.md) — MEDIUM
-5. [readability.md](checklists/readability.md) — LOW
-6. [license.md](checklists/license.md) — LOW
+2. **Review file by file**
 
-### Step 8: Check project conventions
+   For each file:
 
-Read `CLAUDE.md` and any project-specific rules/guidelines. Check for violations of:
+   ```bash
+   git diff <target>...<source> -- <file_path>
+   ```
 
-- File size limits
-- Naming conventions
-- Error handling patterns
-- Database policies
-- Any other project-established patterns
+   If the diff alone is insufficient, read the full file to understand imports, call sites, and surrounding context.
 
-When in doubt, match what the rest of the codebase does.
+3. **Apply checklists** in order of severity:
+   1. [security.md](checklists/security.md)
+   2. [architecture.md](checklists/architecture.md)
+   3. [guidelines.md](checklists/guidelines.md)
+   4. [code-quality.md](checklists/code-quality.md)
+   5. [performance.md](checklists/performance.md)
+   6. [readability.md](checklists/readability.md)
+   7. [license.md](checklists/license.md)
 
-### Step 9: Filter and consolidate
+4. **Filter and consolidate**
+   - **Report** only if >80% confident it is a real issue
+   - **Skip** stylistic preferences unless they violate project conventions
+   - **Skip** issues in unchanged code unless they are critical security issues
+   - **Consolidate** similar issues (e.g., "5 functions missing error handling" not 5 separate findings)
+   - **Prioritize** issues that could cause bugs, security vulnerabilities, or data loss
 
-**IMPORTANT**: Do not flood the review with noise.
-
-- **Report** only if >80% confident it is a real issue
-- **Skip** stylistic preferences unless they violate project conventions
-- **Skip** issues in unchanged code unless they are critical security issues
-- **Consolidate** similar issues (e.g., "5 functions missing error handling" not 5 separate findings)
-- **Prioritize** issues that could cause bugs, security vulnerabilities, or data loss
-
-### Step 10: Report findings
+### Step 6: Report findings
 
 Use the output format below. Organize findings by severity.
 
@@ -134,7 +138,7 @@ fixed code
 
 Severity levels: `CRITICAL` > `HIGH` > `MEDIUM` > `LOW`
 
-Categories: `Security` / `Code Quality` / `Performance` / `Best Practices` / `Readability` / `License` / `Project Convention`
+Categories: `Architecture` / `Guidelines` / `Security` / `Code Quality` / `Performance` / `Readability` / `License`
 
 ### Summary Table
 

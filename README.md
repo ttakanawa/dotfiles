@@ -202,10 +202,17 @@ Global MCP servers are configured in `~/.claude.json` under `mcpServers`.
 
 Keep this section in sync with `.claude/agents/`. When agents are added or removed, update both this section and `.claude/rules/agents.md` accordingly.
 
-| Agent | Description |
-| ------ | ------------- |
-| `architect` | System design, scalability, technical decisions |
-| `tdd-guide` | Test-driven development (write-tests-first) |
+| Agent | Model | Description |
+| ------ | ------ | ------------- |
+| `architect` | Opus | System design, scalability, technical decisions |
+| `tdd-guide` | Sonnet | Test-driven development (write-tests-first) |
+| `review-architecture` | Opus | Architecture review (layer violations, dependency direction, responsibility placement) |
+| `review-guidelines` | Opus | Guidelines compliance review (project rules, conventions, established patterns) |
+| `review-security` | Opus | Security review (OWASP Top 10, vulnerability patterns) |
+| `review-code-quality` | Sonnet | Code quality review (function size, error handling, dead code) |
+| `review-performance` | Sonnet | Performance review (algorithms, caching, N+1 queries) |
+| `review-readability` | Haiku | Readability review (complex logic, unclear naming, duplication) |
+| `review-license` | Haiku | License compatibility review for new dependencies |
 
 ### Skills
 
