@@ -28,7 +28,7 @@ Note: Attribution disabled globally via ~/.claude/settings.json.
     ───────────────────────────────────────
     ```
 
-1. **CRITICAL: Wait for the user's explicit approval using `AskUserQuestion`.** Do not proceed to commit until the user approves.
+1. **CRITICAL: Wait for the user's explicit approval.** Do not proceed to commit until the user approves.
 1. Once approved, execute the commit with the approved message.
 1. After creating the commit successfully, run `git show -s <commit-hash>` and display the output wrapped in clear visual dividers like this:
 

@@ -19,7 +19,7 @@ Check if the current tmux window has multiple panes.
   ```
 
 - If the command fails (not in tmux) or returns `1` → proceed normally
-- If the result is `2` or more → use `AskUserQuestion` to ask the user whether to continue, then stop and wait for their response:
+- If the result is `2` or more → ask the user whether to continue, then stop and wait for their response:
   - Question: "Multiple tmux panes detected in the current window. Continue anyway?"
   - Options: "Continue" / "Abort"
   - If the user chooses "Abort", stop immediately
@@ -31,7 +31,7 @@ Parse `$ARGUMENTS` to determine the target date.
 - `today` → today's date
 - `yesterday` → yesterday's date
 - `YYYY-MM-DD` → specific date
-- Empty → use `AskUserQuestion` to ask the user which date to summarize, then stop and wait for their response
+- Empty → ask the user which date to summarize, then stop and wait for their response
 
 For `today` and `yesterday`, resolve to `YYYY-MM-DD` first using `date "+%Y-%m-%d"` or `date -v-1d "+%Y-%m-%d"`.
 

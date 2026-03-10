@@ -39,7 +39,7 @@ Review the file list and line counts to understand the scope.
 
 ### Step 4: Choose execution mode
 
-Before starting the review, ask the user how to execute it using AskUserQuestion:
+Before starting the review, ask the user how to execute it:
 
 | Mode | Description | When available |
 | ------ | ------------- | --------------- |

@@ -16,7 +16,6 @@ You may ONLY report what already exists in the user's config. You MUST NOT:
 - Suggest installing new plugins
 - Suggest adding or changing configuration
 - Suggest workarounds or alternatives
-- Use AskUserQuestion to offer approaches or solutions
 
 If the feature is not found in the current setup, state that it is not available in the current configuration and STOP. Do not continue. Do not search the web. Do not offer options.
 
