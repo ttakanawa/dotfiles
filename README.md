@@ -161,6 +161,7 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 | `/daily-summary` | Summarize Claude Code interactions for a date range using Agent Teams |
 | `/amiforked` | Check if the current session was forked and show the original session ID |
 | `/second-opinion` | Consult teammate/subagent for a second opinion on implementation plans, code reviews, or problem-solving |
+| `/find-session-file` | Find a Claude Code session file by session ID and project directory |
 
 ### Contexts
 
