@@ -120,11 +120,11 @@ Global MCP servers are configured in `~/.claude.json` under `mcpServers`.
 
 | Rule | Description |
 | ------ | ------------- |
-| `agents.md` | Agent orchestration guidelines — when to use which agent, parallel execution |
-| `ask-user-question.md` | Always use AskUserQuestion tool for user questions |
-| `tools.md` | Tool preferences for AI — preferred tools, tools to avoid, useful patterns |
-| `markdown.md` | Markdown formatting rules — code block indentation, table separators (scoped to `**/*.md`) |
-| `writing-style.md` | Mixed Japanese-English text spacing conventions |
+| `agents.md` | Show available agents |
+| `ask-user-question.md` | Use AskUserQuestion tool |
+| `tools.md` | Preferred tools and patterns |
+| `markdown.md` | Markdown file related rules (`**/*.md`) |
+| `writing-style.md` | Writing style |
 
 ### Agents
 
@@ -132,17 +132,17 @@ Global MCP servers are configured in `~/.claude.json` under `mcpServers`.
 
 Keep this section in sync with `.claude/agents/`. When agents are added or removed, update both this section and `.claude/rules/agents.md` accordingly.
 
-| Agent | Model | Description |
-| ------ | ------ | ------------- |
-| `architect` | Opus | System design, scalability, technical decisions |
-| `tdd-guide` | Sonnet | Test-driven development (write-tests-first) |
-| `review-architecture` | Opus | Architecture review (layer violations, dependency direction, responsibility placement) |
-| `review-guidelines` | Opus | Guidelines compliance review (project rules, conventions, established patterns) |
-| `review-security` | Opus | Security review (OWASP Top 10, vulnerability patterns) |
-| `review-code-quality` | Sonnet | Code quality review (function size, error handling, dead code) |
-| `review-performance` | Sonnet | Performance review (algorithms, caching, N+1 queries) |
-| `review-readability` | Haiku | Readability review (complex logic, unclear naming, duplication) |
-| `review-license` | Haiku | License compatibility review for new dependencies |
+| Agent | Description |
+| ------ | ------------- |
+| `architect` | System design, scalability |
+| `tdd-guide` | Test-driven development |
+| `review-architecture` | Layer violations, dependency direction |
+| `review-guidelines` | Project rules, conventions compliance |
+| `review-security` | Vulnerability patterns |
+| `review-code-quality` | Function size, error handling, dead code |
+| `review-performance` | Algorithms, caching, query optimization |
+| `review-readability` | Complex logic, naming |
+| `review-license` | License compatibility for new deps |
 
 ### Skills
 
@@ -150,21 +150,21 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 
 | Skill | Description |
 | ------ | ------------- |
-| `/code-review` | Unified code review for GitLab MRs, GitHub PRs, commit hashes, or git diffs |
-| `/commit-diff` | Analyze staged changes and create a commit with a Conventional Commits message |
-| `/update-commit-message` | Regenerate a commit message and update via interactive rebase |
-| `/v` | Neovim environment guide (plugins, keymaps, config) |
-| `/daily-summary` | Summarize Claude Code interactions for a date range using Agent Teams |
-| `/amiforked` | Check if the current session was forked and show the original session ID |
-| `/second-opinion` | Consult teammate/subagent for a second opinion on implementation plans, code reviews, or problem-solving |
-| `/find-session-file` | Find a Claude Code session file by session ID and project directory |
+| `/code-review` | Review GitLab MRs, GitHub PRs, commits, or diffs |
+| `/commit-diff` | Staged changes → Conventional Commits message |
+| `/update-commit-message` | Regenerate commit message via rebase |
+| `/v` | Neovim environment guide |
+| `/daily-summary` | Summarize interactions for a date range |
+| `/amiforked` | Check if session was forked |
+| `/second-opinion` | Ask subagent/teammate a second opinion |
+| `/find-session-file` | Locate session file by ID |
 
 ### Contexts
 
 <https://code.claude.com/docs/en/cli-reference#cli-flags>
 
-| Context | Mode | Focus |
-| ------ | ------------- | ------ |
-| `dev` | Active development | Implementation, coding, building features |
-| `research` | Exploration | Understanding before acting |
-| `review` | Code review | Quality, security, maintainability |
+| Context | Description |
+| ------ | ------------- |
+| `dev` | Active development — implementation, coding |
+| `research` | Exploration — understanding before acting |
+| `review` | Code review — quality, security, maintainability |
