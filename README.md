@@ -154,7 +154,7 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 
 | Skill | Description |
 | ------ | ------------- |
-| `/code-review` | Unified code review for GitLab MRs, GitHub PRs, commits, or git diffs |
+| `/code-review` | Unified code review for GitLab MRs, GitHub PRs, commit hashes, or git diffs |
 | `/commit-diff` | Analyze staged changes and create a commit with a Conventional Commits message |
 | `/update-commit-message` | Regenerate a commit message and update via interactive rebase |
 | `/v` | Neovim environment guide (plugins, keymaps, config) |
