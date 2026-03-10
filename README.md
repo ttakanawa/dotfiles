@@ -82,10 +82,6 @@ $HOME/
 └── .claude/           → dotfiles/.claude/
 ```
 
-## .gitignore
-
-Allowlist pattern. When adding or removing tracked paths under the symlinked directories, update `.config/.gitignore` accordingly.
-
 ## Terminal
 
 zsh + tmux on WezTerm.
