@@ -31,6 +31,7 @@
       "Bash(git config --get:*)",
       "Bash(git shortlog:*)",
       "Bash(git tag -l:*)",
+      "Bash(git fetch:*)",
       "Bash(brew list:*)",
       "Bash(brew info:*)",
       "Bash(brew search:*)",
