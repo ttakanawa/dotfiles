@@ -160,6 +160,7 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 | `/v` | Neovim environment guide (plugins, keymaps, config) |
 | `/daily-summary` | Summarize Claude Code interactions for a date range using Agent Teams |
 | `/amiforked` | Check if the current session was forked and show the original session ID |
+| `/second-opinion` | Consult teammate/subagent for a second opinion on implementation plans, code reviews, or problem-solving |
 
 ### Contexts
 
