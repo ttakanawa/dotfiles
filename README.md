@@ -112,11 +112,6 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
 - `zk-nvim.lua`
   - zk-org/zk-nvim - Zettelkasten note management
 
-## tmux Plugins
-
-- catppuccin/tmux
-- tmux-plugins/tmux-cpu
-
 ## CLI Tools (Homebrew)
 
 Keep this section in sync with brew formulae in `homebrew/Brewfile`. When formulae are added or removed, update this section accordingly. Casks are not covered here.
