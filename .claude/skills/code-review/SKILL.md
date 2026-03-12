@@ -124,7 +124,7 @@ Use the output format below. Organize findings by severity.
 For each issue:
 
 ```
-[SEVERITY][Category] Short description of the issue
+#N [SEVERITY][Category] Short description of the issue
 File: path/to/file:line_number
 Issue: Detailed explanation of the problem
 Fix: How to fix it
