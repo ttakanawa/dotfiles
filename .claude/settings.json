@@ -23,6 +23,11 @@
       "Bash(diff:*)",
       "Bash(jq:*)",
       "Bash(tree:*)",
+      "Bash(uv run:*)",
+      "Bash(uv pip list:*)",
+      "Bash(uv pip show:*)",
+      "Bash(uv tree:*)",
+      "Bash(uv version:*)",
       "Bash(brew list:*)",
       "Bash(brew info:*)",
       "Bash(brew search:*)",
@@ -71,6 +76,8 @@
       "Bash(glab release view:*)"
     ],
     "deny": [
+      "Bash(python:*)",
+      "Bash(python3:*)",
       "Read(./.env)",
       "Read(./.env.*)",
       "Read(./secrets/**)",

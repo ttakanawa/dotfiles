@@ -13,6 +13,7 @@ Guidelines for AI when executing shell commands.
 | `gh` | `git` commands for remote access | GitHub operations (PRs, issues, Actions, API) |
 | `glab` | `git` commands for remote access | GitLab operations (MRs, issues, CI/CD, API) |
 | `ghq` | manual clone paths | Git repository path management |
+| `uv` | `python` / `python3` | Python package and project management |
 | `bunx` | `bunx` | Package runner |
 
 ## Patterns
