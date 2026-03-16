@@ -21,6 +21,7 @@ fi
 export PATH="$HOME/bin:$PATH"
 
 export PATH=/usr/local/go/bin:$PATH
+export PATH="$HOME/go/bin:$PATH"
 export PATH="$(brew --prefix)/opt/python@3.11/libexec/bin:$PATH"
 
 export PATH="/Applications/WezTerm.app/Contents/MacOS:$PATH"
