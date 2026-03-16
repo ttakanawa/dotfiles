@@ -3,6 +3,7 @@
 -- Add any additional options here
 
 vim.opt.conceallevel = 0
+vim.opt.scrolloff = 999
 vim.g.root_spec = { "cwd" }
 vim.g.lazyvim_php_lsp = "intelephense"
 
