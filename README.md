@@ -97,12 +97,14 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
 - `catppuccin.lua`
   - catppuccin/nvim - Color scheme
   - LazyVim/LazyVim - Colorscheme setting
-- `lsp.lua`
-  - neovim/nvim-lspconfig - LSP configuration
+- `intelephense.lua`
+  - neovim/nvim-lspconfig - PHP LSP (intelephense)
 - `markdown.lua`
   - MeanderingProgrammer/render-markdown.nvim - In-buffer markdown rendering
 - `snacks.lua`
   - folke/snacks.nvim - Utility collection
+- `swift.lua`
+  - neovim/nvim-lspconfig - Swift/sourcekit LSP
 - `telescope.lua`
   - nvim-telescope/telescope.nvim - Fuzzy finder
 - `minuet.lua`
