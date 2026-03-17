@@ -28,13 +28,20 @@ return {
           },
         },
         virtualtext = {
+          auto_trigger_ft = { "*" },
           keymap = {
             accept = "<A-A>",
             accept_line = "<A-a>",
             next = "<A-n>",
             prev = "<A-p>",
-            dismiss = "<A-e>",
+            -- dismiss is mapped manually below
+            dismiss = false,
           },
+        },
+        enable_predicates = {
+          function()
+            return not vim.b.minuet_dismissed
+          end,
         },
       })
 
@@ -66,6 +73,21 @@ return {
       vim.api.nvim_create_autocmd("User", {
         pattern = "MinuetRequestFinished",
         callback = on_request_finished,
+      })
+
+      -- Dismiss: set flag to suppress auto-trigger until next input
+      vim.keymap.set("i", "<A-e>", function()
+        require("minuet.virtualtext").action.dismiss()
+        vim.b.minuet_dismissed = true
+      end, { desc = "Minuet dismiss" })
+
+      -- Clear dismissed flag when user types
+      vim.api.nvim_create_autocmd("TextChangedI", {
+        callback = function()
+          if vim.b.minuet_dismissed then
+            vim.b.minuet_dismissed = false
+          end
+        end,
       })
     end,
   },
