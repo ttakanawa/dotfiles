@@ -51,8 +51,10 @@ return {
 
       local ns = vim.api.nvim_create_namespace("minuet_thinking")
       local active_buf = nil
+      local pending_requests = 0
 
       local function on_request_started()
+        pending_requests = pending_requests + 1
         active_buf = vim.api.nvim_get_current_buf()
         local row = vim.api.nvim_win_get_cursor(0)[1] - 1
         vim.api.nvim_buf_clear_namespace(active_buf, ns, 0, -1)
@@ -63,10 +65,14 @@ return {
       end
 
       local function on_request_finished()
-        if active_buf and vim.api.nvim_buf_is_valid(active_buf) then
-          vim.api.nvim_buf_clear_namespace(active_buf, ns, 0, -1)
+        pending_requests = pending_requests - 1
+        if pending_requests <= 0 then
+          pending_requests = 0
+          if active_buf and vim.api.nvim_buf_is_valid(active_buf) then
+            vim.api.nvim_buf_clear_namespace(active_buf, ns, 0, -1)
+          end
+          active_buf = nil
         end
-        active_buf = nil
       end
 
       vim.api.nvim_create_autocmd("User", {
