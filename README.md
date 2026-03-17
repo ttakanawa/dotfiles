@@ -114,6 +114,10 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
 
 ## Claude Code
 
+### Permissions
+
+Permissions in `settings.json` are grouped by category (e.g. git, MCP) with blank lines between groups. Maintain this grouping when adding new entries.
+
 ### MCP Servers
 
 Global MCP servers are configured in `~/.claude.json` under `mcpServers`.

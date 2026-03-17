@@ -10,27 +10,35 @@
     "allow": [
       "Bash(* --version)",
       "Bash(* --help *)",
+
       "Bash(cat:*)",
       "Bash(find:*)",
       "Bash(fd:*)",
       "Bash(grep:*)",
       "Bash(rg:*)",
       "Bash(ls:*)",
-      "Bash(which:*)",
+      "Bash(tree:*)",
+
       "Bash(wc:*)",
-      "Bash(pwd)",
-      "Bash(date:*)",
       "Bash(diff:*)",
       "Bash(jq:*)",
-      "Bash(tree:*)",
+
+      "Bash(which:*)",
+      "Bash(pwd)",
+      "Bash(date:*)",
+      "Bash(du:*)",
+      "Bash(df:*)",
+
       "Bash(uv run:*)",
       "Bash(uv pip list:*)",
       "Bash(uv pip show:*)",
       "Bash(uv tree:*)",
       "Bash(uv version:*)",
+
       "Bash(brew list:*)",
       "Bash(brew info:*)",
       "Bash(brew search:*)",
+
       "Bash(git status:*)",
       "Bash(git log:*)",
       "Bash(git diff:*)",
@@ -42,8 +50,10 @@
       "Bash(git shortlog:*)",
       "Bash(git tag -l:*)",
       "Bash(git fetch:*)",
+
       "Bash(ghq root:*)",
       "Bash(ghq list:*)",
+
       "Bash(gh pr list:*)",
       "Bash(gh pr view:*)",
       "Bash(gh pr status:*)",
@@ -59,6 +69,7 @@
       "Bash(gh release list:*)",
       "Bash(gh release view:*)",
       "Bash(gh search:*)",
+
       "Bash(glab mr list:*)",
       "Bash(glab mr view:*)",
       "Bash(glab mr status:*)",
