@@ -70,7 +70,7 @@ return {
       end
 
       vim.api.nvim_create_autocmd("User", {
-        pattern = "MinuetRequestStarted",
+        pattern = "MinuetRequestStartedPre",
         callback = on_request_started,
       })
 
