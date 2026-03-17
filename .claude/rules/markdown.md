@@ -9,13 +9,13 @@ paths:
 
 Always indent fenced code blocks by 2 spaces and specify the language identifier.
 
-- OK:
+OK:
 
   ```bash
   echo "hello"
   ```
 
-- NG:
+NG:
 
 ```bash
 echo "hello"
