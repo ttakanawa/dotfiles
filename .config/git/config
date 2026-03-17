@@ -6,6 +6,8 @@
 	hooksPath = ~/.config/git/hooks
 [pull]
     rebase = true
+[rebase]
+    autoStash = true
 [ghq]
     root = ~/workspace
 
