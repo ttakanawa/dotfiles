@@ -13,7 +13,7 @@ return {
         notify = "warn",
         provider = "openai_fim_compatible",
         throttle = 0,
-        request_timeout = 10,
+        request_timeout = 20,
         debounce = 150,
         n_completions = 1,
         context_window = 4096,
