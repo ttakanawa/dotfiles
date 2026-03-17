@@ -6,6 +6,9 @@ return {
     cond = has_ollama,
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
+      -- Set before setup so the plugin doesn't override with Comment link
+      vim.api.nvim_set_hl(0, "MinuetVirtualText", { fg = "#babbf1", italic = true })
+
       require("minuet").setup({
         notify = "warn",
         provider = "openai_fim_compatible",
