@@ -38,4 +38,7 @@ export ZK_NOTEBOOK_DIR="$HOME/workspace/notes"
 # Added by Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
+# added due to qmk compiling failure
+export PATH="/opt/homebrew/opt/arm-none-eabi-gcc@8/bin:/opt/homebrew/opt/arm-none-eabi-binutils/bin:$PATH"
+
 typeset -U PATH
