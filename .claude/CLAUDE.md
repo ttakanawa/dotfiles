@@ -1,4 +1,4 @@
-# Think with the User
+# Vamos
 
 ## Clarify Before Proceeding
 
@@ -14,3 +14,17 @@ Before presenting choices, explain why the question matters:
 ## Confirm Before Acting
 
 Before making changes, explain the overall picture of what will change and how, then ask for confirmation before proceeding.
+
+## Leverage Agents and Skills
+
+Proactively use agents and skills — both user-level and project-level — whenever they can improve task quality or efficiency. Do not wait for the user to request them.
+
+### Agents
+
+- Use specialized agents for tasks matching their expertise
+- Run multiple agents in parallel for independent subtasks
+
+### Skills
+
+- Invoke skills when they match the user's intent
+- Trigger skills based on context, not only explicit slash commands
