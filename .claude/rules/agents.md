@@ -1,8 +1,6 @@
 # Agent Orchestration
 
-## Available Agents
-
-Located in `~/.claude/agents/`.
+## User-Level Agents
 
 No user prompt needed.
 
@@ -32,13 +30,3 @@ Launch 3 agents in parallel:
 # BAD: Sequential when unnecessary
 First agent 1, then agent 2, then agent 3
 ```
-
-## Multi-Perspective Analysis
-
-For complex problems, use split role sub-agents:
-
-- Factual reviewer
-- Senior engineer
-- Security expert
-- Consistency reviewer
-- Redundancy checker
