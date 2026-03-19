@@ -24,11 +24,12 @@
 !zk/
 !zk/**
 
-# tmux: only track specific files
+# tmux: track tmux.conf and scripts
 !tmux/
 tmux/*
 !tmux/tmux.conf
-!tmux/install-plugins.sh
+!tmux/scripts/
+!tmux/scripts/**
 
 # Secret env (do not track)
 !zsh/
