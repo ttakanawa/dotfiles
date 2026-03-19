@@ -24,7 +24,9 @@ All documentation and comments in this repository are written in English.
 │   │   └── lua/plugins/         # Per-plugin configs
 │   ├── tmux/
 │   │   ├── tmux.conf
-│   │   └── install-plugins.sh   # TPM plugin installer
+│   │   └── scripts/
+│   │       ├── disk-usage.sh      # Disk usage display script
+│   │       └── install-plugins.sh # Plugin installer
 │   ├── wezterm/wezterm.lua
 │   ├── sheldon/plugins.toml     # Zsh plugin manager config
 │   ├── git/
@@ -66,7 +68,7 @@ All documentation and comments in this repository are written in English.
 ./link_dotfiles.sh                  # Symlink dotfiles to $HOME
 ./homebrew/install.sh               # Install Homebrew packages
 ./vscode/link.sh                    # Symlink VS Code/Cursor settings
-./.config/tmux/install-plugins.sh   # Install tmux plugins
+./.config/tmux/scripts/install-plugins.sh   # Install tmux plugins
 ```
 
 ## Symlink Structure
@@ -113,6 +115,10 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
   - zk-org/zk-nvim - Zettelkasten note management
 
 ## Claude Code
+
+### Attribution
+
+Never add attribution footers (e.g., "Generated with Claude Code") to any output — commits, PRs, MRs, comments, or any other artifacts.
 
 ### Permissions
 
