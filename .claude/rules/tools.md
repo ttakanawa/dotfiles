@@ -10,8 +10,8 @@ Guidelines for AI when executing shell commands.
 | `rg` | `grep` | Fast text search |
 | `jq` | manual JSON parsing | JSON extraction and transformation |
 | `tree` | `ls -R` | Visual directory structure |
-| `gh` | `git` commands for remote access | GitHub operations (PRs, issues, Actions, API) |
-| `glab` | `git` commands for remote access | GitLab operations (MRs, issues, CI/CD, API) |
+| `gh` | `git` commands for remote access | GitHub operations (PRs, issues, Actions) |
+| `glab` | `git` commands for remote access | GitLab operations (MRs, issues, CI/CD) |
 | `ghq` | manual clone paths | Git repository path management |
 | `uv` | `python` / `python3` | Python package and project management |
 | `bunx` | `bunx` | Package runner |
@@ -26,13 +26,24 @@ Guidelines for AI when executing shell commands.
   jq -r '.url' file.json             # Raw string output (no quotes)
   ```
 
-### gh
+### gh / glab
+
+Always prefer high-level subcommands over raw API calls.
+`gh api` / `glab api` should only be used as a last resort when no dedicated subcommand exists.
 
   ```bash
+  # Good
   gh pr list                           # List open PRs
   gh pr view 123                       # View PR details
   gh issue list --label bug            # Filter issues
-  gh api repos/{owner}/{repo}/actions/runs  # Raw API call
+  gh run list                          # List workflow runs
+  glab mr list                         # List open MRs
+  glab mr view 123                     # View MR details
+  glab ci list                         # List CI pipelines
+
+  # Bad - use subcommands instead
+  gh api repos/{owner}/{repo}/pulls
+  glab api projects/:id/merge_requests
   ```
 
 ### ghq
