@@ -120,10 +120,6 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
 
 Never add attribution footers (e.g., "Generated with Claude Code") to any output — commits, PRs, MRs, comments, or any other artifacts.
 
-### Permissions
-
-Permissions in `settings.json` are grouped by category (e.g. git, MCP) with blank lines between groups. Maintain this grouping when adding new entries.
-
 ### MCP Servers
 
 Global MCP servers are configured in `~/.claude.json` under `mcpServers`.
