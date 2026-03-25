@@ -2,7 +2,6 @@
 name: commit-diff
 description: Analyze staged changes and create a commit with a Conventional Commits message
 model: haiku
-allowed-tools: Bash
 disable-model-invocation: true
 allowed-tools: Bash(git commit:*)
 ---
