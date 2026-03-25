@@ -42,3 +42,14 @@ export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 export PATH="/opt/homebrew/opt/arm-none-eabi-gcc@8/bin:/opt/homebrew/opt/arm-none-eabi-binutils/bin:$PATH"
 
 typeset -U PATH
+
+# Claude Code project directory
+function cc-project-dir() {
+  echo "$HOME/.claude/projects/$(echo "${1:-$PWD}" | sed 's|[^a-zA-Z0-9]|-|g')"
+}
+
+function _update_cc_project_dir() {
+  export CC_PROJECT_DIR="$(cc-project-dir)"
+}
+chpwd_functions+=(_update_cc_project_dir)
+_update_cc_project_dir
