@@ -9,6 +9,11 @@
   },
   "permissions": {
     "allow": [
+      " ─── claude ─── ",
+      "Read(.claude/*)",
+      "Read(~/.claude/*)",
+      "Bash(.claude/:*)",
+      "Bash(~/.claude/:*)",
       " ─── system ─── ",
       "Bash(* --version)",
       "Bash(* --help *)",
