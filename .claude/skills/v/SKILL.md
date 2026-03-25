@@ -26,7 +26,7 @@ If the feature is not found in the current setup, state that it is not available
 ## Config File Locations
 
 | Category | Path |
-|----------|------|
+| ------ | ------ |
 | Custom options | `~/.config/nvim/lua/config/options.lua` |
 | Custom keymaps | `~/.config/nvim/lua/config/keymaps.lua` |
 | Custom autocmds | `~/.config/nvim/lua/config/autocmds.lua` |
