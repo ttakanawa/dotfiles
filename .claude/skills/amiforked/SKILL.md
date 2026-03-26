@@ -47,6 +47,6 @@ Check whether the current session is a fork and display the original session ID.
 ## Limitations
 
 - The script identifies the current session by picking the most recently
-  modified `.jsonl` file in `$CC_PROJECT_DIR`. When multiple sessions are
-  running concurrently in the same project, it may pick a different session's
-  file and return inaccurate results.
+  modified `.jsonl` file in the project directory (computed from `$PWD`).
+  When multiple sessions are running concurrently in the same project, it
+  may pick a different session's file and return inaccurate results.
