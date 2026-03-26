@@ -1,6 +1,7 @@
 ---
 name: code-review
 description: Unified code review for GitLab MRs, GitHub PRs, commit hashes, or git diffs. Covers architecture, guidelines, security, code quality, performance, readability, and licensing.
+allowed-tools: Bash(echo $CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS)
 ---
 
 # Code Review
