@@ -13,7 +13,7 @@ Senior code reviewer ensuring high standards of quality, security, and maintaina
 Determine the review target from user input or arguments:
 
 | Target | How to detect | Command to get diff |
-|--------|--------------|-------------------|
+| ------ | ------ | ------ |
 | GitLab MR | Numeric ID + `glab` available | `glab mr view -F json <ID>` then `git diff origin/<target>...origin/<source>` |
 | GitHub PR | Numeric ID or URL + `gh` available | `gh pr view <ID> --json title,body,baseRefName,headRefName` then `git diff origin/<base>...origin/<head>` |
 | Commit hash(es) | 1+ SHA strings (7-40 chars) | Single: `git diff <hash>^..<hash>` / Multiple: `git diff <first>^..<last>` |
@@ -32,9 +32,9 @@ Parse arguments to determine which target type. If ambiguous, ask the user.
 
 ### Step 3: Get the big picture
 
-```bash
-git diff <target>...<source> --stat
-```
+  ```bash
+  git diff <target>...<source> --stat
+  ```
 
 Review the file list and line counts to understand the scope.
 
@@ -50,9 +50,9 @@ Before starting the review, ask the user how to execute it:
 
 Check the environment variable before presenting options:
 
-```bash
-echo $CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS
-```
+  ```bash
+  echo $CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS
+  ```
 
 - If the value is `"1"` or `"true"`, present all three options.
 - Otherwise, present only Subagents and Inline.
@@ -124,18 +124,18 @@ Use the output format below. Organize findings by severity.
 
 For each issue:
 
-```
-#N [SEVERITY][Category] Short description of the issue
-File: path/to/file:line_number
-Issue: Detailed explanation of the problem
-Fix: How to fix it
+  ```
+  #N [SEVERITY][Category] Short description of the issue
+  File: path/to/file:line_number
+  Issue: Detailed explanation of the problem
+  Fix: How to fix it
 
-// NG
-problematic code
+  // NG
+  problematic code
 
-// OK
-fixed code
-```
+  // OK
+  fixed code
+  ```
 
 Severity levels: `CRITICAL` > `HIGH` > `MEDIUM` > `LOW`
 
@@ -145,23 +145,23 @@ Categories: `Architecture` / `Guidelines` / `Security` / `Code Quality` / `Perfo
 
 End every review with:
 
-```
-## Review Summary
+  ```
+  ## Review Summary
 
-| Severity | Count | Status |
-|----------|-------|--------|
-| CRITICAL | 0     | pass   |
-| HIGH     | 0     | pass   |
-| MEDIUM   | 0     | info   |
-| LOW      | 0     | note   |
+  | Severity | Count | Status |
+  | ------ | ------ | ------ |
+  | CRITICAL | 0     | pass   |
+  | HIGH     | 0     | pass   |
+  | MEDIUM   | 0     | info   |
+  | LOW      | 0     | note   |
 
-Verdict: APPROVE / WARNING / BLOCK
-```
+  Verdict: APPROVE / WARNING / BLOCK
+  ```
 
 ## Approval Criteria
 
 | Verdict | Condition |
-|---------|-----------|
+| ------ | ------ |
 | APPROVE | No CRITICAL or HIGH issues |
 | WARNING | HIGH issues only (can merge with caution) |
 | BLOCK | CRITICAL issues found — must fix before merge |
