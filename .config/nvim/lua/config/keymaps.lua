@@ -79,3 +79,9 @@ map("v", "<leader>y", function()
   end
   copy_to_clipboard(result, "Path with range copied")
 end, { desc = "Copy relative path with selection range to clipboard" })
+
+-- Sort PHP use statements alphabetically
+map("n", "<leader>su", function()
+  require("config.php_use_sort").sort()
+  vim.notify("Sorted use statements", vim.log.levels.INFO)
+end, { desc = "Sort PHP use statements" })
