@@ -1,12 +1,12 @@
 ---
-name: commit-diff
+name: commit-staged
 description: Analyze staged changes and create a commit with a Conventional Commits message
 model: haiku
 disable-model-invocation: true
 allowed-tools: Bash(git commit:*)
 ---
 
-# Commit Diff
+# Commit Staged
 
 Analyze the currently staged changes and create an appropriate commit through an interactive process.
 

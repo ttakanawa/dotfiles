@@ -161,7 +161,7 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 | Skill | Description |
 | ------ | ------------- |
 | `/code-review` | Review GitLab MRs, GitHub PRs, commits, or diffs |
-| `/commit-diff` | Staged changes → Conventional Commits message |
+| `/commit-staged` | Staged changes → Conventional Commits message |
 | `/update-commit-message` | Regenerate commit message via rebase |
 | `/v` | Neovim environment guide |
 | `/daily-summary` | Summarize interactions for a date range |
