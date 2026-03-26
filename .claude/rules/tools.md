@@ -1,8 +1,11 @@
 # Tools for AI
 
-Guidelines for AI when executing shell commands.
+Guidelines for AI when using tools.
+Always prefer built-in tools (Glob, Grep, Read, Edit, Write) over the Bash tool.
 
-## Preferred Tools
+## Preferred Shell Tools
+
+When using the Bash tool, prefer these over their alternatives.
 
 | Use | Instead of | Description |
 | ------ | ---------- | ------------- |
