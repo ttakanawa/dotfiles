@@ -168,6 +168,7 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 | `/amiforked` | Check if session was forked |
 | `/second-opinion` | Ask subagent/teammate a second opinion |
 | `/find-session-file` | Locate session file by ID |
+| `/resolve-review` | Triage review findings, fix code, and reply to MR/PR threads |
 
 ### Contexts
 
