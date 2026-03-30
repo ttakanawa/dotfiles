@@ -160,6 +160,7 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 
 | Skill | Description |
 | ------ | ------------- |
+| `/open-pr` | Create GitLab MR or GitHub PR interactively |
 | `/code-review` | Review GitLab MRs, GitHub PRs, commits, or diffs |
 | `/commit-staged` | Staged changes → Conventional Commits message |
 | `/update-commit-message` | Regenerate commit message via rebase |
