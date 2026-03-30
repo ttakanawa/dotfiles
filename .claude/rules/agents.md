@@ -6,7 +6,6 @@ No user prompt needed.
 
 | Agent | Model | Purpose | When to Use |
 | ------- | ------- | --------- | ------------- |
-| architect | Opus | System design | Architectural decisions |
 | tdd-guide | Sonnet | Test-driven development | New features, bug fixes |
 | review-architecture | Opus | Architecture review | `/code-review` or standalone |
 | review-guidelines | Opus | Guidelines compliance review | `/code-review` or standalone |
