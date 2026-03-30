@@ -135,6 +135,7 @@ Global MCP servers are configured in `~/.claude.json` under `mcpServers`.
 | `tools.md` | Preferred tools and patterns |
 | `markdown.md` | Markdown file related rules (`**/*.md`) |
 | `writing-style.md` | Writing style |
+| `tdd.md` | Canonical TDD workflow |
 
 ### Agents
 
@@ -145,7 +146,6 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 | Agent | Description |
 | ------ | ------------- |
 | `architect` | System design, scalability |
-| `tdd-guide` | Test-driven development |
 | `review-architecture` | Layer violations, dependency direction |
 | `review-guidelines` | Project rules, conventions compliance |
 | `review-security` | Vulnerability patterns |
