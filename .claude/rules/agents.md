@@ -6,7 +6,6 @@ No user prompt needed.
 
 | Agent | Model | Purpose | When to Use |
 | ------- | ------- | --------- | ------------- |
-| architect | Opus | System design | Architectural decisions |
 | review-architecture | Opus | Architecture review | `/code-review` or standalone |
 | review-guidelines | Opus | Guidelines compliance review | `/code-review` or standalone |
 | review-security | Opus | Security review | `/code-review` or standalone |

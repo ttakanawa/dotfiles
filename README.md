@@ -145,7 +145,6 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 
 | Agent | Description |
 | ------ | ------------- |
-| `architect` | System design, scalability |
 | `review-architecture` | Layer violations, dependency direction |
 | `review-guidelines` | Project rules, conventions compliance |
 | `review-security` | Vulnerability patterns |
