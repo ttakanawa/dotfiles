@@ -1,1 +1,1 @@
-../commit-diff/conventional-commits.md
+../commit-staged/conventional-commits.md
