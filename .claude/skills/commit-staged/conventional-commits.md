@@ -12,13 +12,28 @@ Types: feat, fix, refactor, docs, test, chore, perf, ci
 
 ## Rules
 
-- A scope MAY be provided after a type. A scope MUST consist of a noun describing a section of the codebase surrounded by parenthesis, e.g., fix(parser):
-- Commits MUST be prefixed with a type, followed by the OPTIONAL `!`, and REQUIRED terminal colon and space.
-- A description MUST immediately follow the colon and space after the type/scope prefix. The description is a short summary of the code changes, e.g., _fix: array parsing issue when multiple spaces were contained in string_.
-- A longer commit body MAY be provided after the short description, providing additional contextual information about the code changes. The body MUST begin one blank line after the description.
-- A commit body is free-form and MAY consist of any number of newline separated paragraphs.
-- Breaking changes MUST be indicated by a `!` immediately before the `:`. If `!` is used, the commit description SHALL be used to describe the breaking change.
+### General
+
 - The units of information that make up Conventional Commits MUST NOT be treated as case sensitive.
+
+### Type
+
+- Commits MUST be prefixed with a type, followed by the OPTIONAL `!`, and REQUIRED terminal colon and space.
+- Breaking changes MUST be indicated by a `!` immediately before the `:`. If `!` is used, the commit description SHALL be used to describe the breaking change.
+
+### Scope
+
+- A scope MAY be provided after a type. A scope MUST consist of a noun describing a section of the codebase surrounded by parenthesis, e.g., fix(parser):
+
+### Description
+
+- A description MUST immediately follow the colon and space after the type/scope prefix. The description is a short summary of the code changes, e.g., _fix: array parsing issue when multiple spaces were contained in string_.
+
+### Body
+
+- A body is OPTIONAL. Only include one when the description alone does not convey the motivation or context. The body MUST begin one blank line after the description.
+- A commit body is free-form and MAY consist of any number of newline separated paragraphs.
+- The body MUST explain why the change was made and what effect it has. Do NOT list which files were changed — the diff already shows that.
 
 ## Examples
 
