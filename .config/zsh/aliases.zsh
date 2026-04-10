@@ -5,6 +5,13 @@ alias gget="ghq get"
 alias v="nvim"
 alias vim="nvim"
 alias c="claude"
+alias cg='ANTHROPIC_AUTH_TOKEN="${ZAI_API_KEY}" \
+    ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic" \
+    API_TIMEOUT_MS="3000000" \
+    CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
+    ANTHROPIC_DEFAULT_HAIKU_MODEL="glm-4.5-air" \
+    ANTHROPIC_DEFAULT_SONNET_MODEL="glm-4.7" \
+    ANTHROPIC_DEFAULT_OPUS_MODEL="glm-5.1" c'
 alias c-dev='claude --system-prompt "$(cat ~/.claude/contexts/dev.md)"'
 alias c-review='claude --system-prompt "$(cat ~/.claude/contexts/review.md)"'
 alias c-research='claude --system-prompt "$(cat ~/.claude/contexts/research.md)"'
