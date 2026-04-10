@@ -18,7 +18,7 @@ map("i", "<C-n>", "<Down>", opts) -- Down
 
 -- Deletion (Emacs compatible)
 map("i", "<C-d>", "<Del>", opts) -- Delete next character
-map("i", "<C-h>", "<BS>", opts) -- Delete previous character
+map("i", "<C-h>", "<BS>", { silent = true, remap = true }) -- Delete previous character (remap for mini.pairs)
 map("i", "<C-k>", "<C-o>D", opts) -- Delete to end of line
 
 -- Save without triggering autocmds
