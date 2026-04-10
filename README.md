@@ -107,8 +107,6 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
   - folke/snacks.nvim - Utility collection
 - `swift.lua`
   - neovim/nvim-lspconfig - Swift/sourcekit LSP
-- `telescope.lua`
-  - nvim-telescope/telescope.nvim - Fuzzy finder
 - `minuet.lua`
   - milanglacier/minuet-ai.nvim - AI code completion (Ollama)
 - `zk-nvim.lua`
