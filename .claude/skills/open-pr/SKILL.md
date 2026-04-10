@@ -174,7 +174,7 @@ Show the complete MR/PR title and body with preview for final approval.
   glab mr create --title "<title>" --description "$(cat <<'EOF'
   <body>
   EOF
-  )" --target-branch "<target>" --assignee "@me" --squash --remove-source-branch --no-editor
+  )" --target-branch "<target>" --assignee "@me" --squash-before-merge --remove-source-branch --no-editor
   # Add --draft if draft
   ```
 
