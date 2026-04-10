@@ -6,26 +6,9 @@ return {
       win = {
         input = {
           keys = {
-            ["<M-Up>"] = { "history_back", mode = { "i", "n" } },
-            ["<M-Down>"] = { "history_forward", mode = { "i", "n" } },
+            ["<M-Up>"] = { "history_back" },
+            ["<M-Down>"] = { "history_forward" },
           },
-        },
-      },
-      sources = {
-        explorer = {
-          hidden = true,
-          ignored = true,
-        },
-        files = {
-          hidden = true,
-          ignored = true,
-        },
-        grep = {
-          hidden = true,
-          regex = false,
-        },
-        recent = {
-          filter = { cwd = true },
         },
       },
     },
