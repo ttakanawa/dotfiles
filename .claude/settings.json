@@ -33,6 +33,8 @@
       "Bash(grep:*)",
       "Bash(rg:*)",
       "Bash(jq:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
       " ─── uv ─── ",
       "Bash(uv run:*)",
       "Bash(uv pip list:*)",
