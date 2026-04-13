@@ -103,6 +103,8 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
   - neovim/nvim-lspconfig - PHP LSP (intelephense)
 - `markdown.lua`
   - MeanderingProgrammer/render-markdown.nvim - In-buffer markdown rendering
+- `neotest-phpunit.lua`
+  - nvim-neotest/neotest - PHPUnit test runner with Docker/Podman support
 - `snacks.lua`
   - folke/snacks.nvim - Utility collection
 - `swift.lua`
