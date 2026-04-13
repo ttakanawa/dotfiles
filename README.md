@@ -101,16 +101,21 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
   - LazyVim/LazyVim - Colorscheme setting
 - `intelephense.lua`
   - neovim/nvim-lspconfig - PHP LSP (intelephense)
+- `lualine.lua`
+  - nvim-lualine/lualine.nvim - Full path in statusline
 - `markdown.lua`
   - MeanderingProgrammer/render-markdown.nvim - In-buffer markdown rendering
+- `minuet.lua`
+  - milanglacier/minuet-ai.nvim - AI code completion (Ollama)
 - `neotest-phpunit.lua`
   - nvim-neotest/neotest - PHPUnit test runner with Docker/Podman support
 - `snacks.lua`
   - folke/snacks.nvim - Picker config, image disabled
 - `swift.lua`
   - neovim/nvim-lspconfig - Swift/sourcekit LSP
-- `minuet.lua`
-  - milanglacier/minuet-ai.nvim - AI code completion (Ollama)
+  - nvim-treesitter/nvim-treesitter - Swift treesitter
+  - stevearc/conform.nvim - swiftformat
+  - mfussenegger/nvim-lint - swiftlint
 - `zk-nvim.lua`
   - zk-org/zk-nvim - Zettelkasten note management
 
