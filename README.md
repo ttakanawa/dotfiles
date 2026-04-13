@@ -106,7 +106,7 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
 - `neotest-phpunit.lua`
   - nvim-neotest/neotest - PHPUnit test runner with Docker/Podman support
 - `snacks.lua`
-  - folke/snacks.nvim - Utility collection
+  - folke/snacks.nvim - Picker config, image disabled
 - `swift.lua`
   - neovim/nvim-lspconfig - Swift/sourcekit LSP
 - `minuet.lua`
