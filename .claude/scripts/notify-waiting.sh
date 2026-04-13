@@ -1,22 +1,29 @@
 #!/bin/bash
-TIME=$(date "+%-l:%M %p")
+# Notification hook — fires when Claude needs user attention
+# (permission prompts, idle, auth success, elicitation).
+source "$(dirname "$0")/lib/notify.sh"
 
-BODY=$(
-  HOOK_INPUT=$(cat)
-  TRANSCRIPT_PATH=$(echo "$HOOK_INPUT" | jq -r '.transcript_path')
-  DIR_NAME=$(jq -r 'select(.message.role == "assistant") | .cwd // empty' "$TRANSCRIPT_PATH" | tail -n 1 | xargs basename)
-  LAST_DATA=$(jq -c 'select(.message.role == "assistant") | {text: ([.message.content[].text? // empty] | join(" "))} | select(.text != "")' "$TRANSCRIPT_PATH" | tail -n 1)
-  TEXT=$(echo "$LAST_DATA" | jq -r '.text // empty')
-  SUMMARY=$(echo "$TEXT" | tr '\n' ' ' | awk '{for(i=1;i<=7&&i<=NF;i++) printf "%s ", $i}' | sed 's/ *$//')
-  [ -z "$DIR_NAME" ] && DIR_NAME="claude"
-  [ -z "$SUMMARY" ] && SUMMARY="Waiting for input"
-  echo "[${DIR_NAME}] 🤖 ${SUMMARY}"
-) 2>/dev/null || BODY=""
+hook_input=$(cat)
 
-# WezTerm Notification
-TITLE="Claude Code Waiting - ${TIME}"
-if [ -n "$TMUX" ]; then
-  printf '\033]777;notify;%s;%s\033\\' "$TITLE" "$BODY" >"$(tmux display-message -p '#{client_tty}')"
-else
-  printf '\033]777;notify;%s;%s\033\\' "$TITLE" "$BODY" >/dev/tty
-fi
+# Title resolution precedence (later wins):
+#   1. default "🤖 waiting"
+#   2. notification_type-specific emoji/label
+#   3. explicit .title from the hook payload (if set)
+#
+# jq fields are fetched individually (not via @tsv) because .message and
+# .title may contain control characters; @tsv would escape them to literal
+# \n / \t sequences, which would then display verbatim in the notification.
+title="🤖 waiting"
+case "$(echo "$hook_input" | jq -r '.notification_type // empty')" in
+  permission_prompt)  title="🔐 permission" ;;
+  idle_prompt)        title="⏸️ idle" ;;
+  auth_success)       title="✅ auth success" ;;
+  elicitation_dialog) title="❓ question" ;;
+esac
+hook_title=$(echo "$hook_input" | jq -r '.title // empty')
+[ -n "$hook_title" ] && title="$hook_title"
+
+summary=$(echo "$hook_input" | jq -r '.message // empty')
+[ -z "$summary" ] && summary="Waiting for input"
+
+notify "$title" "$summary" "$hook_input"
