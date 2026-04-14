@@ -135,8 +135,16 @@ return {
       return
     end
 
-    -- Override the adapter registered by LazyVim's lang.php extra with string key
+    -- Remove neotest-pest registered by lang.php extra
+    -- to avoid duplicate test discovery
     opts.adapters = opts.adapters or {}
+    for i = #opts.adapters, 1, -1 do
+      if opts.adapters[i] == "neotest-pest" then
+        table.remove(opts.adapters, i)
+      end
+    end
+
+    -- Override the adapter registered by LazyVim's lang.php extra with string key
     opts.adapters["neotest-phpunit"] = {
       phpunit_cmd = function()
         return cmd
