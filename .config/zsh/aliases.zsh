@@ -15,6 +15,7 @@ alias cg='ANTHROPIC_AUTH_TOKEN="${ZAI_API_KEY}" \
 alias c-dev='claude --system-prompt "$(cat ~/.claude/contexts/dev.md)"'
 alias c-review='claude --system-prompt "$(cat ~/.claude/contexts/review.md)"'
 alias c-research='claude --system-prompt "$(cat ~/.claude/contexts/research.md)"'
+alias gwp='cd $(wtp cd @)'
 
 # Functions
 function awsin() {
@@ -202,6 +203,48 @@ function g() {
   fi
 
   open "$open_url" || xdg-open "$open_url" || start "$open_url"
+}
+
+# git worktree: wtp for create/remove (supports .wtp.yml post_create hooks),
+# gwq for listing (JSON output is easy to feed into fzf).
+function gwa() {
+  if [ -z "$1" ]; then
+    echo "Usage: gwa <branch-name>"
+    return 1
+  fi
+  wtp add "$1"
+}
+
+function gwn() {
+  if [ -z "$1" ]; then
+    echo "Usage: gwn <branch-name>"
+    return 1
+  fi
+  wtp add -b "$1"
+}
+
+function gwcd() {
+  local selected=$(gwq list --json | jq -r '.[] | select(.is_main == false) | "\(.path)\t\(.branch)"' | fzf --with-nth=2 --delimiter=$'\t')
+  if [ -n "$selected" ]; then
+    cd "$(echo "$selected" | cut -f1)"
+  fi
+}
+
+function gwrm() {
+  local selected=$(gwq list --json | jq -r '.[] | select(.is_main == false) | "\(.path)\t\(.branch)"' | fzf --with-nth=2 --delimiter=$'\t' --prompt="Select worktree to remove: ")
+  if [ -z "$selected" ]; then
+    return 0
+  fi
+
+  local branch=$(echo "$selected" | cut -f2)
+
+  echo "Remove worktree $branch"
+  read "confirm?Delete branch too? (y/N): "
+  if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    wtp remove --with-branch "$branch"
+  else
+    wtp remove "$branch"
+  fi
 }
 
 function go-install() {

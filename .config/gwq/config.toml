@@ -1,0 +1,3 @@
+[worktree]
+basedir = "~/worktrees"
+auto_mkdir = true

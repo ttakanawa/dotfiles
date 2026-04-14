@@ -7,6 +7,8 @@
 # Tracked directories
 !git/
 !git/**
+!gwq/
+!gwq/**
 !lazydocker/
 !lazydocker/**
 !lazygit/
