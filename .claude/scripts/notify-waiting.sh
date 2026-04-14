@@ -27,3 +27,4 @@ summary=$(echo "$hook_input" | jq -r '.message // empty')
 [ -z "$summary" ] && summary="Waiting for input"
 
 notify "$title" "$summary" "$hook_input"
+afplay -v 0.7 /System/Library/Sounds/Pop.aiff &

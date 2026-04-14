@@ -8,3 +8,4 @@ summary=$(echo "$hook_input" | jq -r '.last_assistant_message // empty')
 [ -z "$summary" ] && summary="Task completed"
 
 notify "🤖 finished" "$summary" "$hook_input"
+afplay -v 0.7 /System/Library/Sounds/Purr.aiff &
