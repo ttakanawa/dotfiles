@@ -53,6 +53,13 @@ return {
       local active_buf = nil
       local pending_requests = 0
 
+      local function clear_thinking_indicator()
+        if active_buf and vim.api.nvim_buf_is_valid(active_buf) then
+          vim.api.nvim_buf_clear_namespace(active_buf, ns, 0, -1)
+        end
+        active_buf = nil
+      end
+
       local function on_request_started()
         pending_requests = pending_requests + 1
         active_buf = vim.api.nvim_get_current_buf()
@@ -68,11 +75,36 @@ return {
         pending_requests = pending_requests - 1
         if pending_requests <= 0 then
           pending_requests = 0
-          if active_buf and vim.api.nvim_buf_is_valid(active_buf) then
-            vim.api.nvim_buf_clear_namespace(active_buf, ns, 0, -1)
-          end
-          active_buf = nil
+          clear_thinking_indicator()
         end
+      end
+
+      local function get_virtualtext_internal()
+        local action = require("minuet.virtualtext").action
+        for i = 1, 10 do
+          local name, value = debug.getupvalue(action.is_visible, i)
+          if name == "internal" and type(value) == "table" then
+            return value
+          end
+        end
+      end
+
+      local function stop_thinking()
+        pcall(function()
+          require("minuet.virtualtext").action.dismiss()
+        end)
+        pcall(function()
+          require("minuet.backends.common").terminate_all_jobs()
+        end)
+
+        -- Minuet has no public cancel API, so invalidate the active request.
+        local ok, internal = pcall(get_virtualtext_internal)
+        if ok and internal then
+          internal.current_completion_timestamp = -1
+        end
+
+        pending_requests = 0
+        clear_thinking_indicator()
       end
 
       vim.api.nvim_create_autocmd("User", {
@@ -87,9 +119,9 @@ return {
 
       -- Dismiss: set flag to suppress auto-trigger until next input
       vim.keymap.set("i", "<A-e>", function()
-        require("minuet.virtualtext").action.dismiss()
+        stop_thinking()
         vim.b.minuet_dismissed = true
-      end, { desc = "Minuet dismiss" })
+      end, { desc = "Minuet dismiss / stop thinking" })
 
       -- Clear dismissed flag when user types
       vim.api.nvim_create_autocmd("TextChangedI", {
