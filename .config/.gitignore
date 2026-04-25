@@ -17,6 +17,8 @@
 !mise/**
 !nvim/
 !nvim/**
+!opencode/
+!opencode/**
 !sheldon/
 !sheldon/**
 !ssh/

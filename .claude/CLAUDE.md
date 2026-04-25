@@ -28,3 +28,164 @@ Proactively use agents and skills — both user-level and project-level — when
 
 - Invoke skills when they match the user's intent
 - Trigger skills based on context, not only explicit slash commands
+
+## Writing Style
+
+### Mixed Japanese-English Text
+
+When embedding English words in Japanese text, insert a half-width space on both sides of the English word.
+
+- OK: `Claude Code は CLI ツールです`
+- NG: `Claude Codeは CLIツールです`
+
+Numbers do not require surrounding spaces.
+
+- OK: `Claude Code で3つのファイルを作成した`
+- NG: `Claude Codeで3つのファイルを作成した`
+
+Punctuation (。、) follows the same rule as English periods and commas: no space before, space after.
+
+- OK: `これは OK。 Claude Code を使う`
+- NG: `これは OK。Claude Code を使う`
+- OK: `まず、 Claude Code を使う`
+  - NG: `まず、Claude Code を使う`
+
+## TDD (Test-Driven Development)
+
+Prefer canonical TDD as defined by Kent Beck.
+
+### Canonical TDD Workflow
+
+1. **Test List** — enumerate expected behaviors before writing any code
+2. **Write one failing test** — design the interface (how behavior is called)
+3. **Make it pass** — minimal implementation only
+4. **Refactor** — design the implementation (internal structure)
+5. **Repeat** — pick the next item from the test list
+
+### Key Constraints
+
+- One test at a time — write, pass, refactor, then next
+- Interface design happens in step 2; implementation design in step 4
+- Do NOT write all tests upfront — that is test-first, not TDD
+  - Do NOT refactor while making a test pass — separate the two phases
+
+## Markdown
+
+### Code Block Indentation
+
+Always indent fenced code blocks by 2 spaces and specify the language identifier.
+
+OK:
+
+  ```bash
+  echo "hello"
+  ```
+
+NG:
+
+```bash
+echo "hello"
+```
+
+### Table Separator
+
+Insert a space after the opening `|` and before the closing `|` in separator rows.
+
+- OK: `| ------ | ------------- |`
+  - NG: `|------|-------------|`
+
+## Tools for AI
+
+Guidelines for AI when using tools.
+Always prefer built-in tools (Glob, Grep, Read, Edit, Write) over the Bash tool.
+
+## MCP Servers
+
+Global MCP server configuration lives in tool-specific config files, not in `AGENTS.md`.
+`AGENTS.md` can tell the agent when to use an MCP server, but the server itself must be registered in the tool's global config.
+
+| Tool | Global config location | Config shape |
+| ------ | ---------- | ------------- |
+| `Claude Code` | `~/.claude.json` | `mcpServers` in JSON |
+| `Codex` | `~/.codex/config.toml` | `[mcp_servers.<name>]` in TOML |
+| `OpenCode` | `~/.config/opencode/opencode.json` | `mcp` in JSON / JSONC |
+
+Notes:
+
+- `Codex` CLI and IDE extension share the same MCP configuration in `~/.codex/config.toml`.
+- `OpenCode` also supports per-project overrides in `opencode.json`, but the global location is `~/.config/opencode/opencode.json`.
+
+### Preferred Shell Tools
+
+When using the Bash tool, prefer these over their alternatives.
+
+| Use | Instead of | Description |
+| ------ | ---------- | ------------- |
+| `fd` | `find` | Simple file search |
+| `rg` | `grep` | Fast text search |
+| `jq` | manual JSON parsing | JSON extraction and transformation |
+| `tree` | `ls -R` | Visual directory structure |
+| `gh` | `git` commands for remote access | GitHub operations (PRs, issues, Actions) |
+| `glab` | `git` commands for remote access | GitLab operations (MRs, issues, CI/CD) |
+| `ghq` | manual clone paths | Git repository path management |
+| `uv` | `python` / `python3` | Python package and project management |
+| `bunx` | `bunx` | Package runner |
+
+### Patterns
+
+#### jq
+
+  ```bash
+  jq '.key' file.json                # Extract field
+  jq '.items[] | .name' file.json    # Iterate array
+  jq -r '.url' file.json             # Raw string output (no quotes)
+  ```
+
+#### gh / glab
+
+Always prefer high-level subcommands over raw API calls.
+`gh api` / `glab api` should only be used as a last resort when no dedicated subcommand exists.
+
+  ```bash
+  # Good
+  gh pr list                           # List open PRs
+  gh pr view 123                       # View PR details
+  gh issue list --label bug            # Filter issues
+  gh run list                          # List workflow runs
+  glab mr list                         # List open MRs
+  glab mr view 123                     # View MR details
+  glab ci list                         # List CI pipelines
+
+  # Bad - use subcommands instead
+  gh api repos/{owner}/{repo}/pulls
+  glab api projects/:id/merge_requests
+  ```
+
+#### ghq
+
+  ```bash
+  ghq root                  # Print the repo root directory
+  ghq list                  # List all managed repositories
+  ghq list -p               # List with full paths
+  ```
+
+## Git Worktree
+
+Worktree base directory is `~/worktrees` (configured in gwq).
+
+### Tools
+
+| Use | Instead of | Description |
+| ------ | ------------- | ------------- |
+| `wtp` | `git worktree add/remove` | Worktree lifecycle with post_create hooks |
+| `gwq` | `git worktree list` | Worktree listing (JSON output for fzf) |
+
+### Shell Utilities
+
+  ```bash
+  gwa <branch>             # Create worktree for existing branch
+  gwn <branch>             # Create worktree with new branch (-b)
+  gwcd                     # Select and cd to a worktree (fzf)
+  gwrm                     # Select and remove a worktree (fzf)
+  gwp                      # cd to main worktree
+  ```

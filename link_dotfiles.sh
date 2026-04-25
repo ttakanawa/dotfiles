@@ -3,6 +3,7 @@ targets='
 .zshenv
 .config
 .claude
+.codex
 .markdownlint.yaml
 '
 

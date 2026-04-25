@@ -40,14 +40,17 @@ All documentation and comments in this repository are written in English.
 │   └── raycast/script_commands/ # Raycast script commands
 ├── .claude/
 │   ├── .gitignore               # Allowlist for tracked Claude Code files
-│   ├── CLAUDE.md                # Claude Code project instructions (communication rules)
+│   ├── CLAUDE.md                # Shared AI instructions (source of truth for all tools)
 │   ├── settings.json            # Hooks, status line, attribution, preferences
 │   ├── agents/                  # Custom agents
 │   ├── commands/                # Slash commands
 │   ├── contexts/                # Context profiles (dev, research, review)
-│   ├── rules/                   # Global rules (auto-loaded)
 │   ├── skills/                  # Reusable skill definitions
+│   ├── rules/                   # Claude Code-specific rules (auto-loaded)
 │   └── scripts/                 # Hook scripts (notification, logging)
+├── .codex/
+│   ├── .gitignore               # Allowlist for tracked Codex files
+│   ├── AGENTS.md                → symlink → ../.claude/CLAUDE.md
 ├── homebrew/
 │   ├── Brewfile                 # Homebrew package list
 │   └── install.sh / dump.sh     # Install / dump packages
@@ -81,7 +84,8 @@ $HOME/
 ├── .zshrc             → dotfiles/.zshrc
 ├── .zshenv            → dotfiles/.zshenv
 ├── .config/           → dotfiles/.config/   # = ~/.config/ (XDG_CONFIG_HOME)
-└── .claude/           → dotfiles/.claude/
+├── .claude/           → dotfiles/.claude/
+└── .codex/            → dotfiles/.codex/
 ```
 
 ## Terminal
@@ -137,10 +141,9 @@ Global MCP servers are configured in `~/.claude.json` under `mcpServers`.
 | ------ | ------------- |
 | `agents.md` | Show available agents |
 | `ask-user-question.md` | Use AskUserQuestion tool |
-| `tools.md` | Preferred tools and patterns |
-| `markdown.md` | Markdown file related rules (`**/*.md`) |
-| `writing-style.md` | Writing style |
-| `tdd.md` | Canonical TDD workflow |
+
+The following rules are shared across all AI tools via `.claude/CLAUDE.md`:
+`writing-style`, `tdd`, `markdown`, `tools`, `git-worktree`
 
 ### Agents
 
