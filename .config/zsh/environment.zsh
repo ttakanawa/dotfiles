@@ -41,4 +41,7 @@ export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 # added due to qmk compiling failure
 export PATH="/opt/homebrew/opt/arm-none-eabi-gcc@8/bin:/opt/homebrew/opt/arm-none-eabi-binutils/bin:$PATH"
 
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
+
 typeset -U PATH
