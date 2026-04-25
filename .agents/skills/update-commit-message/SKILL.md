@@ -4,7 +4,7 @@ description: Regenerate a commit message and update via interactive rebase
 argument-hint: <commit-hash>
 model: haiku
 disable-model-invocation: true
-allowed-tools: Bash(~/.claude/skills/update-commit-message/*)
+allowed-tools: Bash(~/.claude/skills/update-commit-message/scripts/*)
 ---
 
 # Update Commit Message
@@ -32,7 +32,7 @@ Note: Attribution disabled globally via ~/.claude/settings.json.
 1. Once approved, execute the update using the helper script:
 
     ```bash
-    ~/.claude/skills/update-commit-message/git-reword.sh <commit-hash> "<commit-message>"
+    ~/.claude/skills/update-commit-message/scripts/git-reword.sh <commit-hash> "<commit-message>"
     ```
 
 1. After updating the commit successfully, run `git show -s <new-commit-hash>` and display the output wrapped in clear visual dividers like this:

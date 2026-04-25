@@ -2,6 +2,7 @@ targets='
 .zshrc
 .zshenv
 .config
+.agents
 .claude
 .codex
 .markdownlint.yaml

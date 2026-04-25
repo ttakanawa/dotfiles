@@ -1,7 +1,7 @@
 ---
 name: amiforked
 description: Check if the current Claude Code session was forked from another session
-allowed-tools: Bash(~/.claude/skills/amiforked/*)
+allowed-tools: Bash(~/.claude/skills/amiforked/scripts/*)
 model: haiku
 ---
 
@@ -14,7 +14,7 @@ Check whether the current session is a fork and display the original session ID.
 1. Run the helper script:
 
   ```bash
-  ~/.claude/skills/amiforked/check-fork.sh
+  ~/.claude/skills/amiforked/scripts/check-fork.sh
   ```
 
 1. Parse the output and respond using the templates below. Do not add any extra text.

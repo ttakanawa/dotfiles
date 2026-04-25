@@ -1,7 +1,7 @@
 ---
 name: find-session-file
 description: Find a Claude Code session file by session ID and project directory
-allowed-tools: Bash(~/.claude/skills/find-session/*)
+allowed-tools: Bash(~/.claude/skills/find-session-file/scripts/*)
 model: haiku
 ---
 
@@ -20,13 +20,13 @@ Locate a Claude Code session file by session ID.
 1. Run the helper script:
 
   ```bash
-  ~/.claude/skills/find-session-file/find-session.sh $ARGUMENTS
+  ~/.claude/skills/find-session-file/scripts/find-session.sh $ARGUMENTS
   ```
 
   If only session ID is provided (no CWD), append `$(pwd)` as the second argument:
 
   ```bash
-  ~/.claude/skills/find-session-file/find-session.sh <SESSION_ID> "$(pwd)"
+  ~/.claude/skills/find-session-file/scripts/find-session.sh <SESSION_ID> "$(pwd)"
   ```
 
 1. Parse the output and respond using the templates below. Do not add any extra text.

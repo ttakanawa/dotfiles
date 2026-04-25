@@ -38,6 +38,8 @@ All documentation and comments in this repository are written in English.
 │   │   └── config.base          # SSH base config (loaded via Include in ~/.ssh/config)
 │   ├── zk/                      # Zettelkasten note config & templates
 │   └── raycast/script_commands/ # Raycast script commands
+├── .agents/
+│   └── skills/                  # Shared Agent Skills (Claude Code / Codex / OpenCode)
 ├── .claude/
 │   ├── .gitignore               # Allowlist for tracked Claude Code files
 │   ├── CLAUDE.md                # Shared AI instructions (source of truth for all tools)
@@ -45,8 +47,8 @@ All documentation and comments in this repository are written in English.
 │   ├── agents/                  # Custom agents
 │   ├── commands/                # Slash commands
 │   ├── contexts/                # Context profiles (dev, research, review)
-│   ├── skills/                  # Reusable skill definitions
 │   ├── rules/                   # Claude Code-specific rules (auto-loaded)
+│   ├── skills/                  → symlink → ../.agents/skills
 │   └── scripts/                 # Hook scripts (notification, logging)
 ├── .codex/
 │   ├── .gitignore               # Allowlist for tracked Codex files
@@ -84,6 +86,7 @@ $HOME/
 ├── .zshrc             → dotfiles/.zshrc
 ├── .zshenv            → dotfiles/.zshenv
 ├── .config/           → dotfiles/.config/   # = ~/.config/ (XDG_CONFIG_HOME)
+├── .agents/           → dotfiles/.agents/
 ├── .claude/           → dotfiles/.claude/
 └── .codex/            → dotfiles/.codex/
 ```

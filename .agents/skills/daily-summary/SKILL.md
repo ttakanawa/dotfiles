@@ -3,7 +3,7 @@ name: daily-summary
 description: Summarize Claude Code interactions for a given date using Agent Teams
 argument-hint: "date: today, yesterday, or YYYY-MM-DD"
 disable-model-invocation: true
-allowed-tools: Bash(tmux display-message:*), Bash(date:*), Bash(mkdir:*), Bash(~/.claude/skills/daily-summary/*), Read, Write, AskUserQuestion, Agent, TeamCreate, TeamDelete, TaskCreate, TaskUpdate, TaskList, SendMessage
+allowed-tools: Bash(tmux display-message:*), Bash(date:*), Bash(mkdir:*), Bash(~/.claude/skills/daily-summary/scripts/*), Read, Write, AskUserQuestion, Agent, TeamCreate, TeamDelete, TaskCreate, TaskUpdate, TaskList, SendMessage
 ---
 
 # Daily Summary
@@ -48,7 +48,7 @@ Create the tmp directory for intermediate output:
 Extract unique project + session pairs for the target date:
 
   ```bash
-  ~/.claude/skills/daily-summary/filter-sessions.sh "$TARGET_DATE" > "$TMP_DIR/sessions.json"
+  ~/.claude/skills/daily-summary/scripts/filter-sessions.sh "$TARGET_DATE" > "$TMP_DIR/sessions.json"
   ```
 
 This produces: `[{project: "/Users/.../dotfiles", sessions: ["uuid1", "uuid2"]}, ...]`
@@ -94,8 +94,8 @@ Extract messages from each session file and save to tmp:
 
   ```bash
   TMP_DIR=~/.claude/skills/daily-summary/tmp/$TARGET_DATE
-  ~/.claude/skills/daily-summary/extract-user-messages.sh "$SESSION_FILE" > "$TMP_DIR/${SESSION_ID}-user.jsonl"
-  ~/.claude/skills/daily-summary/extract-assistant-messages.sh "$SESSION_FILE" > "$TMP_DIR/${SESSION_ID}-assistant.jsonl"
+  ~/.claude/skills/daily-summary/scripts/extract-user-messages.sh "$SESSION_FILE" > "$TMP_DIR/${SESSION_ID}-user.jsonl"
+  ~/.claude/skills/daily-summary/scripts/extract-assistant-messages.sh "$SESSION_FILE" > "$TMP_DIR/${SESSION_ID}-assistant.jsonl"
   ```
 
 ### 4d. Summary Format
