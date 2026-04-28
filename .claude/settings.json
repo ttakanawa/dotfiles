@@ -204,7 +204,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "bun x ccusage statusline"
+    "command": "bun ~/.claude/scripts/statusline-command.ts"
   },
   "alwaysThinkingEnabled": true
 }
