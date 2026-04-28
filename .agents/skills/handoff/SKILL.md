@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Generate a handoff document from the current session that serves as a direct instruction for a new session. Use when switching sessions or handing off work.
+description: Use when switching sessions or handing off work to a new session
 model: sonnet
 allowed-tools: Write, Bash(git branch:*), Bash(git status:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*)
 ---
@@ -36,13 +36,23 @@ Review the entire conversation and extract:
 
 - **Goal**: The original request or objective. Include ticket numbers if mentioned.
 - **Background**: Key decisions made, approaches tried and rejected, constraints discovered. Only include what a new session needs to know — skip routine steps.
-- **Progress**: What has been completed vs. what remains.
+- **Progress**: What has been completed vs. what remains. List every task as a checklist item (`[x]` for done, `[ ]` for remaining).
+- **Open questions**: Undecided items, trade-offs, or concerns the next session should evaluate.
 - **Relevant files**: Files that were changed or are central to the task. Not every file touched — only the ones the next session needs to know about.
 - **Next steps**: Concrete, actionable items the new session should execute.
 
-## Step 4 — Write Handoff File
+## Step 4 — Choose Output Method
 
-Write the handoff document to a file in the current working directory.
+Ask the user how to output the handoff document:
+
+  - **Write to file** — save as `HANDOFF-<timestamp>.md` in the current working directory
+  - **Output in session** — print the handoff document directly in the conversation without creating a file
+
+## Step 5 — Write Handoff File or Output in Session
+
+If the user chose **Write to file**, write the handoff document to a file in the current working directory.
+
+If the user chose **Output in session**, render the handoff document in the conversation output and skip file creation.
 
 ### File Name
 
@@ -64,6 +74,6 @@ Use the current date and time (24-hour format, hyphen-separated). Example: `HAND
 
 Use the template in [TEMPLATE.md](./TEMPLATE.md).
 
-### After Writing
+### After Writing (file only)
 
 Print the file path so the user can pass it to a new session.
