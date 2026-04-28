@@ -1,7 +1,7 @@
 ---
 name: commit-staged
 description: Analyze staged changes and create a commit with a Conventional Commits message
-model: haiku
+model: sonnet
 disable-model-invocation: true
 allowed-tools: Bash(git commit:*)
 ---
