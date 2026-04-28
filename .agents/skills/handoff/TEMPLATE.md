@@ -7,16 +7,20 @@
 - <Key decision or context the new session must know>
 - <Rejected approach and why, if relevant>
 
-## Current State
+## Tasks
 
 - Branch: `<branch-name>`
-- Done: <completed items>
-- Remaining: <incomplete items>
+- [x] <Completed task>
+- [ ] <Remaining task>
 
 ## Key Files
 
 - `path/to/file.ts` — <role or what was changed>
 - `path/to/other.ts` — <role or what was changed>
+
+## Open Questions
+
+- <Undecided item or consideration the next session should evaluate>
 
 ## Next Steps
 
