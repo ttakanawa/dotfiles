@@ -10,20 +10,21 @@ allowed-tools: Bash(git commit:*)
 
 Analyze the currently staged changes and create an appropriate commit through an interactive process.
 
-Note: Attribution disabled globally via ~/.claude/settings.json.
-
 ## Workflow Steps
 
 1. Run `git diff --staged` to see exactly what is staged.
 1. If nothing is staged, report that and stop.
 1. Analyze the nature of the changes — what was added, modified, removed, and why.
+   - If the motivation behind the changes is not self-evident from the diff (e.g., files moved to a different directory, dependencies updated, config values changed), ask the user for the reason before drafting the message.
 1. Present the proposed message to the user:
 
    ```
     Proposed commit message:
 
     ───────────────────────────────────────
-    <message from agent>
+    <type>(scope>): <description>
+
+    <optional body>
     ───────────────────────────────────────
     ```
 
@@ -38,7 +39,3 @@ Note: Attribution disabled globally via ~/.claude/settings.json.
     [Output of git show -s]
     ───────────────────────────────────────
     ```
-
-## Commit Message Format
-
-Refer to [conventional-commits.md](conventional-commits.md) for formatting rules.

@@ -18,15 +18,20 @@ Note: Attribution disabled globally via ~/.claude/settings.json.
 1. Run `git show <commit-hash>` to see the commit's changes and current message.
 1. If the commit does not exist, report that and stop.
 1. Analyze the nature of the changes — what was added, modified, removed, and why.
+   - If the motivation behind the changes is not self-evident from the diff (e.g., files moved to a different directory, dependencies updated, config values changed), ask the user for the reason before drafting the message.
 1. Present the proposed message to the user:
 
    ```
     Proposed commit message:
 
     ───────────────────────────────────────
-    <message from agent>
+    <type>(scope>): <description>
+
+    <optional body>
     ───────────────────────────────────────
     ```
+
+   ```
 
 1. **CRITICAL: Wait for the user's explicit approval.** Do not proceed to commit until the user approves.
 1. Once approved, execute the update using the helper script:
@@ -46,7 +51,3 @@ Note: Attribution disabled globally via ~/.claude/settings.json.
     ```
 
     Note: The commit hash changes after rebase. Use the hash from the rebase output.
-
-## Commit Message Format
-
-Refer to [conventional-commits.md](conventional-commits.md) for formatting rules.
