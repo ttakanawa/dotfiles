@@ -1,6 +1,7 @@
-// @ts-nocheck
+// Run: bun test ./.claude/scripts/statusline-format.test.ts
+// @ts-nocheck — Bun runtime types not available to tsserver
 import { describe, test, expect } from "bun:test";
-import { formatSize, formatK, timeRemaining, buildLine1, buildLine2 } from "./statusline-format";
+import { formatSize, timeRemaining, buildLine1, buildLine2 } from "./statusline-format";
 
 function stripAnsi(str: string): string {
   return str.replace(/\x1b\[[0-9;]*m/g, "");
@@ -20,18 +21,6 @@ describe("formatSize", () => {
     expect(formatSize(1_000_000)).toBe("1M");
     expect(formatSize(1_500_000)).toBe("2M");
     expect(formatSize(200_000_000)).toBe("200M");
-  });
-});
-
-describe("formatK", () => {
-  test("returns plain number for values under 1K", () => {
-    expect(formatK(0)).toBe("0");
-    expect(formatK(999)).toBe("999");
-  });
-  test("rounds to K for values >= 1K", () => {
-    expect(formatK(1_000)).toBe("1K");
-    expect(formatK(1_500)).toBe("2K");
-    expect(formatK(10_000)).toBe("10K");
   });
 });
 

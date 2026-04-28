@@ -30,17 +30,20 @@ export function formatSize(n: number): string {
   return String(n);
 }
 
-export function formatK(n: number): string {
-  if (n >= 1_000) return `${Math.round(n / 1_000)}K`;
-  return String(n);
-}
-
 export function timeRemaining(resets_at: number, now = Date.now()): string {
   const diff = resets_at - Math.floor(now / 1000);
   if (diff <= 0) return "";
   const h = Math.floor(diff / 3600);
   const m = Math.floor((diff % 3600) / 60);
   return h > 0 ? `${h}h ${m}m` : `${m}m`;
+}
+
+function formatRateLimit(label: string, pct: number | undefined, resetsAt: number | undefined): string {
+  if (pct == null) return "";
+  const rounded = Math.round(pct);
+  const remaining = resetsAt ? timeRemaining(resetsAt) : "";
+  const text = remaining ? `${label}:${rounded}% (${remaining})` : `${label}:${rounded}%`;
+  return `⏱ ${c.yellow}${text}${c.reset}`;
 }
 
 export function buildLine1(data: StatuslineInput, branch: string): string {
@@ -58,7 +61,7 @@ export function buildLine1(data: StatuslineInput, branch: string): string {
     parts.push(`📊 ${c.yellow}in:${turnIn} out:${turnOut}${c.reset}`);
   }
   if (totalIn != null && totalOut != null) {
-    parts.push(`💬 ${formatK(totalIn + totalOut)}`);
+    parts.push(`💬 ${c.cyan}${formatSize(totalIn + totalOut)}${c.reset}`);
   }
   if (ctxUsed != null) {
     parts.push(`🧠 ${c.purple}${Math.round(ctxUsed)}%${c.reset}`);
@@ -68,40 +71,30 @@ export function buildLine1(data: StatuslineInput, branch: string): string {
 
 export function buildLine2(data: StatuslineInput): string {
   const parts: string[] = [];
-  const model      = data.model?.display_name ?? "";
-  const ctxSize    = data.context_window?.context_window_size;
-  const effort     = data.effort?.level ?? "";
-  const rl5hPct    = data.rate_limits?.five_hour?.used_percentage;
-  const rl5hResets = data.rate_limits?.five_hour?.resets_at;
-  const sessionId  = data.session_id ?? "";
+  const model       = data.model?.display_name ?? "";
+  const ctxSize     = data.context_window?.context_window_size;
+  const effort      = data.effort?.level ?? "";
+  const sessionId   = data.session_id ?? "";
   const sessionName = data.session_name ?? "";
 
-  if (rl5hPct != null) {
-    const pct = Math.round(rl5hPct);
-    const remaining = rl5hResets ? timeRemaining(rl5hResets) : "";
-    const label = remaining ? `5h:${pct}% (${remaining})` : `5h:${pct}%`;
-    parts.push(`⏱ ${c.yellow}${label}${c.reset}`);
-  }
-  const rl7dPct    = data.rate_limits?.seven_day?.used_percentage;
-  const rl7dResets = data.rate_limits?.seven_day?.resets_at;
-  if (rl7dPct != null) {
-    const pct = Math.round(rl7dPct);
-    const remaining = rl7dResets ? timeRemaining(rl7dResets) : "";
-    const label = remaining ? `7d:${pct}% (${remaining})` : `7d:${pct}%`;
-    parts.push(`⏱ ${c.yellow}${label}${c.reset}`);
-  }
+  const rl5h = data.rate_limits?.five_hour;
+  const rl7d = data.rate_limits?.seven_day;
+  const rl5 = formatRateLimit("5h", rl5h?.used_percentage, rl5h?.resets_at);
+  const rl7 = formatRateLimit("7d", rl7d?.used_percentage, rl7d?.resets_at);
+  if (rl5) parts.push(rl5);
+  if (rl7) parts.push(rl7);
   if (model) {
     const sizeStr = ctxSize ? ` ${formatSize(ctxSize)}` : "";
     parts.push(`${c.cyan}${model}${sizeStr}${c.reset}`);
   }
   if (effort) {
-    parts.push(effort);
-  }
-  if (sessionName) {
-    parts.push(`${c.cyan}${sessionName}${c.reset}`);
+    parts.push(`${c.cyan}${effort}${c.reset}`);
   }
   if (sessionId) {
     parts.push(`${c.yellow}${sessionId}${c.reset}`);
+  }
+  if (sessionName) {
+    parts.push(`${c.cyan}${sessionName}${c.reset}`);
   }
   return parts.join("  |  ");
 }
