@@ -1,8 +1,9 @@
 ---
 name: amiforked
-description: Check if the current Claude Code session was forked from another session
+description: Use in Claude Code when you need to check whether the current session was forked
 allowed-tools: Bash(~/.claude/skills/amiforked/scripts/*)
 model: haiku
+effort: low
 ---
 
 # amiforked
@@ -14,7 +15,7 @@ Check whether the current session is a fork and display the original session ID.
 1. Run the helper script:
 
   ```bash
-  ~/.claude/skills/amiforked/scripts/check-fork.sh
+  ~/.claude/skills/amiforked/scripts/check-fork.sh ${CLAUDE_SESSION_ID}
   ```
 
 1. Parse the output and respond using the templates below. Do not add any extra text.
@@ -43,10 +44,3 @@ Check whether the current session is a fork and display the original session ID.
   ```
   No, could not determine the session. No session file found.
   ```
-
-## Limitations
-
-- The script identifies the current session by picking the most recently
-  modified `.jsonl` file in the project directory (computed from `$PWD`).
-  When multiple sessions are running concurrently in the same project, it
-  may pick a different session's file and return inaccurate results.
