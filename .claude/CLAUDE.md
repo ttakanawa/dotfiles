@@ -50,13 +50,9 @@ Punctuation (。、) follows the same rule as English periods and commas: no spa
 - OK: `まず、 Claude Code を使う`
   - NG: `まず、Claude Code を使う`
 
+## Tools
 
-## Tools for AI
-
-Guidelines for AI when using tools.
 Always prefer built-in tools (Glob, Grep, Read, Edit, Write) over the Bash tool.
-
-### Preferred Shell Tools
 
 When using the Bash tool, prefer these over their alternatives.
 
@@ -68,7 +64,6 @@ When using the Bash tool, prefer these over their alternatives.
 | `tree` | `ls -R` | Visual directory structure |
 | `gh` | `git` commands for remote access | GitHub operations (PRs, issues, Actions) |
 | `glab` | `git` commands for remote access | GitLab operations (MRs, issues, CI/CD) |
-| `ghq` | manual clone paths | Git repository path management |
 | `uv` | `python` / `python3` | Python package and project management |
 | `bunx` | `bunx` | Package runner |
 
@@ -101,12 +96,3 @@ Always prefer high-level subcommands over raw API calls.
   gh api repos/{owner}/{repo}/pulls
   glab api projects/:id/merge_requests
   ```
-
-#### ghq
-
-  ```bash
-  ghq root                  # Print the repo root directory
-  ghq list                  # List all managed repositories
-  ghq list -p               # List with full paths
-  ```
-
