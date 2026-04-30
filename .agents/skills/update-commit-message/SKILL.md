@@ -1,6 +1,6 @@
 ---
 name: update-commit-message
-description: Regenerate a commit message and update via interactive rebase
+description: Use when changing a commit message
 argument-hint: <commit-hash>
 model: haiku
 disable-model-invocation: true
