@@ -134,7 +134,11 @@ Never add attribution footers (e.g., "Generated with Claude Code") to any output
 
 ### MCP Servers
 
-Global MCP servers are configured in `~/.claude.json` under `mcpServers`.
+| Tool | Global config location | Config shape |
+| ------ | ---------- | ------------- |
+| `Claude Code` | `~/.claude.json` | `mcpServers` in JSON |
+| `Codex` | `~/.codex/config.toml` | `[mcp_servers.<name>]` in TOML |
+| `OpenCode` | `~/.config/opencode/opencode.json` | `mcp` in JSON / JSONC |
 
 ### Rules
 
