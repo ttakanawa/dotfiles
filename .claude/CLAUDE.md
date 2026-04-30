@@ -56,22 +56,6 @@ Punctuation (。、) follows the same rule as English periods and commas: no spa
 Guidelines for AI when using tools.
 Always prefer built-in tools (Glob, Grep, Read, Edit, Write) over the Bash tool.
 
-## MCP Servers
-
-Global MCP server configuration lives in tool-specific config files, not in `AGENTS.md`.
-`AGENTS.md` can tell the agent when to use an MCP server, but the server itself must be registered in the tool's global config.
-
-| Tool | Global config location | Config shape |
-| ------ | ---------- | ------------- |
-| `Claude Code` | `~/.claude.json` | `mcpServers` in JSON |
-| `Codex` | `~/.codex/config.toml` | `[mcp_servers.<name>]` in TOML |
-| `OpenCode` | `~/.config/opencode/opencode.json` | `mcp` in JSON / JSONC |
-
-Notes:
-
-- `Codex` CLI and IDE extension share the same MCP configuration in `~/.codex/config.toml`.
-- `OpenCode` also supports per-project overrides in `opencode.json`, but the global location is `~/.config/opencode/opencode.json`.
-
 ### Preferred Shell Tools
 
 When using the Bash tool, prefer these over their alternatives.
