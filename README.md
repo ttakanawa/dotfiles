@@ -146,7 +146,7 @@ Global MCP servers are configured in `~/.claude.json` under `mcpServers`.
 | `ask-user-question.md` | Use AskUserQuestion tool |
 
 The following rules are shared across all AI tools via `.claude/CLAUDE.md`:
-`writing-style`, `tdd`, `markdown`, `tools`, `git-worktree`
+`writing-style`, `tdd`, `tools`, `git-worktree`
 
 ### Agents
 
@@ -180,6 +180,7 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 | `/second-opinion` | Ask subagent/teammate a second opinion |
 | `/handoff` | Generate session handoff as direct instructions |
 | `/resolve-review` | Triage review findings, fix code, and reply to MR/PR threads |
+| `/markdown-writing-style` | Apply markdown formatting rules when writing or editing markdown content |
 
 ### Contexts
 

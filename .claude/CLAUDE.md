@@ -69,31 +69,6 @@ Prefer canonical TDD as defined by Kent Beck.
 - Do NOT write all tests upfront — that is test-first, not TDD
   - Do NOT refactor while making a test pass — separate the two phases
 
-## Markdown
-
-### Code Block Indentation
-
-Always indent fenced code blocks by 2 spaces and specify the language identifier.
-
-OK:
-
-  ```bash
-  echo "hello"
-  ```
-
-NG:
-
-```bash
-echo "hello"
-```
-
-### Table Separator
-
-Insert a space after the opening `|` and before the closing `|` in separator rows.
-
-- OK: `| ------ | ------------- |`
-  - NG: `|------|-------------|`
-
 ## Tools for AI
 
 Guidelines for AI when using tools.
