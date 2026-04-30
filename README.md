@@ -146,7 +146,7 @@ Global MCP servers are configured in `~/.claude.json` under `mcpServers`.
 | `ask-user-question.md` | Use AskUserQuestion tool |
 
 The following rules are shared across all AI tools via `.claude/CLAUDE.md`:
-`writing-style`, `tools`, `git-worktree`
+`writing-style`, `tools`
 
 ### Agents
 
