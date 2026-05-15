@@ -8,3 +8,10 @@ vim.g.root_spec = { "cwd" }
 vim.g.lazyvim_php_lsp = "intelephense"
 vim.o.exrc = true
 
+vim.opt.listchars = {
+  tab = "▸ ",
+  space = "·",
+  trail = "·",
+  nbsp = "␣",
+}
+
