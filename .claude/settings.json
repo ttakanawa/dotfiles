@@ -144,6 +144,8 @@
       "Bash(tmux show-environment:*)",
       "Bash(tmux show-window-options:*)",
       "Bash(tmux info:*)",
+      " ─── continuous-learning ─── ",
+      "Bash(python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py:*)",
       " ─── atlassian ─── ",
       "mcp__atlassian__getJiraIssue",
       "mcp__atlassian__getJiraIssueRemoteIssueLinks",
@@ -170,7 +172,6 @@
     "deny": [
       " ─── shell ─── ",
       "Bash(python:*)",
-      "Bash(python3:*)",
       " ─── secrets ─── ",
       "Read(./.env)",
       "Read(./.env.*)",
@@ -181,6 +182,28 @@
     ]
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/skills/continuous-learning-v2/hooks/observe.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/skills/continuous-learning-v2/hooks/observe.sh"
+          }
+        ]
+      }
+    ],
     "Notification": [
       {
         "hooks": [
