@@ -1,0 +1,23 @@
+# Codex CLI configuration.
+#
+# Continuous-learning-v2 observation hooks. The skill itself lives at
+# ~/.agents/skills/continuous-learning-v2/ and is shared with Claude Code
+# via ~/.claude/skills (symlinked into ~/.agents/skills).
+#
+# observe.sh treats the positional argument as the hook phase
+# ("pre" / "post"), so PreToolUse and PostToolUse register the same script
+# with different phase arguments.
+
+[[hooks.PreToolUse]]
+matcher = ".*"
+
+[[hooks.PreToolUse.hooks]]
+type = "command"
+command = "~/.agents/skills/continuous-learning-v2/hooks/observe.sh pre"
+
+[[hooks.PostToolUse]]
+matcher = ".*"
+
+[[hooks.PostToolUse.hooks]]
+type = "command"
+command = "~/.agents/skills/continuous-learning-v2/hooks/observe.sh post"
