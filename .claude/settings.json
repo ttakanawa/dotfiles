@@ -229,5 +229,6 @@
     "type": "command",
     "command": "bun ~/.claude/scripts/statusline-command.ts"
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "theme": "dark-ansi"
 }
