@@ -181,6 +181,7 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 | `/v` | Neovim environment guide |
 | `/daily-summary` | Summarize interactions for a date range |
 | `/amiforked` | Check if session was forked |
+| `/get-session-file` | Get the file path of a Claude Code session by session ID |
 | `/second-opinion` | Ask subagent/teammate a second opinion |
 | `/handoff` | Generate session handoff as direct instructions |
 | `/resolve-review` | Triage review findings, fix code, and reply to MR/PR threads |
