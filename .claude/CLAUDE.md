@@ -29,6 +29,20 @@ Proactively use agents and skills — both user-level and project-level — when
 - Invoke skills when they match the user's intent
 - Trigger skills based on context, not only explicit slash commands
 
+## Auto Memory
+
+Do not use the auto memory system. Never write to `~/.claude/projects/*/memory/`,
+and do not treat it as a place to persist feedback, user preferences, project
+context, or references.
+
+When you would normally save something to memory, propose creating a new skill
+or updating an existing skill instead. Skills are version-controlled, explicit,
+and shared across tools — memory files are invisible and easy to lose track of.
+
+Even when the user says "remember this" or similar, do not write to memory.
+Ask whether they want a skill created or updated, and proceed only after they
+confirm.
+
 ## Writing Style
 
 ### Mixed Japanese-English Text
