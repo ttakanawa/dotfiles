@@ -159,24 +159,11 @@ Use a commit message that names what was made review-clean, such as:
   git commit -m "fix: address review findings for auth flow"
   ```
 
-### 8. Repeat Until Clean
+### 8. Push Before Remote Re-Review
 
-After each commit, run another review pass against the full updated target: the latest version of the original review target, including both areas changed by fixes and areas left unchanged.
+After a commit, decide whether the next review pass depends on remote state. If the review target is an existing PR/MR, a remote branch diff, remote reviewer tooling, or any source that only sees pushed commits, push the current branch before running the next review pass.
 
-Stop the loop only when one of these is true:
-
-- no findings remain
-- every remaining finding is classified as Skip or Reject
-- an Ask decision is required and the user has not answered
-- the same blocker has occurred three consecutive times and no meaningful progress is possible without external change
-
-Do not treat a clean-looking first pass as enough if fixes were just made. Review again after fixes unless the user explicitly stops the loop.
-
-### 9. Push
-
-Push only after the clean condition is met and the user confirms the push.
-
-Before pushing, run:
+Always confirm immediately before `git push`. Before pushing, run:
 
   ```bash
   git status --short
@@ -189,6 +176,36 @@ Push policy:
 - For a branch without a PR/MR, push the current branch but do not create a PR/MR.
 - Never force push unless the user explicitly asks for force push.
 - Do not monitor CI after push unless the user asks; CI follow-up is a separate workflow.
+
+If the user declines a push that is required for the selected remote review source to see the latest fixes, stop and report that review-clean cannot be established against that source. Continue with a local re-review only when that still satisfies the chosen target.
+
+### 9. Repeat Until Clean
+
+After each commit, run another review pass against the full updated target: the latest version of the original review target, including both areas changed by fixes and areas left unchanged.
+
+Stop the loop only when one of these is true:
+
+- no findings remain
+- every remaining finding is classified as Skip or Reject
+- an Ask decision is required and the user has not answered
+- the same blocker has occurred three consecutive times and no meaningful progress is possible without external change
+
+Do not treat a clean-looking first pass as enough if fixes were just made. Review again after fixes unless the user explicitly stops the loop.
+
+### 10. Final Push
+
+After the clean condition is met, push only if commits remain unpushed and the user confirms the push. This is a final catch-up push for local-only review targets or any commits not already pushed before a remote re-review.
+
+Before pushing, run:
+
+  ```bash
+  git status --short
+  git log --oneline @{u}..HEAD
+  ```
+
+Push policy:
+
+- Use the same push policy from "Push Before Remote Re-Review".
 
 Final summary must include:
 
