@@ -84,7 +84,7 @@ exit_if_idle_without_sessions() {
   fi
 }
 
-wait_for_claude_analysis() {
+wait_for_observer_analysis() {
   local child_pid="$1"
   local wait_status=0
 
@@ -96,7 +96,7 @@ wait_for_claude_analysis() {
       return 0
     fi
 
-    # SIGUSR1 can interrupt wait while the Claude child is still running.
+    # SIGUSR1 can interrupt wait while the observer child is still running.
     # Re-wait in that case so a signal is not logged as a false child failure.
     if kill -0 "$child_pid" 2>/dev/null; then
       continue
@@ -118,13 +118,37 @@ analyze_observations() {
 
   echo "[$(date)] Analyzing $obs_count observations for project ${PROJECT_NAME}..." >> "$LOG_FILE"
 
-  if [ "${CLV2_IS_WINDOWS:-false}" = "true" ] && [ "${ECC_OBSERVER_ALLOW_WINDOWS:-false}" != "true" ]; then
-    echo "[$(date)] Skipping claude analysis on Windows due to known non-interactive hang issue (#295). Set ECC_OBSERVER_ALLOW_WINDOWS=true to override." >> "$LOG_FILE"
+  if [ -z "${CLV2_OBSERVER_PROVIDER:-}" ]; then
+    echo "[$(date)] Warning: CLV2_OBSERVER_PROVIDER is not set; defaulting to claude. Supported providers: claude, claude-zai, codex." >> "$LOG_FILE"
+  fi
+
+  observer_provider="${CLV2_OBSERVER_PROVIDER:-claude}"
+  case "$observer_provider" in
+    claude|claude-zai)
+      if ! command -v claude >/dev/null 2>&1; then
+        echo "[$(date)] claude CLI not found for observer provider ${observer_provider}, skipping analysis" >> "$LOG_FILE"
+        return
+      fi
+      ;;
+    codex)
+      if ! command -v codex >/dev/null 2>&1; then
+        echo "[$(date)] codex CLI not found for observer provider ${observer_provider}, skipping analysis" >> "$LOG_FILE"
+        return
+      fi
+      ;;
+    *)
+      echo "[$(date)] Unsupported observer provider '${observer_provider}', skipping analysis" >> "$LOG_FILE"
+      return
+      ;;
+  esac
+
+  if [ "$observer_provider" = "claude-zai" ] && [ -z "${ZAI_API_KEY:-}" ]; then
+    echo "[$(date)] ZAI_API_KEY is not set for observer provider claude-zai, skipping analysis" >> "$LOG_FILE"
     return
   fi
 
-  if ! command -v claude >/dev/null 2>&1; then
-    echo "[$(date)] claude CLI not found, skipping analysis" >> "$LOG_FILE"
+  if [ "$observer_provider" != "codex" ] && [ "${CLV2_IS_WINDOWS:-false}" = "true" ] && [ "${ECC_OBSERVER_ALLOW_WINDOWS:-false}" != "true" ]; then
+    echo "[$(date)] Skipping claude analysis on Windows due to known non-interactive hang issue (#295). Set ECC_OBSERVER_ALLOW_WINDOWS=true to override." >> "$LOG_FILE"
     return
   fi
 
@@ -146,15 +170,15 @@ analyze_observations() {
 
   # Use relative path from PROJECT_DIR for cross-platform compatibility (#842).
   # On Windows (Git Bash/MSYS2), absolute paths from mktemp may use MSYS-style
-  # prefixes (e.g. /c/Users/...) that the Claude subprocess cannot resolve.
+  # prefixes (e.g. /c/Users/...) that the observer subprocess may not resolve.
   analysis_relpath=".observer-tmp/$(basename "$analysis_file")"
 
   prompt_file="$(mktemp "${observer_tmp_dir}/ecc-observer-prompt.XXXXXX")"
   cat > "$prompt_file" <<PROMPT
-IMPORTANT: You are running in non-interactive --print mode. You MUST use the Write tool directly to create files. Do NOT ask for permission, do NOT ask for confirmation, do NOT output summaries instead of writing. Just read, analyze, and write.
+IMPORTANT: You are running in non-interactive background analysis mode. You MUST use the available file-editing capability directly to create files. Do NOT ask for permission, do NOT ask for confirmation, do NOT output summaries instead of writing. Just read, analyze, and write.
 
 Read ${analysis_relpath} and identify patterns for the project ${PROJECT_NAME} (user corrections, error resolutions, repeated workflows, tool preferences).
-If you find 3+ occurrences of the same pattern, you MUST write an instinct file directly to ${INSTINCTS_DIR}/<id>.md using the Write tool.
+If you find 3+ occurrences of the same pattern, you MUST write an instinct file directly to ${INSTINCTS_DIR}/<id>.md using the available file-editing capability.
 Do NOT ask for permission to write files, do NOT describe what you would write, and do NOT stop at analysis when a qualifying pattern exists.
 
 CRITICAL: Every instinct file MUST use this exact format:
@@ -192,7 +216,7 @@ Rules:
 - Examples of project patterns: use React functional components, follow Django REST framework conventions
 PROMPT
 
-  # Read the prompt into memory before the Claude subprocess is spawned.
+  # Read the prompt into memory before the observer subprocess is spawned.
   # On Windows/MSYS2, the mktemp path can differ from the shell's later path
   # resolution, so relying on cat "$prompt_file" inside the claude invocation
   # can fail even though the file was created successfully.
@@ -222,31 +246,54 @@ PROMPT
   # on all platforms, not just when the observer happens to be launched from the project root.
   cd "$PROJECT_DIR" || { echo "[$(date)] Failed to cd to PROJECT_DIR ($PROJECT_DIR), skipping analysis" >> "$LOG_FILE"; rm -f "$analysis_file"; return; }
 
-  # Prevent observe.sh from recording this automated Haiku session as observations.
-  # Pass prompt via -p flag instead of stdin redirect for Windows compatibility (#842).
-  # prompt_content is already loaded in-memory so this no longer depends on the
+  # Prevent observe.sh from recording this automated observer session as observations.
+  # Keep prompt_content in memory so subprocess invocation does not depend on the
   # mktemp absolute path continuing to resolve after cwd changes (#1296).
-  ECC_SKIP_OBSERVE=1 ECC_HOOK_PROFILE=minimal claude --model haiku --max-turns "$max_turns" --print \
-    --allowedTools "Read,Write" \
-    -p "$prompt_content" >> "$LOG_FILE" 2>&1 &
-  claude_pid=$!
+  case "$observer_provider" in
+    claude)
+      ECC_SKIP_OBSERVE=1 ECC_HOOK_PROFILE=minimal claude --model haiku --max-turns "$max_turns" --print \
+        --allowedTools "Read,Write" \
+        -p "$prompt_content" >> "$LOG_FILE" 2>&1 &
+      ;;
+    claude-zai)
+      ANTHROPIC_AUTH_TOKEN="${ZAI_API_KEY}" \
+        ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic" \
+        API_TIMEOUT_MS="3000000" \
+        CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
+        ANTHROPIC_DEFAULT_HAIKU_MODEL="glm-4.5-air" \
+        ANTHROPIC_DEFAULT_SONNET_MODEL="glm-4.7" \
+        ANTHROPIC_DEFAULT_OPUS_MODEL="glm-5.1" \
+        ECC_SKIP_OBSERVE=1 ECC_HOOK_PROFILE=minimal claude --model haiku --max-turns "$max_turns" --print \
+        --allowedTools "Read,Write" \
+        -p "$prompt_content" >> "$LOG_FILE" 2>&1 &
+      ;;
+    codex)
+      ECC_SKIP_OBSERVE=1 ECC_HOOK_PROFILE=minimal codex exec --sandbox workspace-write \
+        --model "${CLV2_OBSERVER_CODEX_MODEL:-gpt-5.4-mini}" \
+        --cd "$PROJECT_DIR" \
+        --skip-git-repo-check \
+        --ephemeral \
+        "$prompt_content" >> "$LOG_FILE" 2>&1 &
+      ;;
+  esac
+  analysis_pid=$!
 
   (
     sleep "$timeout_seconds"
-    if kill -0 "$claude_pid" 2>/dev/null; then
-      echo "[$(date)] Claude analysis timed out after ${timeout_seconds}s; terminating process" >> "$LOG_FILE"
-      kill "$claude_pid" 2>/dev/null || true
+    if kill -0 "$analysis_pid" 2>/dev/null; then
+      echo "[$(date)] Observer analysis timed out after ${timeout_seconds}s; terminating process" >> "$LOG_FILE"
+      kill "$analysis_pid" 2>/dev/null || true
     fi
   ) &
   watchdog_pid=$!
 
-  wait_for_claude_analysis "$claude_pid"
+  wait_for_observer_analysis "$analysis_pid"
   exit_code=$?
   kill "$watchdog_pid" 2>/dev/null || true
   rm -f "$analysis_file"
 
   if [ "$exit_code" -ne 0 ]; then
-    echo "[$(date)] Claude analysis failed (exit $exit_code)" >> "$LOG_FILE"
+    echo "[$(date)] Observer analysis failed for provider ${observer_provider} (exit $exit_code)" >> "$LOG_FILE"
   fi
 
   if [ -f "$OBSERVATIONS_FILE" ]; then
