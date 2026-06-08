@@ -20,6 +20,11 @@ alias gwp='cd $(wtp cd @)'
 # Functions
 function awsin() {
   local profile=$(aws configure list-profiles | fzf --height=10 --prompt="Select AWS Profile: ")
+  if [ -z "$profile" ]; then
+    echo "No AWS profile selected. Aborting."
+    return 1
+  fi
+  export AWS_PROFILE="$profile"
   aws sso login --profile "$profile"
 }
 
