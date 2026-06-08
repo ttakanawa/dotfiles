@@ -28,6 +28,17 @@ function awsin() {
   aws sso login --profile "$profile"
 }
 
+function awssw() {
+  local current="${AWS_PROFILE:-none}"
+  local profile=$(aws configure list-profiles | fzf --height=10 --prompt="Select AWS Profile (current: ${current}): ")
+  if [ -z "$profile" ]; then
+    echo "No AWS profile selected. Aborting."
+    return 1
+  fi
+  export AWS_PROFILE="$profile"
+  echo "Switched AWS_PROFILE to $AWS_PROFILE"
+}
+
 function ecsin() {
   # aws profile を fzf で選択
   local profile=$(aws configure list-profiles | fzf --height=10 --prompt="Select AWS Profile: ")
