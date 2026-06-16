@@ -20,6 +20,12 @@ return {
             highlight = "RenderMarkdownUnchecked",
             scope_highlight = "@markup.strikethrough",
           },
+          scheduled = {
+            raw = "[<]",
+            rendered = "󰃰 ",
+            highlight = "RenderMarkdownInfo",
+            scope_highlight = nil,
+          },
         },
       },
     },
