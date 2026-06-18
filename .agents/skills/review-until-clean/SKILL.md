@@ -210,6 +210,7 @@ Push policy:
 Final summary must include:
 
 - target reviewed
+- total review passes run (minimum 2; 1 indicates the post-fix re-review was skipped)
 - commits created
 - project-required checks run, or why none were run
 - remaining skipped or rejected findings with reasons
