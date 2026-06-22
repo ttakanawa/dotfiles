@@ -179,7 +179,8 @@
       "Read(./config/credentials.json)",
       "Bash( ─── build ─── )",
       "Read(./build)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "hooks": {
     "PreToolUse": [
