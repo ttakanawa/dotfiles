@@ -71,6 +71,10 @@ When using the Bash tool, prefer these over their alternatives.
 
 ### Patterns
 
+#### rg
+
+When searching code, always use `rg` for searching only — never pass replacement/`-r` flags that modify matches. Verify the command is a read-only search before running.
+
 #### jq
 
   ```bash
