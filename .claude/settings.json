@@ -230,13 +230,8 @@
     "type": "command",
     "command": "bun ~/.claude/scripts/statusline-command.ts"
   },
-  "extraKnownMarketplaces": {
-    "superpowers-marketplace": {
-      "source": {
-        "source": "github",
-        "repo": "obra/superpowers-marketplace"
-      }
-    }
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "xhigh",
