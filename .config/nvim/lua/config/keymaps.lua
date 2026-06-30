@@ -25,44 +25,17 @@ map("i", "<C-k>", "<C-o>D", opts) -- Delete to end of line
 vim.api.nvim_create_user_command("W", "noautocmd w", {})
 
 -- Copy file path
-local function copy_to_clipboard(path, description)
-  if path and path ~= "" then
-    vim.fn.setreg("+", path)
-    -- vim.fn.setreg('"', path)
-    vim.notify(description .. ": " .. path, vim.log.levels.INFO)
-  else
-    vim.notify("No file path to copy", vim.log.levels.WARN)
-  end
-end
-
-local function get_relative_path()
-  local current_file = vim.fn.expand("%:p")
-  local cwd = vim.fn.getcwd()
-
-  if current_file == "" then
-    vim.notify("No file path to copy", vim.log.levels.WARN)
-    return nil
-  end
-
-  local relative_path = vim.fn.fnamemodify(current_file, ":s?" .. cwd .. "/??")
-
-  if relative_path == current_file then
-    vim.notify("File is outside current working directory", vim.log.levels.ERROR)
-    return nil
-  end
-
-  return relative_path
-end
+local relative_path_util = require("config.relative_path")
 
 map("n", "<leader>y", function()
-  local relative_path = get_relative_path()
+  local relative_path = relative_path_util.to_relative(vim.fn.expand("%:p"))
   if relative_path then
-    copy_to_clipboard(relative_path, "Relative path copied")
+    relative_path_util.copy_to_clipboard(relative_path, "Relative path copied")
   end
 end, { desc = "Copy relative path to clipboard" })
 
 map("v", "<leader>y", function()
-  local relative_path = get_relative_path()
+  local relative_path = relative_path_util.to_relative(vim.fn.expand("%:p"))
   if not relative_path then
     return
   end
@@ -77,7 +50,7 @@ map("v", "<leader>y", function()
   if start_line ~= end_line then
     result = result .. "-" .. end_line
   end
-  copy_to_clipboard(result, "Path with range copied")
+  relative_path_util.copy_to_clipboard(result, "Path with range copied")
 end, { desc = "Copy relative path with selection range to clipboard" })
 
 -- Sort PHP use statements alphabetically
