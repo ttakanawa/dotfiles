@@ -19,19 +19,15 @@ Note: Attribution disabled globally via ~/.claude/settings.json.
 1. If the commit does not exist, report that and stop.
 1. Analyze the nature of the changes — what was added, modified, removed, and why.
    - If the motivation behind the changes is not self-evident from the diff (e.g., files moved to a different directory, dependencies updated, config values changed), ask the user for the reason before drafting the message.
-1. Present the proposed message to the user:
+1. Present the proposed message to the user. Default to a subject-only commit message; add a body only when the changes need rationale, migration notes, breaking-change details, or other context that cannot fit clearly in the subject:
 
-   ```
+   ```text
     Proposed commit message:
 
     ───────────────────────────────────────
-    <type>(scope>): <description>
-
-    <optional body>
+    <type>(<scope>): <summary>
     ───────────────────────────────────────
     ```
-
-   ```
 
 1. **CRITICAL: Wait for the user's explicit approval.** Do not proceed to commit until the user approves.
 1. Once approved, execute the update using the helper script:
