@@ -33,15 +33,6 @@ config.colors = {
 config.font_size = 13
 config.font = wezterm.font("UDEV Gothic 35NF")
 
--- Split line color
--- config.colors = { split = "white" }
-
--- Dim inactive panes
--- config.inactive_pane_hsb = {
--- 	saturation = 0.8,
--- 	brightness = 0.3,
--- }
-
 -- tmux commands
 local tmux_new_session = "tmux new -s $(uuidgen | cut -c 1-8)"
 local tmux_attach_or_new = "tmux attach 2>/dev/null || " .. tmux_new_session
@@ -91,15 +82,6 @@ config.keys = {
 	-- Move cursor
 	{ key = "LeftArrow", mods = "META", action = act.SendKey({ key = "b", mods = "META" }) },
 	{ key = "RightArrow", mods = "META", action = act.SendKey({ key = "f", mods = "META" }) },
-
-	-- Switch panes
-	-- { key = "h", mods = "CTRL|SHIFT", action = act.SplitPane({ direction = "Left" }) },
-	-- { key = "l", mods = "CTRL|SHIFT", action = act.SplitPane({ direction = "Right" }) },
-	-- { key = "k", mods = "CTRL|SHIFT", action = act.SplitPane({ direction = "Up" }) },
-	-- { key = "j", mods = "CTRL|SHIFT", action = act.SplitPane({ direction = "Down" }) },
-
-	-- Close pane
-	-- { key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
 
 	-- Shift + Enter to create a new line
 	{ key = "Enter", mods = "SHIFT", action = wezterm.action.SendString("\n") },
