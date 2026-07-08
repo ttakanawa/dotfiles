@@ -9,6 +9,9 @@
 !git/**
 !gwq/
 !gwq/**
+!herdr/
+herdr/*
+!herdr/config.toml
 !lazydocker/
 !lazydocker/**
 !lazygit/

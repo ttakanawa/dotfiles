@@ -1,0 +1,7 @@
+[keys]
+prefix = "ctrl+g"
+split_vertical = ["prefix+v", "prefix+/"]
+
+[theme]
+name = "catppuccin"
+auto_switch = true
