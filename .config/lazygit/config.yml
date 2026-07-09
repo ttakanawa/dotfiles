@@ -3,6 +3,17 @@ git:
     - colorArg: always
       pager: diff-so-fancy
 customCommands:
+  - key: "Y"
+    description: "Copy worktree path"
+    command: >-
+      sh -c 'path=$(git worktree list --porcelain | awk -v target="refs/heads/$1" '"'"'/^worktree / { path = substr($0, 10) } /^branch / && $2 == target { print path; exit }'"'"');
+      if [ -n "$path" ]; then
+        printf %s "$path" | pbcopy;
+      else
+        printf "No worktree for %s\n" "$1" >&2;
+        exit 1;
+      fi' -- {{.SelectedLocalBranch.Name | quote}}
+    context: "localBranches"
   - key: "G"
     description: "Open file at commit in browser"
     command: "zsh -c 'source ~/.config/zsh/aliases.zsh && g {{if .SelectedSubCommit}}{{.SelectedSubCommit.Hash}}{{else}}{{.SelectedLocalCommit.Hash}}{{end}} {{.SelectedCommitFile.Name}}'"
