@@ -1,0 +1,199 @@
+#!/bin/bash
+# agent-deck: state tracking and tmux dashboard for parallel AI agents.
+# Subcommands: scan / ensure / list / dashboard / toggle / jump / leave / jump-waiting
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/lib.sh"
+
+cmd_list() {
+  local live
+  live=$(tmux list-panes -a -F '#{pane_id}' 2>/dev/null || true)
+  deck_list "$(date +%s)" "$live"
+}
+
+# One detection pass over every tmux pane: identify agent panes, classify
+# their screens, and sync state files. Writes only on change so updated_at
+# keeps meaning "when the state last changed"; pings the dashboard only
+# when something changed. Panes whose agent exited lose their state file.
+cmd_scan() {
+  local changed="" seen="" pane_id pane_pid session_name pane_path pane_title
+  local tool screen state branch title f id
+  local prev_state prev_session prev_cwd prev_branch prev_title prev_updated
+  mkdir -p "$(deck_panes_dir)"
+  while IFS=$'\t' read -r pane_id pane_pid session_name pane_path pane_title; do
+    [ -n "$pane_id" ] || continue
+    tool=$(deck_pane_tool "$pane_pid") || continue
+    title=$(deck_extract_title "$tool" "$pane_title")
+    screen=$(tmux capture-pane -p -t "$pane_id" 2>/dev/null || true)
+    screen=$(deck_screen_tail "$screen")
+    if [ -z "$screen" ]; then
+      seen="$seen $pane_id"   # capture failed mid-scan: keep previous state
+      continue
+    fi
+    seen="$seen $pane_id"
+    state=$(deck_classify "$tool" "$screen")
+    IFS=$'\x1f' read -r prev_state prev_session prev_cwd prev_branch prev_title prev_updated < <(
+      jq -r '[(.state // ""), (.session_name // ""), (.cwd // ""), (.branch // ""),
+              (.title // ""), (.updated_at // 0 | tostring)] | join("\u001f")' \
+        "$(deck_state_file "$pane_id")" 2>/dev/null || true
+    ) || true
+    branch=$(git -C "$pane_path" branch --show-current 2>/dev/null || true)
+    if [ "$state" != "$prev_state" ]; then
+      deck_write_state "$pane_id" "$session_name" "$tool" "$state" "$pane_path" "$branch" "$title"
+      changed=1
+    elif [ "$session_name" != "$prev_session" ] || [ "$pane_path" != "$prev_cwd" ] \
+      || [ "$branch" != "$prev_branch" ] || [ "$title" != "$prev_title" ]; then
+      # metadata drifted (session renamed, cd, branch switch, title change,
+      # or a stale pre-v2 file): rewrite it but keep updated_at = last
+      # state change
+      deck_write_state "$pane_id" "$session_name" "$tool" "$state" "$pane_path" "$branch" "$title" \
+        "${prev_updated:-$(date +%s)}"
+      changed=1
+    fi
+  done < <(tmux list-panes -a -F $'#{pane_id}\t#{pane_pid}\t#{session_name}\t#{pane_current_path}\t#{pane_title}' 2>/dev/null)
+  for f in "$(deck_panes_dir)"/*.json; do
+    [ -e "$f" ] || continue
+    id="%$(basename "$f" .json)"
+    case " $seen " in
+      *" $id "*) ;;
+      *) rm -f "$f"; changed=1 ;;
+    esac
+  done
+  [ -n "$changed" ] && deck_ping
+  return 0
+}
+
+# Focus a pane. With client_tty, switch that client only (used by key
+# bindings); otherwise switch every client viewing the agents session
+# (used by the dashboard's enter binding).
+cmd_jump() {
+  local pane_id="${1:-}" client_tty="${2:-}"
+  [ -n "$pane_id" ] || exit 0
+  local target_session
+  target_session=$(tmux display-message -p -t "$pane_id" '#{session_name}' 2>/dev/null) || exit 0
+  if [ -n "$client_tty" ]; then
+    tmux switch-client -c "$client_tty" -t "$target_session"
+  else
+    tmux list-clients -F '#{client_tty} #{session_name}' 2>/dev/null \
+      | while read -r tty session; do
+          [ "$session" = "agents" ] || continue
+          tmux switch-client -c "$tty" -t "$target_session" 2>/dev/null || true
+        done
+  fi
+  tmux select-window -t "$pane_id"
+  tmux select-pane -t "$pane_id"
+}
+
+# Toggle between the caller's session and the agents dashboard session.
+# Arguments come pre-expanded from the tmux binding: session_name, client_tty.
+cmd_toggle() {
+  local current="${1:-}" client_tty="${2:-}"
+  if [ "$current" = "agents" ]; then
+    tmux switch-client -c "$client_tty" -l 2>/dev/null \
+      || tmux display-message "agent-deck: no previous session"
+    return 0
+  fi
+  cmd_ensure
+  tmux switch-client -c "$client_tty" -t agents
+}
+
+# Create the detached agents session (dashboard + poller) if missing.
+# Called from tmux.conf at server start and reused by toggle.
+cmd_ensure() {
+  tmux has-session -t '=agents' 2>/dev/null && return 0
+  # 2>/dev/null || true: a concurrent ensure/toggle may have won the race
+  tmux new-session -d -s agents "$SCRIPT_DIR/agent-deck dashboard" 2>/dev/null || true
+}
+
+# Jump straight to the agent that has been waiting the longest.
+# `list` output is sorted waiting-first / oldest-first, so the first line
+# whose display column starts with the waiting icon is the target.
+cmd_jump_waiting() {
+  local client_tty="${1:-}" pane_id
+  pane_id=$(cmd_list | awk -F '\t' '$2 ~ /^◐/ { print $1; exit }')
+  if [ -z "$pane_id" ]; then
+    tmux display-message "agent-deck: no waiting agents"
+    return 0
+  fi
+  cmd_jump "$pane_id" "$client_tty"
+}
+
+# Switch every client currently viewing the agents session back to its
+# last session. Used by the dashboard's esc binding, which runs without
+# a client context of its own.
+cmd_leave() {
+  tmux list-clients -F '#{client_tty} #{session_name}' 2>/dev/null \
+    | while read -r tty session; do
+        [ "$session" = "agents" ] || continue
+        tmux switch-client -c "$tty" -l 2>/dev/null || true
+      done
+}
+
+# Run the fzf dashboard (blocking). Started inside the dedicated "agents"
+# session by cmd_toggle. --listen lets adapters push reloads (deck_ping);
+# FZF_API_KEY guards the endpoint since execute actions are remotely
+# triggerable. fzf exiting (ctrl-c) just restarts the loop.
+cmd_dashboard() {
+  local root
+  root=$(deck_state_root)
+  mkdir -p "$root"
+  chmod 700 "$root"
+  FZF_API_KEY=$(uuidgen)
+  export FZF_API_KEY
+  printf '%s' "$FZF_API_KEY" > "$root/fzf-key"
+  chmod 600 "$root/fzf-key"
+  # Poller: replaces the v1 hook adapters and the 30s ping fallback. Every
+  # AGENT_DECK_SCAN_INTERVAL (default 2s) re-detect all panes; every 15th
+  # pass ping unconditionally so the AGE column stays fresh.
+  ( i=0; while :; do
+      # || true: a failing scan must never kill the poller
+      "$SCRIPT_DIR/agent-deck" scan || true
+      i=$(( (i + 1) % 15 ))
+      [ "$i" -eq 0 ] && deck_ping
+      sleep "${AGENT_DECK_SCAN_INTERVAL:-2}"
+    done ) &
+  local ping_pid=$!
+  trap 'kill "$ping_pid" 2>/dev/null' EXIT
+  while true; do
+    "$SCRIPT_DIR/agent-deck" list | fzf \
+      --listen 0 \
+      --delimiter '\t' \
+      --with-nth 2 \
+      --no-sort \
+      --layout reverse \
+      --prompt 'agents> ' \
+      --header '● working  ◐ waiting  ✔ idle | enter: jump / esc: back / ctrl-r: refresh' \
+      --header-lines 1 \
+      --preview "tmux capture-pane -pe -t {1} 2>/dev/null | tail -40" \
+      --preview-window 'down,60%' \
+      --bind "start:execute-silent(printf '%s' \$FZF_PORT > $root/fzf-port)" \
+      --bind "enter:execute-silent($SCRIPT_DIR/agent-deck jump {1})" \
+      --bind "esc:execute-silent($SCRIPT_DIR/agent-deck leave)" \
+      --bind "ctrl-r:reload($SCRIPT_DIR/agent-deck list)" \
+      > /dev/null || true
+    rm -f "$root/fzf-port"
+    sleep 1
+  done
+}
+
+main() {
+  local cmd="${1:-}"
+  [ $# -gt 0 ] && shift
+  case "$cmd" in
+    scan) cmd_scan ;;
+    ensure) cmd_ensure ;;
+    list) cmd_list ;;
+    dashboard) cmd_dashboard ;;
+    toggle) cmd_toggle "$@" ;;
+    jump) cmd_jump "$@" ;;
+    leave) cmd_leave ;;
+    jump-waiting) cmd_jump_waiting "$@" ;;
+    *)
+      echo "usage: agent-deck <scan|ensure|list|dashboard|toggle|jump|leave|jump-waiting>" >&2
+      exit 1 ;;
+  esac
+}
+
+main "$@"

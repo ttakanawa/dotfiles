@@ -1,0 +1,6 @@
+  ⎿  Running…
+
+✢ Executing Task 4 (scan + poller)… (55m 0s · ↓ 164.7k tokens)
+
+  🌿 branch-name  |  📊 in:269 out:2458  |  💬 209K  |  🧠 21%
+  ⏵⏵ auto mode on (shift+tab to cycle) · ← for agents

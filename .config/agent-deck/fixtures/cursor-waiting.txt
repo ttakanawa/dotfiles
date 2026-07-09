@@ -1,0 +1,6 @@
+ Run this command?
+ Not in allowlist: cd, git ls-tree, sort
+  → Run (once) (y)
+    Add Shell(cd), Shell(git ls-tree), Shell(sort) to allowlist? (tab)
+    Run Everything (shift+tab)
+    Skip (esc or n)

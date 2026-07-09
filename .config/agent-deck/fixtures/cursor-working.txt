@@ -1,0 +1,7 @@
+ ⠘⠤ Globbing  609 tokens
+    Tip: Hit shift+tab to enable Plan Mode for large or complex changes.
+
+  → Add a follow-up                                                                                     ctrl+c to stop
+
+  Composer 2.5 Fast
+  ~/dotfiles · master

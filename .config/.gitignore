@@ -5,6 +5,8 @@
 !.gitignore
 
 # Tracked directories
+!agent-deck/
+!agent-deck/**
 !git/
 !git/**
 !gwq/

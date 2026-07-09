@@ -37,7 +37,8 @@ All documentation and comments in this repository are written in English.
 │   ├── ssh/
 │   │   └── config.base          # SSH base config (loaded via Include in ~/.ssh/config)
 │   ├── zk/                      # Zettelkasten note config & templates
-│   └── raycast/script_commands/ # Raycast script commands
+│   ├── raycast/script_commands/ # Raycast script commands
+│   └── agent-deck/              # tmux dashboard for parallel AI agents (poller + fzf UI)
 ├── .agents/
 │   └── skills/                  # Shared Agent Skills (Claude Code / Codex / OpenCode)
 ├── .claude/
