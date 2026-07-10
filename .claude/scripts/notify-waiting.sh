@@ -23,6 +23,13 @@ esac
 hook_title=$(echo "$hook_input" | jq -r '.title // empty')
 [ -n "$hook_title" ] && title="$hook_title"
 
+# Minimal hook profile (automated sessions such as the continuous-learning-v2
+# observer): show a fixed message without sound.
+if [ "${ECC_HOOK_PROFILE:-standard}" = "minimal" ]; then
+  notify "$title" "Background session" "$hook_input"
+  exit 0
+fi
+
 summary=$(echo "$hook_input" | jq -r '.message // empty')
 [ -z "$summary" ] && summary="Waiting for input"
 
