@@ -117,6 +117,8 @@ assert_eq "classify unknown tool falls back to idle" "idle" \
   "$(deck_classify mystery "whatever is on screen")"
 assert_eq "classify waiting beats working" "waiting" \
   "$(deck_classify claude "$(printf 'esc to interrupt\n❯ 1. Yes')")"
+assert_eq "classify codex legacy uppercase working indicator" "working" \
+  "$(deck_classify codex "▌ Working (3s · Esc to interrupt)")"
 assert_eq "classify claude prose 'Do you want' stays idle" "idle" \
   "$(deck_classify claude "Do you want me to update the tests as well?")"
 assert_eq "classify claude selector on option 2 is waiting" "waiting" \

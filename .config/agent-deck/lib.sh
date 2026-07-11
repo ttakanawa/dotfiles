@@ -183,7 +183,7 @@ deck_classify() {
       working_pat='↓ [0-9.,]+[kKmM]? tokens|esc to interrupt' ;;
     codex)
       waiting_pat='Allow command\?|› [0-9]+\.'
-      working_pat='Esc to interrupt' ;;
+      working_pat='[Ee]sc to interrupt' ;;
     opencode)
       waiting_pat='Permission required|Allow  Deny'
       working_pat='working\.\.\.|esc to interrupt' ;;
