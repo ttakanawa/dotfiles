@@ -12,20 +12,20 @@ return {
       require("minuet").setup({
         notify = "warn",
         provider = "openai_fim_compatible",
-        throttle = 0,
+        throttle = 300,
         request_timeout = 20,
-        debounce = 150,
+        debounce = 250,
         n_completions = 1,
-        context_window = 4096,
+        context_window = 768,
         provider_options = {
           openai_fim_compatible = {
             api_key = "TERM",
             end_point = "http://localhost:11434/v1/completions",
             model = "qwen2.5-coder:7b",
             name = "Ollama",
-            stream = false,
+            stream = true,
             optional = {
-              max_tokens = 256,
+              max_tokens = 64,
               top_p = 0.9,
             },
           },
