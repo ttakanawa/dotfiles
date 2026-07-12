@@ -5,19 +5,57 @@ alias gget="ghq get"
 alias v="nvim"
 alias vim="nvim"
 alias c="claude"
-alias cg='ANTHROPIC_AUTH_TOKEN="${ZAI_API_KEY}" \
-    ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic" \
-    API_TIMEOUT_MS="3000000" \
-    CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
-    ANTHROPIC_DEFAULT_HAIKU_MODEL="glm-4.5-air" \
-    ANTHROPIC_DEFAULT_SONNET_MODEL="glm-4.7" \
-    ANTHROPIC_DEFAULT_OPUS_MODEL="glm-5.2" c'
 alias c-dev='claude --system-prompt "$(cat ~/.claude/contexts/dev.md)"'
 alias c-review='claude --system-prompt "$(cat ~/.claude/contexts/review.md)"'
 alias c-research='claude --system-prompt "$(cat ~/.claude/contexts/research.md)"'
 alias gwp='cd $(wtp cd @)'
 
 # Functions
+function __cg_ollama_tools_models() {
+  local model
+  ollama list | awk 'NR > 1 && $1 !~ /(embed|embedding)/ {print $1}' | while IFS= read -r model; do
+    if ollama show "$model" 2>/dev/null | awk '
+      $1 == "Capabilities" {
+        in_capabilities = 1
+        next
+      }
+      in_capabilities && NF == 0 {
+        exit
+      }
+      in_capabilities && $1 == "tools" {
+        found = 1
+        exit
+      }
+      END {
+        exit found ? 0 : 1
+      }
+    '; then
+      print -r -- "$model"
+    fi
+  done
+}
+
+function cg() {
+  local base_url="${OLLAMA_HOST:-127.0.0.1:11434}"
+  if [[ "$base_url" != http://* && "$base_url" != https://* ]]; then
+    base_url="http://${base_url}"
+  fi
+
+  local model
+  model=$(__cg_ollama_tools_models | fzf --height=10 --prompt="Select Ollama Model: ")
+
+  if [ -z "$model" ]; then
+    echo "No Ollama model with tools support selected. Aborting."
+    return 1
+  fi
+
+  ANTHROPIC_AUTH_TOKEN="ollama" \
+    ANTHROPIC_API_KEY="" \
+    ANTHROPIC_BASE_URL="$base_url" \
+    CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
+    claude --model "$model"
+}
+
 function awsin() {
   local profile=$(aws configure list-profiles | fzf --height=10 --prompt="Select AWS Profile: ")
   if [ -z "$profile" ]; then
