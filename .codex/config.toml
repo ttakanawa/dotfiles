@@ -21,3 +21,16 @@ matcher = ".*"
 [[hooks.PostToolUse.hooks]]
 type = "command"
 command = "~/.agents/skills/continuous-learning-v2/hooks/observe.sh post"
+
+[[hooks.PermissionRequest]]
+matcher = ".*"
+
+[[hooks.PermissionRequest.hooks]]
+type = "command"
+command = "~/.codex/scripts/notify-permission.sh"
+
+[[hooks.Stop]]
+
+[[hooks.Stop.hooks]]
+type = "command"
+command = "~/.codex/scripts/notify-complete.sh"

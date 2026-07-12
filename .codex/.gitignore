@@ -4,3 +4,6 @@
 !AGENTS.md
 
 !config.toml
+
+!scripts/
+!scripts/**
