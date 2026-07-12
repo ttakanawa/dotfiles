@@ -8,6 +8,10 @@
 set +e
 unset CLAUDECODE
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+# shellcheck disable=SC1091
+. "${SCRIPT_DIR}/../scripts/observer-provider.sh"
+
 SLEEP_PID=""
 USR1_FIRED=0
 PENDING_ANALYSIS=0
@@ -119,28 +123,20 @@ analyze_observations() {
   echo "[$(date)] Analyzing $obs_count observations for project ${PROJECT_NAME}..." >> "$LOG_FILE"
 
   if [ -z "${CLV2_OBSERVER_PROVIDER:-}" ]; then
-    echo "[$(date)] Warning: CLV2_OBSERVER_PROVIDER is not set; defaulting to claude. Supported providers: claude, claude-zai, codex." >> "$LOG_FILE"
+    echo "[$(date)] Warning: CLV2_OBSERVER_PROVIDER is not set; defaulting to claude. Supported providers: $(clv2_observer_supported_providers)." >> "$LOG_FILE"
   fi
 
   observer_provider="${CLV2_OBSERVER_PROVIDER:-claude}"
-  case "$observer_provider" in
-    claude|claude-zai)
-      if ! command -v claude >/dev/null 2>&1; then
-        echo "[$(date)] claude CLI not found for observer provider ${observer_provider}, skipping analysis" >> "$LOG_FILE"
-        return
-      fi
-      ;;
-    codex)
-      if ! command -v codex >/dev/null 2>&1; then
-        echo "[$(date)] codex CLI not found for observer provider ${observer_provider}, skipping analysis" >> "$LOG_FILE"
-        return
-      fi
-      ;;
-    *)
-      echo "[$(date)] Unsupported observer provider '${observer_provider}', skipping analysis" >> "$LOG_FILE"
-      return
-      ;;
-  esac
+  if ! clv2_observer_provider_supported "$observer_provider"; then
+    echo "[$(date)] Unsupported observer provider '${observer_provider}', skipping analysis" >> "$LOG_FILE"
+    return
+  fi
+
+  observer_command="$(clv2_observer_required_command "$observer_provider")"
+  if ! command -v "$observer_command" >/dev/null 2>&1; then
+    echo "[$(date)] ${observer_command} CLI not found for observer provider ${observer_provider}, skipping analysis" >> "$LOG_FILE"
+    return
+  fi
 
   if [ "$observer_provider" = "claude-zai" ] && [ -z "${ZAI_API_KEY:-}" ]; then
     echo "[$(date)] ZAI_API_KEY is not set for observer provider claude-zai, skipping analysis" >> "$LOG_FILE"
@@ -264,6 +260,15 @@ PROMPT
         ANTHROPIC_DEFAULT_SONNET_MODEL="glm-4.7" \
         ANTHROPIC_DEFAULT_OPUS_MODEL="glm-5.1" \
         ECC_SKIP_OBSERVE=1 ECC_HOOK_PROFILE=minimal claude --model haiku --max-turns "$max_turns" --print \
+        --allowedTools "Read,Write" \
+        -p "$prompt_content" >> "$LOG_FILE" 2>&1 &
+      ;;
+    claude-ollama)
+      ANTHROPIC_AUTH_TOKEN="ollama" \
+        ANTHROPIC_API_KEY="" \
+        ANTHROPIC_BASE_URL="$(clv2_observer_ollama_url)" \
+        CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
+        ECC_SKIP_OBSERVE=1 ECC_HOOK_PROFILE=minimal claude --model "$(clv2_observer_ollama_model)" --max-turns "$max_turns" --print \
         --allowedTools "Read,Write" \
         -p "$prompt_content" >> "$LOG_FILE" 2>&1 &
       ;;
