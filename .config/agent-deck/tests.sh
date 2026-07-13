@@ -29,9 +29,9 @@ assert_eq "elapsed minutes" "5m" "$(deck_format_elapsed 1300 1000)"
 assert_eq "elapsed hours" "2h" "$(deck_format_elapsed 8200 1000)"
 
 # --- deck_state_icon / deck_state_rank ---
-assert_eq "icon working" "●" "$(deck_state_icon working)"
-assert_eq "icon waiting" "◐" "$(deck_state_icon waiting)"
-assert_eq "icon idle" "✔" "$(deck_state_icon idle)"
+assert_eq "icon working" "󰓦" "$(deck_state_icon working)"
+assert_eq "icon waiting" "󰵙" "$(deck_state_icon waiting)"
+assert_eq "icon idle" "󰒲" "$(deck_state_icon idle)"
 assert_eq "rank order" "0 1 2" \
   "$(deck_state_rank waiting) $(deck_state_rank working) $(deck_state_rank idle)"
 
@@ -50,7 +50,7 @@ fixture='{"pane_id":"%3","session_name":"main","tool":"claude","state":"waiting"
           "cwd":"/tmp/myproj","branch":"task/9","updated_at":940}'
 line=$(deck_render_fields "$fixture" 1000)
 assert_eq "render_fields first field is pane_id" "%3" "$(printf '%s' "$line" | cut -f1)"
-assert_eq "render_fields icon field" "◐" "$(printf '%s' "$line" | cut -f2)"
+assert_eq "render_fields icon field" "󰵙" "$(printf '%s' "$line" | cut -f2)"
 assert_eq "render_fields tool field" "claude" "$(printf '%s' "$line" | cut -f3)"
 assert_eq "render_fields project field" "myproj" "$(printf '%s' "$line" | cut -f4)"
 assert_eq "render_fields branch field" "task/9" "$(printf '%s' "$line" | cut -f5)"
@@ -199,7 +199,7 @@ assert_eq "render_fields falls back to session_name" "tmuxsess" \
   "$(deck_render_fields "$fnt" 1000 | cut -f7)"
 
 # --- deck_render_table: header line + per-column widths from longest value ---
-r=$(printf '%%1\t●\tclaude\tp\ta\t1m\ts1\n%%2\t◐\tclaude\tp\ttask/very-long-branch-name\t2m\ts2\n' \
+r=$(printf '%%1\t󰓦\tclaude\tp\ta\t1m\ts1\n%%2\t󰵙\tclaude\tp\ttask/very-long-branch-name\t2m\ts2\n' \
   | deck_render_table)
 assert_eq "table header first field is HDR" "HDR" \
   "$(printf '%s\n' "$r" | head -1 | cut -f1)"

@@ -30,9 +30,9 @@ deck_format_elapsed() {
 
 deck_state_icon() {
   case "$1" in
-    working) echo "●" ;;
-    waiting) echo "◐" ;;
-    idle) echo "✔" ;;
+    working) echo "󰓦" ;;
+    waiting) echo "󰵙" ;;
+    idle) echo "󰒲" ;;
     *) echo "?" ;;
   esac
 }

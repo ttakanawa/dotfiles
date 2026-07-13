@@ -111,8 +111,10 @@ cmd_ensure() {
 # `list` output is sorted waiting-first / oldest-first, so the first line
 # whose display column starts with the waiting icon is the target.
 cmd_jump_waiting() {
-  local client_tty="${1:-}" pane_id
-  pane_id=$(cmd_list | awk -F '\t' '$2 ~ /^◐/ { print $1; exit }')
+  local client_tty="${1:-}" pane_id waiting_icon
+  waiting_icon=$(deck_state_icon waiting)
+  pane_id=$(cmd_list | awk -F '\t' -v icon="$waiting_icon" \
+    'index($2, icon) == 1 { print $1; exit }')
   if [ -z "$pane_id" ]; then
     tmux display-message "agent-deck: no waiting agents"
     return 0
@@ -164,7 +166,7 @@ cmd_dashboard() {
       --no-sort \
       --layout reverse \
       --prompt 'agents> ' \
-      --header '● working  ◐ waiting  ✔ idle | enter: jump / esc: back / ctrl-r: refresh' \
+      --header '󰓦 working  󰵙 waiting  󰒲 idle | enter: jump / esc: back / ctrl-r: refresh' \
       --header-lines 1 \
       --preview "tmux capture-pane -pe -t {1} 2>/dev/null | tail -40" \
       --preview-window 'down,60%' \
