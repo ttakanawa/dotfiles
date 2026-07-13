@@ -2,6 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+OBSERVER_LOOP="${SCRIPT_DIR}/../agents/observer-loop.sh"
 # shellcheck disable=SC1091
 . "${SCRIPT_DIR}/observer-provider.sh"
 
@@ -50,5 +51,7 @@ CLV2_OBSERVER_OLLAMA_MODEL="gpt-oss:20b"
 CLV2_OBSERVER_OLLAMA_URL="http://localhost:11434"
 assert_eq "gpt-oss:20b" "$(clv2_observer_ollama_model)" "override Ollama model"
 assert_eq "http://localhost:11434" "$(clv2_observer_ollama_url)" "override Ollama URL"
+assert_success "codex observer forces low reasoning" \
+  rg -F -q 'model_reasoning_effort="low"' "$OBSERVER_LOOP"
 
 printf 'ok - observer provider helpers\n'

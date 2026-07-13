@@ -275,6 +275,7 @@ PROMPT
     codex)
       ECC_SKIP_OBSERVE=1 ECC_HOOK_PROFILE=minimal codex exec --sandbox workspace-write \
         --model "${CLV2_OBSERVER_CODEX_MODEL:-gpt-5.4-mini}" \
+        -c 'model_reasoning_effort="low"' \
         --cd "$PROJECT_DIR" \
         --skip-git-repo-check \
         --ephemeral \
