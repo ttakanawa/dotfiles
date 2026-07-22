@@ -2,7 +2,7 @@
     "editor.guides.indentation": false,
     "editor.renderWhitespace": "all",
     "editor.guides.bracketPairs": "active",
-    "editor.hover.enabled": false,
+    "editor.hover.enabled": "off",
     "editor.fontSize": 13,
     "editor.fontFamily": "UDEVGothic35NF-Regular",
     "editor.lineNumbers": "relative",
