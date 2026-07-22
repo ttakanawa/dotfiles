@@ -14,7 +14,9 @@ return {
         -- '[ ]' (to-do) and '[x]' (done) are native markdown grammar states.
         custom = {
           incomplete = { raw = "[/]", rendered = "󱎖 ", highlight = "RenderMarkdownWarn", scope_highlight = nil },
-          canceled = {
+          -- Key must be 'todo' to replace the built-in entry, which also uses
+          -- raw '[-]' and would otherwise shadow this canceled state.
+          todo = {
             raw = "[-]",
             rendered = "󰅖 ",
             highlight = "RenderMarkdownUnchecked",
