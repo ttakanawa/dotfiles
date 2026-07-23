@@ -4,6 +4,7 @@ alias ld="lazydocker"
 alias gget="ghq get"
 alias v="nvim"
 alias vim="nvim"
+alias cx="codex"
 alias c="claude"
 alias c-dev='claude --system-prompt "$(cat ~/.claude/contexts/dev.md)"'
 alias c-review='claude --system-prompt "$(cat ~/.claude/contexts/review.md)"'
