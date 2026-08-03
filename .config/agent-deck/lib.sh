@@ -37,16 +37,6 @@ deck_state_icon() {
   esac
 }
 
-# Sort weight: waiting agents surface first, oldest first within a rank.
-deck_state_rank() {
-  case "$1" in
-    waiting) echo 0 ;;
-    working) echo 1 ;;
-    idle) echo 2 ;;
-    *) echo 3 ;;
-  esac
-}
-
 # deck_write_state <pane_id> <session_name> <tool> <state> <cwd> <branch> [title] [updated_at]
 # updated_at defaults to now; pass it explicitly to preserve a prior value
 # when only metadata (session/cwd/branch/title) drifted, not the state itself.
@@ -138,20 +128,24 @@ deck_render_table() {
     END {
       if (w3 < 4) w3 = 4; if (w4 < 7) w4 = 7
       if (w5 < 6) w5 = 6; if (w6 < 3) w6 = 3
-      printf "HDR\t  %-*s %-*s %-*s %-*s %s\n", w3, "TOOL", w4, "PROJECT", w5, "BRANCH", w6, "AGE", "SESSION"
+      printf "HDR\t  %-*s %-*s %-*s %-*s %s\n", w4, "PROJECT", w3, "TOOL", w5, "BRANCH", w6, "AGE", "SESSION"
       for (i = 1; i <= n; i++)
-        printf "%s\t%s %-*s %-*s %-*s %-*s %s\n", id[i], icon[i], w3, tool[i], w4, proj[i], w5, br[i], w6, age[i], sess[i]
+        printf "%s\t%s %-*s %-*s %-*s %-*s %s\n", id[i], icon[i], w4, proj[i], w3, tool[i], w5, br[i], w6, age[i], sess[i]
     }'
 }
 
 # deck_list <now_epoch> <live_pane_ids>
 # Renders every state file whose pane still exists; deletes the rest.
 # live_pane_ids is a newline-separated list (from `tmux list-panes -a`).
-# Rows are sorted by rank/updated_at, then deck_render_table pads them
-# into aligned columns behind a leading HDR label line.
+# Rows are grouped by project: projects are ordered by their freshest
+# session (smallest AGE first), and rows within a group by AGE ascending.
+# The awk pass stamps each row with its project's newest updated_at so a
+# single sort can order groups and rows at once (project name breaks ties
+# to keep groups contiguous). deck_render_table then pads the rows into
+# aligned columns behind a leading HDR label line.
 deck_list() {
   local now="$1" live="$2"
-  local f json pane_id state updated rank
+  local f json pane_id updated fields
   for f in "$(deck_panes_dir)"/*.json; do
     [ -e "$f" ] || continue
     json=$(cat "$f" 2>/dev/null) || continue
@@ -163,11 +157,33 @@ deck_list() {
       rm -f "$f"
       continue
     fi
-    state=$(jq -r '.state // empty' <<<"$json" 2>/dev/null || true)
     updated=$(jq -r '.updated_at // 0' <<<"$json" 2>/dev/null || echo 0)
-    rank=$(deck_state_rank "$state")
-    printf '%s\t%s\t%s\n' "$rank" "$updated" "$(deck_render_fields "$json" "$now")"
-  done | sort -t "$(printf '\t')" -k1,1n -k2,2n | cut -f3- | deck_render_table
+    fields=$(deck_render_fields "$json" "$now")
+    [ -n "$fields" ] || continue
+    printf '%s\t%s\t%s\n' "$(cut -f4 <<<"$fields")" "$updated" "$fields"
+  done | awk -F '\t' '
+    { rows[NR] = $0; proj[NR] = $1; upd = $2 + 0
+      if (!($1 in newest) || upd > newest[$1]) newest[$1] = upd }
+    END { for (i = 1; i <= NR; i++) printf "%s\t%s\n", newest[proj[i]], rows[i] }
+  ' | sort -t "$(printf '\t')" -k1,1nr -k2,2 -k3,3nr | cut -f4- | deck_render_table
+}
+
+# deck_longest_waiting_pane <live_pane_ids>
+# pane_id of the live agent that has been waiting the longest, or empty.
+# Scans state files directly so it stays independent of the deck_list
+# display order (which groups by project, not by state).
+deck_longest_waiting_pane() {
+  local live="$1" f json pane_id updated
+  for f in "$(deck_panes_dir)"/*.json; do
+    [ -e "$f" ] || continue
+    json=$(cat "$f" 2>/dev/null) || continue
+    pane_id=$(jq -r '.pane_id // empty' <<<"$json" 2>/dev/null || true)
+    [ -n "$pane_id" ] || continue
+    grep -qxF "$pane_id" <<<"$live" || continue
+    [ "$(jq -r '.state // empty' <<<"$json" 2>/dev/null)" = "waiting" ] || continue
+    updated=$(jq -r '.updated_at // 0' <<<"$json" 2>/dev/null || echo 0)
+    printf '%s\t%s\n' "$updated" "$pane_id"
+  done | sort -t "$(printf '\t')" -k1,1n | head -1 | cut -f2
 }
 
 # deck_classify <tool> <screen_text>

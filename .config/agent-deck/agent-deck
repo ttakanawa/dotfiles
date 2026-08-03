@@ -107,14 +107,13 @@ cmd_ensure() {
   tmux new-session -d -s agents "$SCRIPT_DIR/agent-deck dashboard" 2>/dev/null || true
 }
 
-# Jump straight to the agent that has been waiting the longest.
-# `list` output is sorted waiting-first / oldest-first, so the first line
-# whose display column starts with the waiting icon is the target.
+# Jump straight to the agent that has been waiting the longest. Picks the
+# target from the state files directly (deck_longest_waiting_pane), since
+# the list display order groups by project rather than by state.
 cmd_jump_waiting() {
-  local client_tty="${1:-}" pane_id waiting_icon
-  waiting_icon=$(deck_state_icon waiting)
-  pane_id=$(cmd_list | awk -F '\t' -v icon="$waiting_icon" \
-    'index($2, icon) == 1 { print $1; exit }')
+  local client_tty="${1:-}" pane_id live
+  live=$(tmux list-panes -a -F '#{pane_id}' 2>/dev/null || true)
+  pane_id=$(deck_longest_waiting_pane "$live")
   if [ -z "$pane_id" ]; then
     tmux display-message "agent-deck: no waiting agents"
     return 0

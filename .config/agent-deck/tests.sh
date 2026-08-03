@@ -28,12 +28,10 @@ assert_eq "elapsed seconds" "30s" "$(deck_format_elapsed 1000 970)"
 assert_eq "elapsed minutes" "5m" "$(deck_format_elapsed 1300 1000)"
 assert_eq "elapsed hours" "2h" "$(deck_format_elapsed 8200 1000)"
 
-# --- deck_state_icon / deck_state_rank ---
+# --- deck_state_icon ---
 assert_eq "icon working" "󰓦" "$(deck_state_icon working)"
 assert_eq "icon waiting" "󰵙" "$(deck_state_icon waiting)"
 assert_eq "icon idle" "󰒲" "$(deck_state_icon idle)"
-assert_eq "rank order" "0 1 2" \
-  "$(deck_state_rank waiting) $(deck_state_rank working) $(deck_state_rank idle)"
 
 # --- deck_write_state / deck_state_file / deck_remove_state ---
 deck_write_state "%7" "main" "claude" "working" "/tmp/proj" "task/1"
@@ -59,18 +57,32 @@ assert_eq "render_fields session field" "main" "$(printf '%s' "$line" | cut -f7)
 
 # --- deck_list: ordering and liveness cleanup ---
 rm -rf "$(deck_panes_dir)"
-deck_write_state "%1" "s1" "claude" "idle" "/tmp/a" ""
-deck_write_state "%2" "s2" "codex" "waiting" "/tmp/b" ""
-deck_write_state "%3" "s3" "opencode" "working" "/tmp/c" ""
-deck_write_state "%4" "s4" "claude" "working" "/tmp/d" ""
+deck_write_state "%1" "s1" "claude" "idle" "/tmp/zeta" "" "" 300
+deck_write_state "%2" "s2" "codex" "waiting" "/tmp/alpha" "" "" 100
+deck_write_state "%3" "s3" "opencode" "working" "/tmp/alpha" "" "" 250
+deck_write_state "%4" "s4" "claude" "working" "/tmp/dead" "" "" 100
 live=$'%1\n%2\n%3'
-listed=$(deck_list "$(date +%s)" "$live")
+listed=$(deck_list 1000 "$live")
 assert_eq "list first line is column header" "HDR" \
   "$(printf '%s\n' "$listed" | head -1 | cut -f1)"
-assert_eq "list order: waiting, working, idle" "%2 %3 %1" \
+# zeta's freshest session (age 700s) beats alpha's (750s), so zeta leads
+# despite sorting after alpha by name; within alpha, %3 (750s) before %2
+assert_eq "list order: freshest project first, age asc within project" "%1 %3 %2" \
   "$(printf '%s\n' "$listed" | tail -n +2 | cut -f1 | tr '\n' ' ' | sed 's/ $//')"
 assert_eq "dead pane state file removed" "yes" \
   "$([ ! -f "$(deck_state_file "%4")" ] && echo yes)"
+
+# --- deck_longest_waiting_pane: oldest live waiting agent ---
+rm -rf "$(deck_panes_dir)"
+deck_write_state "%1" "s1" "claude" "waiting" "/tmp/a" "" "" 200
+deck_write_state "%2" "s2" "codex" "waiting" "/tmp/b" "" "" 100
+deck_write_state "%3" "s3" "opencode" "working" "/tmp/c" "" "" 50
+assert_eq "longest_waiting picks oldest waiting" "%2" \
+  "$(deck_longest_waiting_pane $'%1\n%2\n%3')"
+assert_eq "longest_waiting ignores dead panes" "%1" \
+  "$(deck_longest_waiting_pane $'%1\n%3')"
+assert_eq "longest_waiting empty when none waiting" "" \
+  "$(deck_longest_waiting_pane $'%3')"
 
 # --- regression: empty branch must not shift field parsing ---
 fixture_nb='{"pane_id":"%5","session_name":"s5","tool":"claude","state":"working","cwd":"/tmp/x","branch":"","updated_at":940}'
@@ -204,7 +216,7 @@ r=$(printf '%%1\t󰓦\tclaude\tp\ta\t1m\ts1\n%%2\t󰵙\tclaude\tp\ttask/very-lon
 assert_eq "table header first field is HDR" "HDR" \
   "$(printf '%s\n' "$r" | head -1 | cut -f1)"
 case "$(printf '%s\n' "$r" | head -1)" in
-  *TOOL*PROJECT*BRANCH*AGE*SESSION) echo "ok - table header labels in order" ;;
+  *PROJECT*TOOL*BRANCH*AGE*SESSION) echo "ok - table header labels in order" ;;
   *) echo "FAIL - table header labels in order"; FAILURES=$((FAILURES + 1)) ;;
 esac
 pos1=$(printf '%s\n' "$r" | awk -F '\t' 'NR==2 {print index($2, " 1m")}')
