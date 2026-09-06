@@ -4,6 +4,9 @@
 source "$HOME/.agents/scripts/notification/notify.sh"
 
 hook_input=$(cat)
+agent_id=$(printf '%s' "$hook_input" | jq -r '.agent_id // empty')
+[ -n "$agent_id" ] && exit 0
+
 cwd=$(printf '%s' "$hook_input" | jq -r '.cwd // empty')
 session_id=$(printf '%s' "$hook_input" | jq -r '.session_id // empty')
 summary=$(printf '%s' "$hook_input" | jq -r '.tool_input.description // empty')

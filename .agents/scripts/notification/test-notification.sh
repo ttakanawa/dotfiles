@@ -11,8 +11,10 @@ trap 'rm -rf "$tmp_dir"' EXIT
 fake_bin="$tmp_dir/bin"
 notifier_log="$tmp_dir/notifier.log"
 sound_log="$tmp_dir/sound.log"
+computer_use_log="$tmp_dir/computer-use.log"
 stdout_log="$tmp_dir/stdout.log"
 stderr_log="$tmp_dir/stderr.log"
+state_db="$tmp_dir/state.sqlite"
 mkdir -p "$fake_bin"
 
 cat > "$fake_bin/terminal-notifier" <<'FAKE'
@@ -33,7 +35,25 @@ cat > "$fake_bin/tmux" <<'FAKE'
 #!/bin/bash
 if [ "${1:-}" = "display-message" ]; then printf '%s\n' "${FAKE_TMUX_SESSION:-test-session}"; fi
 FAKE
-chmod +x "$fake_bin/terminal-notifier" "$fake_bin/afplay" "$fake_bin/date" "$fake_bin/tmux"
+cat > "$fake_bin/SkyComputerUseClient" <<'FAKE'
+#!/bin/bash
+printf '%s\n' "$@" > "$COMPUTER_USE_LOG"
+FAKE
+chmod +x "$fake_bin/terminal-notifier" "$fake_bin/afplay" "$fake_bin/date" "$fake_bin/tmux" "$fake_bin/SkyComputerUseClient"
+
+sqlite3 "$state_db" <<'SQL'
+CREATE TABLE thread_spawn_edges (
+  parent_thread_id TEXT NOT NULL,
+  child_thread_id TEXT NOT NULL PRIMARY KEY,
+  status TEXT NOT NULL
+);
+INSERT INTO thread_spawn_edges(parent_thread_id, child_thread_id, status)
+VALUES (
+  '01900000-0000-7000-8000-000000000001',
+  '01900000-0000-7000-8000-000000000002',
+  'completed'
+);
+SQL
 
 pass_count=0
 fail() { echo "not ok - $*" >&2; exit 1; }
@@ -81,6 +101,17 @@ run_adapter_in_tmux() {
     TMUX="/tmp/tmux'sock,123,0" TMUX_PANE="%7'pane" \
     "$repo_root/$adapter" >"$stdout_log" 2>"$stderr_log"
   wait_for_sound
+}
+run_turn_ended_adapter() {
+  local json="$1"
+  [ -x "$repo_root/.codex/scripts/notify-turn-ended.sh" ] || fail "missing executable adapter: .codex/scripts/notify-turn-ended.sh"
+  : > "$computer_use_log"; : > "$stdout_log"; : > "$stderr_log"
+  env -u CODEX_THREAD_ID -u CODEX_SESSION_ID \
+    PATH="$fake_bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" \
+    HOME="$repo_root" COMPUTER_USE_LOG="$computer_use_log" \
+    CODEX_STATE_DB="$state_db" CODEX_SKY_COMPUTER_USE_CLIENT="$fake_bin/SkyComputerUseClient" \
+    "$repo_root/.codex/scripts/notify-turn-ended.sh" "$json" \
+    >"$stdout_log" 2>"$stderr_log"
 }
 assert_notification() {
   assert_equal "$1" "$(argument_value -title)" "notification title"
@@ -133,6 +164,26 @@ test_codex() {
   run_adapter ".codex/scripts/notify-complete.sh" '{}'
   assert_notification "🤖 finished - 9:41 AM" '\[codex] Task completed' "codex-default"
   pass "Codex complete fallbacks"
+
+  run_adapter ".codex/scripts/notify-permission.sh" \
+    '{"session_id":"01900000-0000-7000-8000-000000000001","turn_id":"turn-child","agent_id":"01900000-0000-7000-8000-000000000002","agent_type":"worker","hook_event_name":"PermissionRequest","tool_name":"Bash","tool_input":{"description":"child permission"},"cwd":"/tmp/codex-project"}'
+  assert_empty "$notifier_log" "subagent permission notification"
+  assert_empty "$sound_log" "subagent permission sound"
+  assert_empty "$stdout_log" "subagent permission hook stdout"
+  pass "Codex subagent PermissionRequest does not notify"
+
+  local root_payload child_payload
+  root_payload='{"type":"agent-turn-complete","thread-id":"01900000-0000-7000-8000-000000000001","turn-id":"turn-root","cwd":"/tmp/codex-project","client":"codex-app","input-messages":["root task"],"last-assistant-message":"root complete"}'
+  run_turn_ended_adapter "$root_payload"
+  assert_equal "turn-ended" "$(sed -n '1p' "$computer_use_log")" "main turn Computer Use event"
+  assert_equal "$root_payload" "$(sed -n '2p' "$computer_use_log")" "main turn Computer Use payload"
+  assert_empty "$stdout_log" "main turn notify stdout"
+
+  child_payload='{"type":"agent-turn-complete","thread-id":"01900000-0000-7000-8000-000000000002","turn-id":"turn-child","cwd":"/tmp/codex-project","client":"codex-app","input-messages":["child task"],"last-assistant-message":"child complete"}'
+  run_turn_ended_adapter "$child_payload"
+  assert_empty "$computer_use_log" "subagent turn Computer Use notification"
+  assert_empty "$stdout_log" "subagent turn notify stdout"
+  pass "Codex subagent turn completion does not notify"
 }
 
 selected_complete_adapter() {
@@ -192,7 +243,7 @@ test_syntax() {
     .claude/scripts/notify-waiting.sh
     .claude/scripts/notify-complete.sh
   )
-  if [ "$product" != "claude" ]; then files+=(.codex/scripts/notify-permission.sh .codex/scripts/notify-complete.sh); fi
+  if [ "$product" != "claude" ]; then files+=(.codex/scripts/notify-permission.sh .codex/scripts/notify-complete.sh .codex/scripts/notify-turn-ended.sh); fi
   local file
   for file in "${files[@]}"; do
     [ -f "$repo_root/$file" ] || fail "missing shell file: $file"
@@ -209,19 +260,21 @@ import tomllib
 with open(sys.argv[1], "rb") as f:
     config = tomllib.load(f)
 assert config["notify"] == [
-    "/Users/tknw/dotfiles/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
-    "turn-ended",
+    "sh",
+    "-c",
+    'exec "$HOME/.codex/scripts/notify-turn-ended.sh" "$1"',
+    "--",
 ]
 permission = config["hooks"]["PermissionRequest"]
 assert len(permission) == 1
 assert permission[0]["matcher"] == ".*"
 assert permission[0]["hooks"][0]["type"] == "command"
-assert permission[0]["hooks"][0]["command"] == "~/.codex/scripts/notify-permission.sh"
+assert permission[0]["hooks"][0]["command"] == "$HOME/.codex/scripts/notify-permission.sh"
 stop = config["hooks"]["Stop"]
 assert len(stop) == 1
 assert "matcher" not in stop[0]
 assert stop[0]["hooks"][0]["type"] == "command"
-assert stop[0]["hooks"][0]["command"] == "~/.codex/scripts/notify-complete.sh"
+assert stop[0]["hooks"][0]["command"] == "$HOME/.codex/scripts/notify-complete.sh"
 PY
   pass "Codex TOML hooks and Computer Use notify"
 }

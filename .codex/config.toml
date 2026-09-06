@@ -8,6 +8,8 @@
 # ("pre" / "post"), so PreToolUse and PostToolUse register the same script
 # with different phase arguments.
 
+notify = ["sh", "-c", 'exec "$HOME/.codex/scripts/notify-turn-ended.sh" "$1"', "--"]
+
 [[hooks.PreToolUse]]
 matcher = ".*"
 
@@ -27,10 +29,10 @@ matcher = ".*"
 
 [[hooks.PermissionRequest.hooks]]
 type = "command"
-command = "~/.codex/scripts/notify-permission.sh"
+command = "$HOME/.codex/scripts/notify-permission.sh"
 
 [[hooks.Stop]]
 
 [[hooks.Stop.hooks]]
 type = "command"
-command = "~/.codex/scripts/notify-complete.sh"
+command = "$HOME/.codex/scripts/notify-complete.sh"
