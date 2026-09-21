@@ -54,6 +54,9 @@ All documentation and comments in this repository are written in English.
 ├── .codex/
 │   ├── .gitignore               # Allowlist for tracked Codex files
 │   ├── AGENTS.md                → symlink → ../.claude/CLAUDE.md
+│   ├── config.toml              # User-level Codex configuration
+│   ├── rules/                   # Sandbox command rules
+│   └── scripts/                 # Custom Codex hook scripts
 ├── homebrew/
 │   ├── Brewfile                 # Homebrew package list
 │   └── install.sh / dump.sh     # Install / dump packages
@@ -71,6 +74,7 @@ All documentation and comments in this repository are written in English.
 ## Setup
 
 ```bash
+# Stop Codex before the first run so ~/.codex can be migrated safely.
 ./link_dotfiles.sh                  # Symlink dotfiles to $HOME
 ./homebrew/install.sh               # Install Homebrew packages
 ./vscode/link.sh                    # Symlink VS Code/Cursor settings
@@ -79,9 +83,9 @@ All documentation and comments in this repository are written in English.
 
 ## Symlink Structure
 
-`link_dotfiles.sh` symlinks the following into `$HOME`, so they act as global configs:
+`link_dotfiles.sh` symlinks most managed paths into `$HOME`, so they act as global configs. Codex is handled separately: `~/.codex` remains a real directory for runtime state, while only Git-managed configuration and code link back to this repository.
 
-```
+```text
 $HOME/
 ├── .markdownlint.yaml → dotfiles/.markdownlint.yaml
 ├── .zshrc             → dotfiles/.zshrc
@@ -89,7 +93,12 @@ $HOME/
 ├── .config/           → dotfiles/.config/   # = ~/.config/ (XDG_CONFIG_HOME)
 ├── .agents/           → dotfiles/.agents/
 ├── .claude/           → dotfiles/.claude/
-└── .codex/            → dotfiles/.codex/
+└── .codex/                                      # Real directory
+    ├── config.toml    → dotfiles/.codex/config.toml
+    ├── AGENTS.md      → dotfiles/.codex/AGENTS.md
+    ├── rules/         → dotfiles/.codex/rules/
+    ├── scripts/       → dotfiles/.codex/scripts/
+    └── ...                                      # Auth, sessions, caches, and other runtime state
 ```
 
 ## Terminal

@@ -1,0 +1,681 @@
+# Mirrored from .claude/settings.json permissions.allow.
+#
+# These Codex execpolicy rules allow matching commands to run outside the
+# sandbox without prompting.
+#
+# Not directly represented as active prefix_rule entries:
+# - Bash(.claude/:*) and Bash(~/.claude/:*): Claude path-scoped shell patterns,
+#   not argv prefixes.
+# - Bash(* --version) and Bash(* --help *): Codex prefix_rule supports exact
+#   command-prefix matching, not wildcard command names.
+#
+# Non-Bash permissions such as Read(...) and mcp__... tools are intentionally
+# excluded because Codex rules only control command execution.
+
+# system
+prefix_rule(
+    pattern = ["which"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["pwd"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["date"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["du"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["df"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+
+# glob
+prefix_rule(
+    pattern = ["ls"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["find"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["fd"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tree"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+
+# grep
+prefix_rule(
+    pattern = ["diff"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["cat"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["grep"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["rg"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["jq"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["head"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tail"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+
+# uv
+prefix_rule(
+    pattern = ["uv", "run"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["uv", "pip", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["uv", "pip", "show"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["uv", "tree"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["uv", "version"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+
+# brew
+prefix_rule(
+    pattern = ["brew", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["brew", "info"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["brew", "search"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+
+# git
+prefix_rule(
+    pattern = ["git", "status"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["git", "log"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["git", "diff"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["git", "show"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["git", "rev-parse"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["git", "ls-files"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["git", "remote", "-v"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["git", "config", "--get"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["git", "shortlog"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["git", "tag", "-l"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["git", "fetch"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+
+# ghq
+prefix_rule(
+    pattern = ["ghq", "root"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["ghq", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+
+# gh
+prefix_rule(
+    pattern = ["gh", "pr", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "pr", "view"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "pr", "status"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "pr", "checks"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "pr", "diff"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "issue", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "issue", "view"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "issue", "status"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "run", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "run", "view"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "repo", "view"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "repo", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "release", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "release", "view"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["gh", "search"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+
+# glab
+prefix_rule(
+    pattern = ["glab", "mr", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "mr", "view"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "mr", "status"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "mr", "checks"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "mr", "diff"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "issue", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "issue", "view"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "issue", "status"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "ci", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "ci", "view"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "ci", "status"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "repo", "view"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "repo", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "release", "list"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["glab", "release", "view"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+
+# docker
+prefix_rule(
+    pattern = ["docker", "ps"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "images"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "inspect"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "logs"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "stats"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "info"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "version"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "network", "ls"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "network", "inspect"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "volume", "ls"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "volume", "inspect"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "top"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "port"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "history"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "diff"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "compose", "ps"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "compose", "logs"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["docker", "compose", "config"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+
+# podman
+prefix_rule(
+    pattern = ["podman", "ps"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "images"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "inspect"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "logs"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "stats"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "info"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "version"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "network", "ls"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "network", "inspect"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "volume", "ls"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "volume", "inspect"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "top"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "port"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "history"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "diff"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "compose", "ps"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "compose", "logs"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["podman", "compose", "config"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+
+# tmux
+prefix_rule(
+    pattern = ["tmux", "ls"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tmux", "list-sessions"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tmux", "list-windows"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tmux", "list-panes"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tmux", "list-buffers"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tmux", "list-clients"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tmux", "list-keys"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tmux", "list-commands"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tmux", "display-message"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tmux", "show-options"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tmux", "show-environment"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tmux", "show-window-options"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(
+    pattern = ["tmux", "info"],
+    decision = "allow",
+    justification = "Mirrors .claude/settings.json Bash allow list.",
+)
+prefix_rule(pattern=["git", "worktree"], decision="allow")
+prefix_rule(pattern=["git", "add"], decision="allow")
+prefix_rule(pattern=["git", "commit"], decision="allow")
+prefix_rule(pattern=["git", "push"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "create"], decision="allow")
+prefix_rule(pattern=["git", "add", "docs/project/03-domain/01-domain-model.md", "docs/project/03-domain/02-ubiquitous-language.md", "docs/project/04-design/05-data-model.md"], decision="allow")
+prefix_rule(pattern=["git", "switch"], decision="allow")
+prefix_rule(pattern=["git", "merge"], decision="allow")
+prefix_rule(pattern=["git", "merge-tree", "--write-tree", "origin/main", "HEAD"], decision="allow")
+prefix_rule(pattern=["/bin/zsh", "-lc", "gh pr edit 24 --body $'## What does this PR do and why?\\n\\nAligns the domain model and data model around the review findings for Payment, Organization, Notification, Sponsorship, and relationship documentation. It also resolves the current conflicts with latest `main` by keeping the domain-level `type + single typed id` value object model and flattening those value objects only in the write model.\\n\\n- Adds missing domain enum definitions for referenced value sets.\\n- Makes Payment payer/payee, processor provider, method type, and payment type explicit in the domain model.\\n- Adds matching data model CHECK constraints for Payment payer/payee, Payment provider, payment method type, payment target/type consistency, Sponsorship ended reason, and Notification type.\\n- Adds Organization membership summary columns and active membership status modeling.\\n- Adds missing relationship documentation and fixes the Chat membership ERD name.\\n- Preserves `FollowTarget`, `EventHost`, `EventSeriesOwner`, `Sponsor` / `Sponsee`, `PaymentPayer` / `PaymentPayee`, `PaymentMethodOwner`, and `RevenueHost` as typed value objects in the domain model.\\n\\n## References\\n\\nN/A\\n\\n## Screenshots or screen recordings\\n\\nN/A. Documentation-only change.\\n\\n## How to set up and validate locally\\n\\n1. Run `git diff --check origin/main...HEAD`.\\n1. Run `git merge-tree --write-tree origin/main HEAD` and confirm it exits with 0.\\n1. Confirm old names and obsolete constraints are gone:\\n   `PaymentProvider`, `SOCIAL_CHAT_PARTICIPANTS`, `removed_at`, and `provider CHECK (provider IN (\\'stripe\\', \\'apple_pay\\', \\'google_pay\\'))`.\\n1. Confirm new constraints and model terms are present:\\n   `payment_payer_exactly_one`, `payment_payee_exactly_one`, `payment_target_matches_type`, `NotificationType`, `PaymentProcessorProvider`, and `SOCIAL_CHAT_MEMBERSHIPS`.\\n'"], decision="allow")
+prefix_rule(pattern=["git", "merge-tree"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "merge"], decision="allow")
+prefix_rule(pattern=["/bin/zsh", "-lc", "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --no-first-run --disable-background-networking --disable-component-update --user-data-dir=/private/tmp/dagan-luma-design-chrome --screenshot=/private/tmp/dagan-luma-design-patterns.png --window-size=1440,1200 file:///Users/tknw/workspace/dagan/.worktrees/luma-screen-patterns-design/design/luma-screen-patterns.html"], decision="allow")
+prefix_rule(pattern=["killall", "Google Chrome"], decision="allow")
+prefix_rule(pattern=["bun", "run", "dev"], decision="allow")
+prefix_rule(pattern=["go", "test"], decision="allow")
+prefix_rule(pattern=["swift", "test"], decision="allow")
+prefix_rule(pattern=["make", "lint-go"], decision="allow")
+prefix_rule(pattern=["terraform", "-chdir=infra/aws/modules/ecr", "init"], decision="allow")
+prefix_rule(pattern=["xcodebuild"], decision="allow")
+prefix_rule(pattern=["make", "pre-commit"], decision="allow")
+prefix_rule(pattern=["mise", "trust"], decision="allow")
+prefix_rule(pattern=["swift", "build"], decision="allow")
+prefix_rule(pattern=["mise", "install"], decision="allow")
+prefix_rule(pattern=["make", "lint-terraform"], decision="allow")
+prefix_rule(pattern=["terraform", "-chdir=infra/aws/modules/rds-postgres", "providers", "schema", "-json"], decision="allow")
+prefix_rule(pattern=["make", "build-ios-workspace"], decision="allow")
+prefix_rule(pattern=["mise", "exec"], decision="allow")
+prefix_rule(pattern=["cd", "apps/ios"], decision="allow")
+prefix_rule(pattern=["bun", "install"], decision="allow")
+prefix_rule(pattern=["go", "mod", "download"], decision="allow")
+prefix_rule(pattern=["terraform", "init"], decision="allow")
+prefix_rule(pattern=["terraform", "test"], decision="allow")
+prefix_rule(pattern=["terraform", "validate"], decision="allow")
+prefix_rule(pattern=["bun", "run", "mock-api"], decision="allow")
+prefix_rule(pattern=["pkill", "-f", "bun run tests/mocks/server.ts"], decision="allow")
+prefix_rule(pattern=["pkill", "-f", "tsx tests/mocks/server.ts"], decision="allow")
+prefix_rule(pattern=["bun", "run", "test:e2e"], decision="allow")
+prefix_rule(pattern=["make", "test-api-integration"], decision="allow")
+prefix_rule(pattern=["gofmt", "-w", "cmd/migrate/main.go", "cmd/migrate/main_test.go"], decision="allow")
+prefix_rule(pattern=["python3", "/Users/tknw/dotfiles/.agents/skills/continuous-learning-v2/scripts/instinct-cli.py", "status"], decision="allow")
+prefix_rule(pattern=["dig"], decision="allow")
+prefix_rule(pattern=["make", "lint-docs"], decision="allow")
+prefix_rule(pattern=["bun", "audit"], decision="allow")
+prefix_rule(pattern=["go", "mod"], decision="allow")
+prefix_rule(pattern=["make", "quality-go-vuln"], decision="allow")
+prefix_rule(pattern=["bun", "pm", "view"], decision="allow")
+prefix_rule(pattern=["bun", "add"], decision="allow")
+prefix_rule(pattern=["make", "pre-review"], decision="allow")
+prefix_rule(pattern=["make", "lint-sql-migrations"], decision="allow")
+prefix_rule(pattern=["bun", "remove"], decision="allow")
+prefix_rule(pattern=["make", "build-web"], decision="allow")
+prefix_rule(pattern=["make", "test-web-e2e"], decision="allow")
+prefix_rule(pattern=["git", "stash"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "edit"], decision="allow")
+prefix_rule(pattern=["git", "ls-remote"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "close"], decision="allow")
+prefix_rule(pattern=["gh", "auth", "status"], decision="allow")
+prefix_rule(pattern=["curl", "-sS", "http://localhost:11434/v1/completions", "-H", "Content-Type: application/json", "-d", "{\"model\":\"codegemma:2b-code\",\"prompt\":\"-- language: lua\\n-- indentation: use 2 spaces for a tab\\nrequire(\\\"minuet\\\").setup({\\n  provider_options = {\\n    openai_fim_compatible = {\\n      optional = {\\n        max_tokens = 12\",\"suffix\":\",\\n        top_p = 0.9,\\n      },\\n    },\\n  },\\n})\",\"stream\":false,\"max_tokens\":8,\"temperature\":0,\"top_p\":0.9}"], decision="allow")
+prefix_rule(pattern=["curl", "-sS", "http://localhost:11434/v1/completions", "-H", "Content-Type: application/json", "-d", "{\"model\":\"gemma4:e2b\",\"prompt\":\"-- language: lua\\n-- indentation: use 2 spaces for a tab\\nrequire(\\\"minuet\\\").setup({\\n  provider_options = {\\n    openai_fim_compatible = {\\n      optional = {\\n        max_tokens = 12\",\"suffix\":\",\\n        top_p = 0.9,\\n      },\\n    },\\n  },\\n})\",\"stream\":false,\"max_tokens\":8,\"temperature\":0,\"top_p\":0.9}"], decision="allow")
+prefix_rule(pattern=["curl", "-sS", "http://localhost:11434/v1/completions", "-H", "Content-Type: application/json", "-d", "{\"model\":\"codegemma:7b-code\",\"prompt\":\"-- language: lua\\n-- indentation: use 2 spaces for a tab\\nrequire(\\\"minuet\\\").setup({\\n  provider_options = {\\n    openai_fim_compatible = {\\n      optional = {\\n        max_tokens = 12\",\"suffix\":\",\\n        top_p = 0.9,\\n      },\\n    },\\n  },\\n})\",\"stream\":false,\"max_tokens\":8,\"temperature\":0,\"top_p\":0.9}"], decision="allow")
+prefix_rule(pattern=["ollama", "list"], decision="allow")
+prefix_rule(pattern=["ollama", "show"], decision="allow")
+prefix_rule(pattern=["ollama", "ps"], decision="allow")

@@ -5,5 +5,8 @@
 
 !config.toml
 
+!rules/
+!rules/**
+
 !scripts/
 !scripts/**
