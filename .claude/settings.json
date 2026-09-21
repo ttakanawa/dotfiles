@@ -169,10 +169,6 @@
       "mcp__atlassian__lookupJiraAccountId",
       "mcp__atlassian__searchAtlassian"
     ],
-    "ask": [
-      "Bash(git add -f *)",
-      "Bash(git add --force *)"
-    ],
     "deny": [
       "Bash( ─── shell ─── )",
       "Bash(python:*)",
@@ -183,6 +179,17 @@
       "Read(./config/credentials.json)",
       "Bash( ─── build ─── )",
       "Read(./build)"
+    ],
+    "ask": [
+      "Bash( ─── aws ─── )",
+      "Bash(aws:*)",
+      "Bash( ─── shell ─── )",
+      "Bash(sh:*)",
+      "Bash( ─── system ─── )",
+      "Bash(chmod:*)",
+      "Bash( ─── tmp ─── )",
+      "Edit(//tmp/**)",
+      "Edit(//private/tmp/**)"
     ],
     "defaultMode": "auto"
   },
