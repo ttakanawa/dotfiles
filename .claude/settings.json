@@ -169,6 +169,10 @@
       "mcp__atlassian__lookupJiraAccountId",
       "mcp__atlassian__searchAtlassian"
     ],
+    "ask": [
+      "Bash(git add -f *)",
+      "Bash(git add --force *)"
+    ],
     "deny": [
       "Bash( ─── shell ─── )",
       "Bash(python:*)",
