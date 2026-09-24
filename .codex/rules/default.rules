@@ -655,7 +655,6 @@ prefix_rule(pattern=["pkill", "-f", "tsx tests/mocks/server.ts"], decision="allo
 prefix_rule(pattern=["bun", "run", "test:e2e"], decision="allow")
 prefix_rule(pattern=["make", "test-api-integration"], decision="allow")
 prefix_rule(pattern=["gofmt", "-w", "cmd/migrate/main.go", "cmd/migrate/main_test.go"], decision="allow")
-prefix_rule(pattern=["python3", "/Users/tknw/dotfiles/.agents/skills/continuous-learning-v2/scripts/instinct-cli.py", "status"], decision="allow")
 prefix_rule(pattern=["dig"], decision="allow")
 prefix_rule(pattern=["make", "lint-docs"], decision="allow")
 prefix_rule(pattern=["bun", "audit"], decision="allow")

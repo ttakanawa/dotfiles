@@ -81,13 +81,13 @@ wait_for_sound() {
   while [ ! -s "$sound_log" ] && [ "$attempt" -lt 50 ]; do sleep 0.01; attempt=$((attempt + 1)); done
 }
 run_adapter() {
-  local adapter="$1" json="$2" profile="${3:-standard}" notifier_fail="${4:-0}"
+  local adapter="$1" json="$2" notifier_fail="${3:-0}"
   [ -x "$repo_root/$adapter" ] || fail "missing executable adapter: $adapter"
   : > "$notifier_log"; : > "$sound_log"; : > "$stdout_log"; : > "$stderr_log"
   printf '%s' "$json" | env -u TMUX -u TMUX_PANE \
     PATH="$fake_bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" \
     HOME="$repo_root" NOTIFIER_LOG="$notifier_log" SOUND_LOG="$sound_log" \
-    ECC_HOOK_PROFILE="$profile" FAKE_NOTIFIER_FAIL="$notifier_fail" "$repo_root/$adapter" \
+    FAKE_NOTIFIER_FAIL="$notifier_fail" "$repo_root/$adapter" \
     >"$stdout_log" 2>"$stderr_log"
   wait_for_sound
 }
@@ -97,7 +97,7 @@ run_adapter_in_tmux() {
   printf '%s' "$json" | env \
     PATH="$fake_bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" \
     HOME="$repo_root" NOTIFIER_LOG="$notifier_log" SOUND_LOG="$sound_log" \
-    ECC_HOOK_PROFILE=standard FAKE_TMUX_SESSION="team's" \
+    FAKE_TMUX_SESSION="team's" \
     TMUX="/tmp/tmux'sock,123,0" TMUX_PANE="%7'pane" \
     "$repo_root/$adapter" >"$stdout_log" 2>"$stderr_log"
   wait_for_sound
@@ -192,11 +192,6 @@ selected_complete_adapter() {
 test_shared() {
   local adapter
   adapter=$(selected_complete_adapter)
-  run_adapter "$adapter" '{"last_assistant_message":"hidden content","cwd":"/tmp/background","session_id":"background-session"}' minimal
-  assert_equal '\[background] Background session' "$(argument_value -message)" "minimal body"
-  assert_empty "$sound_log" "minimal sound"
-  pass "minimal profile is fixed and silent"
-
   run_adapter "$adapter" '{}'
   assert_equal "/usr/bin/osascript -e 'tell application \"WezTerm\" to activate'" "$(argument_value -execute)" "non-tmux click action"
   pass "non-tmux click activates WezTerm"
@@ -211,7 +206,7 @@ test_shared() {
   assert_string_contains "/tmp/tmux'\\''sock" "$execute_cmd" "escaped tmux socket"
   pass "tmux click action escapes single quotes"
 
-  run_adapter "$adapter" '{}' standard 1
+  run_adapter "$adapter" '{}' 1
   assert_empty "$stdout_log" "failed notifier stdout"
   assert_contains "terminal-notifier failed" "$stderr_log" "failed notifier guidance"
   pass "failed terminal-notifier is diagnosed and non-fatal"
@@ -223,7 +218,7 @@ test_shared() {
   : > "$stdout_log"; : > "$stderr_log"
   set +e
   printf '%s' '{}' | env -u TMUX -u TMUX_PANE \
-    PATH="$missing_bin:/usr/bin:/bin" HOME="$repo_root" ECC_HOOK_PROFILE=standard \
+    PATH="$missing_bin:/usr/bin:/bin" HOME="$repo_root" \
     "$repo_root/$adapter" >"$stdout_log" 2>"$stderr_log"
   status=$?
   set -e

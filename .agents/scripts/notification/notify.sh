@@ -10,11 +10,6 @@ notify() {
   local group_prefix="$5"
   local sound="$6"
 
-  if [ "${ECC_HOOK_PROFILE:-standard}" = "minimal" ]; then
-    raw_summary="Background session"
-    sound=""
-  fi
-
   local time title
   time=$(date "+%-l:%M %p")
   title="${base_title} - ${time}"

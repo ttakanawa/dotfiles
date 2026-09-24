@@ -144,8 +144,6 @@
       "Bash(tmux show-environment:*)",
       "Bash(tmux show-window-options:*)",
       "Bash(tmux info:*)",
-      "Bash( ─── continuous-learning ─── )",
-      "Bash(python3 ~/.claude/skills/continuous-learning-v2/scripts/instinct-cli.py:*)",
       "Bash( ─── atlassian ─── )",
       "mcp__atlassian__getJiraIssue",
       "mcp__atlassian__getJiraIssueRemoteIssueLinks",
@@ -194,28 +192,6 @@
     "defaultMode": "auto"
   },
   "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/skills/continuous-learning-v2/hooks/observe.sh"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/skills/continuous-learning-v2/hooks/observe.sh"
-          }
-        ]
-      }
-    ],
     "Notification": [
       {
         "hooks": [
