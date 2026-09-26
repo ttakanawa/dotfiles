@@ -2,7 +2,6 @@
 name: get-session-file
 description: Use in Claude Code when you need to get the file path of a Claude Code session by session ID
 allowed-tools: Bash(~/.claude/skills/get-session-file/scripts/*)
-model: haiku
 effort: low
 ---
 

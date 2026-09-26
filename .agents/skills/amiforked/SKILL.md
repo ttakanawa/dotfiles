@@ -2,7 +2,6 @@
 name: amiforked
 description: Use in Claude Code when you need to check whether the current session was forked
 allowed-tools: Bash(~/.claude/skills/amiforked/scripts/*)
-model: haiku
 effort: low
 ---
 

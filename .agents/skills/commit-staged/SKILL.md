@@ -1,7 +1,6 @@
 ---
 name: commit-staged
 description: Use when creating a commit with staged changes
-model: sonnet
 ---
 
 # Commit Staged

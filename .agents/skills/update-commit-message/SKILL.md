@@ -2,7 +2,6 @@
 name: update-commit-message
 description: Use when changing a commit message
 argument-hint: <commit-hash>
-model: haiku
 disable-model-invocation: true
 allowed-tools: Bash(~/.claude/skills/update-commit-message/scripts/*)
 ---
