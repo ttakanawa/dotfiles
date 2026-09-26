@@ -190,6 +190,7 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 | `/update-commit-message` | Regenerate commit message via rebase |
 | `/v` | Neovim environment guide |
 | `/get-session-file` | Get the file path of a Claude Code session by session ID |
+| `/get-session-info` | Look up Claude Code session info by session ID, cwd, or status |
 | `/second-opinion` | Ask subagent/teammate a second opinion |
 | `/handoff` | Generate session handoff as direct instructions |
 | `/markdown-writing-style` | Apply markdown formatting rules when writing or editing markdown content |
