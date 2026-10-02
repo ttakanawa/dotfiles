@@ -73,33 +73,33 @@ All documentation and comments in this repository are written in English.
 
 ## Setup
 
-```bash
-# Stop Codex before the first run so ~/.codex can be migrated safely.
-./link_dotfiles.sh                  # Symlink dotfiles to $HOME
-./homebrew/install.sh               # Install Homebrew packages
-./vscode/link.sh                    # Symlink VS Code/Cursor settings
-./.config/tmux/scripts/install-plugins.sh   # Install tmux plugins
-```
+  ```bash
+  # Stop Codex before the first run so ~/.codex can be migrated safely.
+  ./link_dotfiles.sh                  # Symlink dotfiles to $HOME
+  ./homebrew/install.sh               # Install Homebrew packages
+  ./vscode/link.sh                    # Symlink VS Code/Cursor settings
+  ./.config/tmux/scripts/install-plugins.sh   # Install tmux plugins
+  ```
 
 ## Symlink Structure
 
 `link_dotfiles.sh` symlinks most managed paths into `$HOME`, so they act as global configs. Codex is handled separately: `~/.codex` remains a real directory for runtime state, while only Git-managed configuration and code link back to this repository.
 
-```text
-$HOME/
-├── .markdownlint.yaml → dotfiles/.markdownlint.yaml
-├── .zshrc             → dotfiles/.zshrc
-├── .zshenv            → dotfiles/.zshenv
-├── .config/           → dotfiles/.config/   # = ~/.config/ (XDG_CONFIG_HOME)
-├── .agents/           → dotfiles/.agents/
-├── .claude/           → dotfiles/.claude/
-└── .codex/                                      # Real directory
-    ├── config.toml    → dotfiles/.codex/config.toml
-    ├── AGENTS.md      → dotfiles/.codex/AGENTS.md
-    ├── rules/         → dotfiles/.codex/rules/
-    ├── scripts/       → dotfiles/.codex/scripts/
-    └── ...                                      # Auth, sessions, caches, and other runtime state
-```
+  ```text
+  $HOME/
+  ├── .markdownlint.yaml → dotfiles/.markdownlint.yaml
+  ├── .zshrc             → dotfiles/.zshrc
+  ├── .zshenv            → dotfiles/.zshenv
+  ├── .config/           → dotfiles/.config/   # = ~/.config/ (XDG_CONFIG_HOME)
+  ├── .agents/           → dotfiles/.agents/
+  ├── .claude/           → dotfiles/.claude/
+  └── .codex/                                      # Real directory
+      ├── config.toml    → dotfiles/.codex/config.toml
+      ├── AGENTS.md      → dotfiles/.codex/AGENTS.md
+      ├── rules/         → dotfiles/.codex/rules/
+      ├── scripts/       → dotfiles/.codex/scripts/
+      └── ...                                      # Auth, sessions, caches, and other runtime state
+  ```
 
 ## Terminal
 
