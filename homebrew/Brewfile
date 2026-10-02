@@ -3,51 +3,99 @@ tap "laishulu/homebrew"
 tap "osx-cross/arm"
 tap "osx-cross/avr"
 tap "qmk/qmk"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Yet another cross-platform graphical process/system monitor
 brew "bottom"
+# Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
+# Load/unload environment variables based on $PWD
 brew "direnv"
+# Perl lib for reading and writing EXIF metadata
 brew "exiftool"
+# Simple, fast and user-friendly alternative to find
 brew "fd"
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# Find files with SQL-like queries
 brew "fselect"
+# Command-line fuzzy finder written in Go
 brew "fzf"
+# GitHub command-line tool
 brew "gh"
+# Remote repository management made easy
 brew "ghq"
+# Distributed revision control system
 brew "git"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
+# Tools and libraries to manipulate images in select formats
 brew "imagemagick"
+# Integer Set Library for the polyhedral model
+brew "isl"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
+# Simple terminal UI for git commands
 brew "lazygit"
+# C library for multiple-precision floating-point computations
+brew "mpfr"
+# C library for the arithmetic of high precision complex numbers
+brew "libmpc"
+# Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Execute binaries from Python packages in isolated environments
 brew "pipx"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
+# Develop and deploy code with zero configuration
 brew "railway"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Fast, configurable, shell plugin manager
 brew "sheldon"
-brew "swiftformat"
-brew "swiftlint"
+# Send macOS User Notifications from the command-line
 brew "terminal-notifier"
+# Terminal multiplexer
 brew "tmux"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
+# Plain text note-taking assistant
 brew "zk"
+# Shell extension to navigate your filesystem faster
 brew "zoxide"
-brew "jesseduffield/lazydocker/lazydocker"
-brew "laishulu/homebrew/macism"
-brew "qmk/qmk/qmk"
+# Password manager that keeps all passwords secure behind one password
 cask "1password"
+# Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
-cask "claude-code"
-cask "clipy"
+# Write, edit, and chat about your code with AI
 cask "cursor"
+# Browser for SQLite databases
+cask "db-browser-for-sqlite"
+# Voice and text chat software
 cask "discord"
+# App to build and share containerised applications and microservices
 cask "docker-desktop"
+# Web browser
 cask "firefox"
+# Web browser
 cask "google-chrome"
+# Visual tool to design, develop and administer MySQL servers
 cask "mysqlworkbench"
+# Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Collaboration platform for API development
 cask "postman"
+# Control your tools with a few keystrokes
 cask "raycast"
+# Team communication and collaboration software
 cask "slack"
+# Music streaming service
 cask "spotify"
+# Open-source code editor
 cask "visual-studio-code"
+# GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
+# Video communication and virtual meeting platform
 cask "zoom"
