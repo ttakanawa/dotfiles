@@ -67,7 +67,6 @@ All documentation and comments in this repository are written in English.
 │   ├── link.sh                  # Symlink settings
 │   └── install.sh / dump.sh     # Install / dump extensions
 ├── link_dotfiles.sh             # Symlink dotfiles to $HOME
-├── install-npx-for-claude.sh    # Install npx wrapper for Claude Code
 └── Makefile                     # Upstream remote sync operations
 ```
 
