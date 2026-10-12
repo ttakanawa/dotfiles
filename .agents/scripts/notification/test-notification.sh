@@ -47,12 +47,19 @@ CREATE TABLE thread_spawn_edges (
   child_thread_id TEXT NOT NULL PRIMARY KEY,
   status TEXT NOT NULL
 );
+CREATE TABLE threads (
+  id TEXT PRIMARY KEY,
+  source TEXT NOT NULL
+);
 INSERT INTO thread_spawn_edges(parent_thread_id, child_thread_id, status)
 VALUES (
   '01900000-0000-7000-8000-000000000001',
   '01900000-0000-7000-8000-000000000002',
   'completed'
 );
+INSERT INTO threads(id, source) VALUES
+  ('01900000-0000-7000-8000-000000000001', 'vscode'),
+  ('01900000-0000-7000-8000-000000000003', '{"subagent":{"other":"guardian"}}');
 SQL
 
 pass_count=0
@@ -141,19 +148,10 @@ test_claude() {
 test_codex() {
   run_adapter ".codex/scripts/notify-permission.sh" \
     '{"tool_name":"Bash","tool_input":{"description":"Allow package installation now"},"cwd":"/tmp/codex-project","session_id":"session-x"}'
-  assert_notification "🔐 permission - 9:41 AM" '\[codex-project] Allow package installation now' "codex-session-x"
-  assert_contains "/System/Library/Sounds/Pop.aiff" "$sound_log" "Codex permission sound"
-  pass "Codex permission description"
-
-  run_adapter ".codex/scripts/notify-permission.sh" \
-    '{"tool_name":"apply_patch","cwd":"/tmp/codex-project","session_id":"session-x"}'
-  assert_equal '\[codex-project] apply_patch' "$(argument_value -message)" "permission tool fallback"
-  run_adapter ".codex/scripts/notify-permission.sh" \
-    '{"tool_name":"Bash","tool_input":{"description":""},"cwd":"/tmp/codex-project","session_id":"session-x"}'
-  assert_equal '\[codex-project] Bash' "$(argument_value -message)" "empty description tool fallback"
-  run_adapter ".codex/scripts/notify-permission.sh" '{}'
-  assert_notification "🔐 permission - 9:41 AM" '\[codex] Waiting for approval' "codex-default"
-  pass "Codex permission fallbacks"
+  assert_empty "$notifier_log" "legacy permission notification"
+  assert_empty "$sound_log" "legacy permission sound"
+  assert_empty "$stdout_log" "legacy permission hook stdout"
+  pass "legacy Codex PermissionRequest hook does not notify before auto-review"
 
   run_adapter ".codex/scripts/notify-complete.sh" \
     '{"last_assistant_message":"completed the requested Codex task","cwd":"/tmp/codex-project","session_id":"session-x"}'
@@ -165,12 +163,12 @@ test_codex() {
   assert_notification "🤖 finished - 9:41 AM" '\[codex] Task completed' "codex-default"
   pass "Codex complete fallbacks"
 
-  run_adapter ".codex/scripts/notify-permission.sh" \
-    '{"session_id":"01900000-0000-7000-8000-000000000001","turn_id":"turn-child","agent_id":"01900000-0000-7000-8000-000000000002","agent_type":"worker","hook_event_name":"PermissionRequest","tool_name":"Bash","tool_input":{"description":"child permission"},"cwd":"/tmp/codex-project"}'
-  assert_empty "$notifier_log" "subagent permission notification"
-  assert_empty "$sound_log" "subagent permission sound"
-  assert_empty "$stdout_log" "subagent permission hook stdout"
-  pass "Codex subagent PermissionRequest does not notify"
+  run_adapter ".codex/scripts/notify-complete.sh" \
+    '{"session_id":"01900000-0000-7000-8000-000000000001","turn_id":"turn-child","agent_id":"01900000-0000-7000-8000-000000000002","agent_type":"worker","hook_event_name":"Stop","cwd":"/tmp/codex-project"}'
+  assert_empty "$notifier_log" "subagent completion notification"
+  assert_empty "$sound_log" "subagent completion sound"
+  assert_empty "$stdout_log" "subagent completion hook stdout"
+  pass "Codex subagent Stop does not notify"
 
   local root_payload child_payload
   root_payload='{"type":"agent-turn-complete","thread-id":"01900000-0000-7000-8000-000000000001","turn-id":"turn-root","cwd":"/tmp/codex-project","client":"codex-app","input-messages":["root task"],"last-assistant-message":"root complete"}'
@@ -183,7 +181,13 @@ test_codex() {
   run_turn_ended_adapter "$child_payload"
   assert_empty "$computer_use_log" "subagent turn Computer Use notification"
   assert_empty "$stdout_log" "subagent turn notify stdout"
-  pass "Codex subagent turn completion does not notify"
+
+  local guardian_payload
+  guardian_payload='{"type":"agent-turn-complete","thread-id":"01900000-0000-7000-8000-000000000003","turn-id":"turn-guardian","cwd":"/tmp/codex-project","client":"codex-app"}'
+  run_turn_ended_adapter "$guardian_payload"
+  assert_empty "$computer_use_log" "guardian turn Computer Use notification"
+  assert_empty "$stdout_log" "guardian turn notify stdout"
+  pass "Codex subagent and guardian turn completions do not notify"
 }
 
 selected_complete_adapter() {
@@ -260,11 +264,8 @@ assert config["notify"] == [
     'exec "$HOME/.codex/scripts/notify-turn-ended.sh" "$1"',
     "--",
 ]
-permission = config["hooks"]["PermissionRequest"]
-assert len(permission) == 1
-assert permission[0]["matcher"] == ".*"
-assert permission[0]["hooks"][0]["type"] == "command"
-assert permission[0]["hooks"][0]["command"] == "$HOME/.codex/scripts/notify-permission.sh"
+assert "PermissionRequest" not in config["hooks"]
+assert config["tui"]["notifications"] == ["approval-requested"]
 stop = config["hooks"]["Stop"]
 assert len(stop) == 1
 assert "matcher" not in stop[0]

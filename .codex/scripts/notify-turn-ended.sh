@@ -18,6 +18,12 @@ if [[ "$thread_id" =~ ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{
       "SELECT 1 FROM thread_spawn_edges WHERE child_thread_id = '$thread_id' LIMIT 1;" \
       2>/dev/null)
     [ "$is_subagent" = "1" ] && exit 0
+
+    # Guardian reviews use a subagent source but have no spawn-edge row.
+    is_subagent=$(sqlite3 -noheader "file:$state_db?mode=ro" \
+      "SELECT 1 FROM threads WHERE id = '$thread_id' AND CASE WHEN json_valid(source) THEN json_type(source, '$.subagent') IS NOT NULL ELSE 0 END LIMIT 1;" \
+      2>/dev/null)
+    [ "$is_subagent" = "1" ] && exit 0
   done
 fi
 

@@ -2,15 +2,13 @@
 
 notify = ["sh", "-c", 'exec "$HOME/.codex/scripts/notify-turn-ended.sh" "$1"', "--"]
 
-[[hooks.PermissionRequest]]
-matcher = ".*"
-
-[[hooks.PermissionRequest.hooks]]
-type = "command"
-command = "$HOME/.codex/scripts/notify-permission.sh"
-
+# Human approval alerts come from TUI notifications below. PermissionRequest
+# runs before auto-review, so it is intentionally not registered here.
 [[hooks.Stop]]
 
 [[hooks.Stop.hooks]]
 type = "command"
 command = "$HOME/.codex/scripts/notify-complete.sh"
+
+[tui]
+notifications = ["approval-requested"]
