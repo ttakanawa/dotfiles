@@ -7,7 +7,7 @@
     "editor.fontFamily": "UDEVGothic35NF-Regular",
     "editor.lineNumbers": "relative",
     "workbench.colorTheme": "GitHub Dark Dimmed",
-  "workbench.iconTheme": "material-icon-theme",
+    "workbench.iconTheme": "material-icon-theme",
     "workbench.tree.expandMode": "doubleClick",
     "workbench.tree.indent": 16,
     "files.autoSave": "afterDelay",
