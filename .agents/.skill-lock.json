@@ -45,6 +45,42 @@
       "skillFolderHash": "b0cd1d58b0c317cf7c3726fef7e6b1197c405246",
       "installedAt": "2026-10-12T13:24:49.888Z",
       "updatedAt": "2026-10-12T13:24:49.888Z"
+    },
+    "commit-staged": {
+      "source": "ttakanawa/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/ttakanawa/agent-skills.git",
+      "skillPath": "skills/commit-staged/SKILL.md",
+      "skillFolderHash": "5526ed2b68e5125a90f25817cb394ca80d18c3af",
+      "installedAt": "2026-10-14T15:17:58.224Z",
+      "updatedAt": "2026-10-14T15:17:58.224Z"
+    },
+    "markdown-writing-style": {
+      "source": "ttakanawa/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/ttakanawa/agent-skills.git",
+      "skillPath": "skills/markdown-writing-style/SKILL.md",
+      "skillFolderHash": "7bc40c5cbb597472e85091f99ca08773d6565858",
+      "installedAt": "2026-10-14T15:17:58.225Z",
+      "updatedAt": "2026-10-14T15:17:58.225Z"
+    },
+    "open-pr": {
+      "source": "ttakanawa/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/ttakanawa/agent-skills.git",
+      "skillPath": "skills/open-pr/SKILL.md",
+      "skillFolderHash": "3559a78ae60e399fb5922072b629de38e7d1d862",
+      "installedAt": "2026-10-14T15:17:58.226Z",
+      "updatedAt": "2026-10-14T15:17:58.226Z"
+    },
+    "update-commit-message": {
+      "source": "ttakanawa/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/ttakanawa/agent-skills.git",
+      "skillPath": "skills/update-commit-message/SKILL.md",
+      "skillFolderHash": "2f61e265583be186436413f16fffd0fcbddb0fea",
+      "installedAt": "2026-10-14T15:17:58.226Z",
+      "updatedAt": "2026-10-14T15:17:58.226Z"
     }
   },
   "dismissed": {
