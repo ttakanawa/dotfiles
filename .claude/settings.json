@@ -184,10 +184,7 @@
       "Bash( ─── shell ─── )",
       "Bash(sh:*)",
       "Bash( ─── system ─── )",
-      "Bash(chmod:*)",
-      "Bash( ─── tmp ─── )",
-      "Edit(//tmp/**)",
-      "Edit(//private/tmp/**)"
+      "Bash(chmod:*)"
     ],
     "defaultMode": "auto"
   },
