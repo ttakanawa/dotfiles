@@ -3,8 +3,6 @@
 EDITORS=(
     "Cursor:cursor"
     "VS Code:code"
-    "Vim:vim"
-    "Neovim:nvim"
 )
 
 EDITOR_CHOICE=$(printf '%s\n' "${EDITORS[@]}" | cut -d: -f1 | fzf --prompt="Select editor: " --height=40% --border)
