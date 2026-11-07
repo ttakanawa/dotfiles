@@ -4,6 +4,15 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+-- Exclude surrounding parentheses from links, preserving parentheses in URL paths.
+config.hyperlink_rules = wezterm.default_hyperlink_rules()
+table.insert(config.hyperlink_rules, 1, {
+	regex = [[\((\w+://[^\s()]+(?:\([^\s()]*\)[^\s()]*)*)\)]],
+	format = "$1",
+	-- Older WezTerm versions prioritize the longest highlighted match.
+	highlight = 0,
+})
+
 -- Enable macOS IME support and forward Ctrl key events to the IME
 config.use_ime = true
 config.macos_forward_to_ime_modifier_mask = "CTRL|SHIFT"
