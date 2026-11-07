@@ -82,6 +82,15 @@
       "installedAt": "2026-10-14T15:17:58.226Z",
       "updatedAt": "2026-10-14T15:17:58.226Z"
     },
+    "shellcheck-configuration": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/wshobson/agents.git",
+      "skillPath": "plugins/shell-scripting/skills/shellcheck-configuration/SKILL.md",
+      "skillFolderHash": "5486453d5bc7918c657f793aa934189fec1e4299",
+      "installedAt": "2026-11-07T17:57:56.141Z",
+      "updatedAt": "2026-11-07T17:57:56.141Z"
+    },
     "ast-grep": {
       "source": "ast-grep/agent-skill",
       "sourceType": "github",
