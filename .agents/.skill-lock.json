@@ -80,7 +80,7 @@
       "skillPath": "skills/update-commit-message/SKILL.md",
       "skillFolderHash": "2f61e265583be186436413f16fffd0fcbddb0fea",
       "installedAt": "2026-10-14T15:17:58.226Z",
-      "updatedAt": "2026-10-14T15:17:58.226Z"
+      "updatedAt": "2026-11-07T18:24:22.345Z"
     },
     "shellcheck-configuration": {
       "source": "wshobson/agents",
@@ -110,6 +110,7 @@
     "codex",
     "cursor",
     "droid",
+    "fx",
     "gemini-cli",
     "github-copilot",
     "kilo",
@@ -117,7 +118,6 @@
     "opencode",
     "pi",
     "warp",
-    "zed",
-    "aider-desk"
+    "zed"
   ]
 }
