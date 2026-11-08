@@ -1,6 +1,6 @@
 <character_code>UTF-8</character_code>
 
-# Common Rules
+# Machine-wide Rules
 
 ## Clarify Before Proceeding
 
