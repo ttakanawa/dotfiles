@@ -50,55 +50,10 @@ Punctuation (。、) follows the same rule as English periods and commas: no spa
 - OK: `これは OK。 Claude Code を使う`
 - NG: `これは OK。Claude Code を使う`
 - OK: `まず、 Claude Code を使う`
-  - NG: `まず、Claude Code を使う`
+- NG: `まず、Claude Code を使う`
 
-## Tools
+## CLI tools
 
-Always prefer built-in tools (Glob, Grep, Read, Edit, Write) over the Bash tool.
+Additional CLI tools installed include:
 
-When using the Bash tool, prefer these over their alternatives.
-
-| Use | Instead of | Description |
-| ------ | ---------- | ------------- |
-| `fd` | `find` | Simple file search |
-| `rg` | `grep` | Fast text search |
-| `jq` | manual JSON parsing | JSON extraction and transformation |
-| `tree` | `ls -R` | Visual directory structure |
-| `gh` | `git` commands for remote access | GitHub operations (PRs, issues, Actions) |
-| `glab` | `git` commands for remote access | GitLab operations (MRs, issues, CI/CD) |
-| `uv` | `python` / `python3` | Python package and project management |
-| `bunx` | `bunx` | Package runner |
-
-### Patterns
-
-#### rg
-
-When searching code, always use `rg` for searching only — never pass replacement/`-r` flags that modify matches. Verify the command is a read-only search before running.
-
-#### jq
-
-  ```bash
-  jq '.key' file.json                # Extract field
-  jq '.items[] | .name' file.json    # Iterate array
-  jq -r '.url' file.json             # Raw string output (no quotes)
-  ```
-
-#### gh / glab
-
-Always prefer high-level subcommands over raw API calls.
-`gh api` / `glab api` should only be used as a last resort when no dedicated subcommand exists.
-
-  ```bash
-  # Good
-  gh pr list                           # List open PRs
-  gh pr view 123                       # View PR details
-  gh issue list --label bug            # Filter issues
-  gh run list                          # List workflow runs
-  glab mr list                         # List open MRs
-  glab mr view 123                     # View MR details
-  glab ci list                         # List CI pipelines
-
-  # Bad - use subcommands instead
-  gh api repos/{owner}/{repo}/pulls
-  glab api projects/:id/merge_requests
-  ```
+`fd`, `rg`, `jq`, `tree`, `ghb`, `glab`, `uv`, `bunx`
