@@ -1,7 +1,30 @@
 # Codex CLI configuration.
+# Git-managed preferences.
+
+model = "gpt-6.1-sol"
+model_reasoning_effort = "xhigh"
+plan_mode_reasoning_effort = "xhigh"
+approval_policy = "on-request"
+approvals_reviewer = "auto_review"
 
 [tui]
 # Event hooks send desktop notifications with a callback to the original pane.
 notifications = false
 # Shared-server hooks locate the CLI by this visible session identifier.
-status_line = ["thread-id"]
+status_line = [
+  "git-branch",
+  "total-input-tokens",
+  "total-output-tokens",
+  "used-tokens",
+  "context-window-size",
+  "context-used",
+  "model-with-reasoning",
+  "thread-id",
+  "thread-name",
+  "weekly-limit",
+]
+status_line_use_colors = true
+fullscreen_transcript = true
+
+# Runtime and machine-local state.
+screen_reader_detection_done = true
