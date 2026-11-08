@@ -66,6 +66,9 @@ link_codex_entry() {
   ln -s "$source_path" "$target_path"
 }
 
+# Keep ~/.codex itself as a real directory. Browser/Computer Use fails to
+# load configuration when CODEX_HOME is a symlink, which previously broke
+# browser operations. Link only managed entries; keep runtime state here.
 link_codex_dotfiles() {
   codex_repo="$dotfiles_root/.codex"
   codex_home="$HOME/.codex"
@@ -111,7 +114,7 @@ link_codex_dotfiles() {
 
   mkdir -p "$codex_repo"
 
-  for entry in .gitignore config.toml AGENTS.md rules scripts; do
+  for entry in .gitignore config.toml hooks.json keybindings.json AGENTS.md rules scripts; do
     source_path="$codex_home/$entry"
     target_path="$codex_repo/$entry"
 
@@ -136,7 +139,7 @@ link_codex_dotfiles() {
     fi
   done
 
-  for entry in config.toml AGENTS.md rules scripts; do
+  for entry in config.toml hooks.json keybindings.json AGENTS.md rules scripts; do
     link_codex_entry "$entry"
   done
 }

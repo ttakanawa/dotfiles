@@ -55,6 +55,8 @@ All documentation and comments in this repository are written in English.
 │   ├── .gitignore               # Allowlist for tracked Codex files
 │   ├── AGENTS.md                → symlink → ../.claude/CLAUDE.md
 │   ├── config.toml              # User-level Codex configuration
+│   ├── hooks.json               # Codex hook definitions
+│   ├── keybindings.json         # Codex app keybindings
 │   ├── rules/                   # Sandbox command rules
 │   └── scripts/                 # Custom Codex hook scripts
 ├── homebrew/
@@ -94,6 +96,8 @@ All documentation and comments in this repository are written in English.
   ├── .claude/           → dotfiles/.claude/
   └── .codex/                                      # Real directory
       ├── config.toml    → dotfiles/.codex/config.toml
+      ├── hooks.json     → dotfiles/.codex/hooks.json
+      ├── keybindings.json → dotfiles/.codex/keybindings.json
       ├── AGENTS.md      → dotfiles/.codex/AGENTS.md
       ├── rules/         → dotfiles/.codex/rules/
       ├── scripts/       → dotfiles/.codex/scripts/

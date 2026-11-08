@@ -40,6 +40,8 @@ make_fixture() {
   printf 'instructions\n' >"$fixture_repo/.claude/CLAUDE.md"
   printf '*\n' >"$fixture_repo/.codex/.gitignore"
   printf 'model = "test"\n' >"$fixture_repo/.codex/config.toml"
+  printf '{"hooks":{}}\n' >"$fixture_repo/.codex/hooks.json"
+  printf '[]\n' >"$fixture_repo/.codex/keybindings.json"
   ln -s ../.claude/CLAUDE.md "$fixture_repo/.codex/AGENTS.md"
   printf 'prefix_rule()\n' >"$fixture_repo/.codex/rules/default.rules"
   printf '#!/bin/sh\n' >"$fixture_repo/.codex/scripts/custom.sh"
@@ -56,7 +58,7 @@ run_setup() {
 assert_managed_links() {
   test_name=$1
 
-  for entry in config.toml AGENTS.md rules scripts; do
+  for entry in config.toml hooks.json keybindings.json AGENTS.md rules scripts; do
     link_path="$fixture_home/.codex/$entry"
     expected_target="$fixture_repo/.codex/$entry"
 
@@ -232,6 +234,11 @@ test_codex_gitignore_allows_only_managed_code() {
   if git -C "$fixture" check-ignore -q .codex/scripts/custom.sh; then
     fail "$test_name: scripts are available for Git tracking"
   fi
+  for entry in hooks.json keybindings.json; do
+    if git -C "$fixture" check-ignore -q ".codex/$entry"; then
+      fail "$test_name: $entry is available for Git tracking"
+    fi
+  done
   if ! git -C "$fixture" check-ignore -q .codex/auth.json; then
     fail "$test_name: authentication state remains ignored"
   fi

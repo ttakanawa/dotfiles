@@ -4,6 +4,8 @@
 !AGENTS.md
 
 !config.toml
+!hooks.json
+!keybindings.json
 
 !rules/
 !rules/**
