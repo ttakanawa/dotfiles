@@ -12,3 +12,6 @@
 
 !scripts/
 !scripts/**
+
+!tests/
+!tests/*.sh

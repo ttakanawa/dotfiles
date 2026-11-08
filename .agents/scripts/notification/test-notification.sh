@@ -11,10 +11,10 @@ trap 'rm -rf "$tmp_dir"' EXIT
 fake_bin="$tmp_dir/bin"
 notifier_log="$tmp_dir/notifier.log"
 sound_log="$tmp_dir/sound.log"
-computer_use_log="$tmp_dir/computer-use.log"
+tmux_log="$tmp_dir/tmux.log"
+osascript_log="$tmp_dir/osascript.log"
 stdout_log="$tmp_dir/stdout.log"
 stderr_log="$tmp_dir/stderr.log"
-state_db="$tmp_dir/state.sqlite"
 mkdir -p "$fake_bin"
 
 cat > "$fake_bin/terminal-notifier" <<'FAKE'
@@ -33,34 +33,28 @@ printf '%s\n' '9:41 AM'
 FAKE
 cat > "$fake_bin/tmux" <<'FAKE'
 #!/bin/bash
-if [ "${1:-}" = "display-message" ]; then printf '%s\n' "${FAKE_TMUX_SESSION:-test-session}"; fi
+if [ -n "${TMUX_LOG:-}" ]; then
+  printf '<%s>' "$@" >> "$TMUX_LOG"
+  printf '\n' >> "$TMUX_LOG"
+fi
+if [ "${1:-}" = "-S" ]; then shift 2; fi
+case "${1:-}" in
+  display-message)
+    [ "${FAKE_TMUX_MISSING_PANE:-0}" = "1" ] && exit 1
+    case "${!#}" in
+      '#{session_id}') printf '%s\n' "${FAKE_TMUX_SESSION_ID:-live-session}" ;;
+      '#{window_id}') printf '%s\n' "${FAKE_TMUX_WINDOW_ID:-@8}" ;;
+      *) printf '%s\n' "${FAKE_TMUX_SESSION:-test-session}" ;;
+    esac
+    ;;
+  list-clients) printf '%s\n' '/dev/ttys001' '/dev/ttys002' ;;
+esac
 FAKE
-cat > "$fake_bin/SkyComputerUseClient" <<'FAKE'
+cat > "$fake_bin/osascript" <<'FAKE'
 #!/bin/bash
-printf '%s\n' "$@" > "$COMPUTER_USE_LOG"
+printf '%s\n' "$@" >> "$OSASCRIPT_LOG"
 FAKE
-chmod +x "$fake_bin/terminal-notifier" "$fake_bin/afplay" "$fake_bin/date" "$fake_bin/tmux" "$fake_bin/SkyComputerUseClient"
-
-sqlite3 "$state_db" <<'SQL'
-CREATE TABLE thread_spawn_edges (
-  parent_thread_id TEXT NOT NULL,
-  child_thread_id TEXT NOT NULL PRIMARY KEY,
-  status TEXT NOT NULL
-);
-CREATE TABLE threads (
-  id TEXT PRIMARY KEY,
-  source TEXT NOT NULL
-);
-INSERT INTO thread_spawn_edges(parent_thread_id, child_thread_id, status)
-VALUES (
-  '01900000-0000-7000-8000-000000000001',
-  '01900000-0000-7000-8000-000000000002',
-  'completed'
-);
-INSERT INTO threads(id, source) VALUES
-  ('01900000-0000-7000-8000-000000000001', 'vscode'),
-  ('01900000-0000-7000-8000-000000000003', '{"subagent":{"other":"guardian"}}');
-SQL
+chmod +x "$fake_bin/terminal-notifier" "$fake_bin/afplay" "$fake_bin/date" "$fake_bin/tmux" "$fake_bin/osascript"
 
 pass_count=0
 fail() { echo "not ok - $*" >&2; exit 1; }
@@ -98,27 +92,34 @@ run_adapter() {
     >"$stdout_log" 2>"$stderr_log"
   wait_for_sound
 }
-run_adapter_in_tmux() {
-  local adapter="$1" json="$2"
-  : > "$notifier_log"; : > "$sound_log"; : > "$stdout_log"; : > "$stderr_log"
-  printf '%s' "$json" | env \
-    PATH="$fake_bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" \
-    HOME="$repo_root" NOTIFIER_LOG="$notifier_log" SOUND_LOG="$sound_log" \
-    FAKE_TMUX_SESSION="team's" \
-    TMUX="/tmp/tmux'sock,123,0" TMUX_PANE="%7'pane" \
-    "$repo_root/$adapter" >"$stdout_log" 2>"$stderr_log"
+run_shared() {
+  local notifier_fail="${1:-0}" socket="${2:-}" pane="${3:-}"
+  local test_path="${4:-$fake_bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin}"
+  local status=0
+  : > "$notifier_log"; : > "$sound_log"; : > "$stdout_log"; : > "$stderr_log"; : > "$tmux_log"
+  env PATH="$test_path" HOME="$repo_root" \
+    NOTIFIER_LOG="$notifier_log" SOUND_LOG="$sound_log" TMUX_LOG="$tmux_log" \
+    FAKE_NOTIFIER_FAIL="$notifier_fail" FAKE_TMUX_SESSION="team's" \
+    TMUX="$socket" TMUX_PANE="$pane" \
+    /bin/bash -c '
+      source "$1"
+      notify "Test" "Task completed" "/tmp/test-project" test-session test ""
+    ' -- "$repo_root/.agents/scripts/notification/notify.sh" \
+    >"$stdout_log" 2>"$stderr_log" || status=$?
   wait_for_sound
+  return "$status"
 }
-run_turn_ended_adapter() {
-  local json="$1"
-  [ -x "$repo_root/.codex/scripts/notify-turn-ended.sh" ] || fail "missing executable adapter: .codex/scripts/notify-turn-ended.sh"
-  : > "$computer_use_log"; : > "$stdout_log"; : > "$stderr_log"
-  env -u CODEX_THREAD_ID -u CODEX_SESSION_ID \
-    PATH="$fake_bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" \
-    HOME="$repo_root" COMPUTER_USE_LOG="$computer_use_log" \
-    CODEX_STATE_DB="$state_db" CODEX_SKY_COMPUTER_USE_CLIENT="$fake_bin/SkyComputerUseClient" \
-    "$repo_root/.codex/scripts/notify-turn-ended.sh" "$json" \
-    >"$stdout_log" 2>"$stderr_log"
+run_focus_helper() {
+  local captured_session="$1" missing_pane="${2:-0}"
+  : > "$tmux_log"; : > "$osascript_log"; : > "$stdout_log"; : > "$stderr_log"
+  env FAKE_BIN="$fake_bin" TMUX_LOG="$tmux_log" OSASCRIPT_LOG="$osascript_log" \
+    FAKE_TMUX_SESSION_ID='$12' FAKE_TMUX_WINDOW_ID='@18' FAKE_TMUX_MISSING_PANE="$missing_pane" \
+    bash -c '
+      tmux() { "$FAKE_BIN/tmux" "$@"; }
+      osascript() { "$FAKE_BIN/osascript" "$@"; }
+      source "$1" "$2" "$3" "$4"
+    ' -- "$repo_root/.agents/scripts/notification/focus-tmux-pane.sh" \
+    "$captured_session" '%27' '/tmp/notification-test.sock' >"$stdout_log" 2>"$stderr_log"
 }
 assert_notification() {
   assert_equal "$1" "$(argument_value -title)" "notification title"
@@ -145,62 +146,12 @@ test_claude() {
   pass "Claude missing field fallbacks"
 }
 
-test_codex() {
-  run_adapter ".codex/scripts/notify-permission.sh" \
-    '{"tool_name":"Bash","tool_input":{"description":"Allow package installation now"},"cwd":"/tmp/codex-project","session_id":"session-x"}'
-  assert_empty "$notifier_log" "legacy permission notification"
-  assert_empty "$sound_log" "legacy permission sound"
-  assert_empty "$stdout_log" "legacy permission hook stdout"
-  pass "legacy Codex PermissionRequest hook does not notify before auto-review"
-
-  run_adapter ".codex/scripts/notify-complete.sh" \
-    '{"last_assistant_message":"completed the requested Codex task","cwd":"/tmp/codex-project","session_id":"session-x"}'
-  assert_notification "🤖 finished - 9:41 AM" '\[codex-project] completed the requested Codex task' "codex-session-x"
-  assert_contains "/System/Library/Sounds/Purr.aiff" "$sound_log" "Codex complete sound"
-  pass "Codex complete payload"
-
-  run_adapter ".codex/scripts/notify-complete.sh" '{}'
-  assert_notification "🤖 finished - 9:41 AM" '\[codex] Task completed' "codex-default"
-  pass "Codex complete fallbacks"
-
-  run_adapter ".codex/scripts/notify-complete.sh" \
-    '{"session_id":"01900000-0000-7000-8000-000000000001","turn_id":"turn-child","agent_id":"01900000-0000-7000-8000-000000000002","agent_type":"worker","hook_event_name":"Stop","cwd":"/tmp/codex-project"}'
-  assert_empty "$notifier_log" "subagent completion notification"
-  assert_empty "$sound_log" "subagent completion sound"
-  assert_empty "$stdout_log" "subagent completion hook stdout"
-  pass "Codex subagent Stop does not notify"
-
-  local root_payload child_payload
-  root_payload='{"type":"agent-turn-complete","thread-id":"01900000-0000-7000-8000-000000000001","turn-id":"turn-root","cwd":"/tmp/codex-project","client":"codex-app","input-messages":["root task"],"last-assistant-message":"root complete"}'
-  run_turn_ended_adapter "$root_payload"
-  assert_equal "turn-ended" "$(sed -n '1p' "$computer_use_log")" "main turn Computer Use event"
-  assert_equal "$root_payload" "$(sed -n '2p' "$computer_use_log")" "main turn Computer Use payload"
-  assert_empty "$stdout_log" "main turn notify stdout"
-
-  child_payload='{"type":"agent-turn-complete","thread-id":"01900000-0000-7000-8000-000000000002","turn-id":"turn-child","cwd":"/tmp/codex-project","client":"codex-app","input-messages":["child task"],"last-assistant-message":"child complete"}'
-  run_turn_ended_adapter "$child_payload"
-  assert_empty "$computer_use_log" "subagent turn Computer Use notification"
-  assert_empty "$stdout_log" "subagent turn notify stdout"
-
-  local guardian_payload
-  guardian_payload='{"type":"agent-turn-complete","thread-id":"01900000-0000-7000-8000-000000000003","turn-id":"turn-guardian","cwd":"/tmp/codex-project","client":"codex-app"}'
-  run_turn_ended_adapter "$guardian_payload"
-  assert_empty "$computer_use_log" "guardian turn Computer Use notification"
-  assert_empty "$stdout_log" "guardian turn notify stdout"
-  pass "Codex subagent and guardian turn completions do not notify"
-}
-
-selected_complete_adapter() {
-  if [ "$product" = "codex" ]; then echo ".codex/scripts/notify-complete.sh"; else echo ".claude/scripts/notify-complete.sh"; fi
-}
 test_shared() {
-  local adapter
-  adapter=$(selected_complete_adapter)
-  run_adapter "$adapter" '{}'
+  run_shared
   assert_equal "/usr/bin/osascript -e 'tell application \"WezTerm\" to activate'" "$(argument_value -execute)" "non-tmux click action"
   pass "non-tmux click activates WezTerm"
 
-  run_adapter_in_tmux "$adapter" '{}'
+  run_shared 0 "/tmp/tmux'sock,123,0" "%7'pane"
   local execute_cmd
   execute_cmd=$(argument_value -execute)
   assert_string_starts_with "'$repo_root/.agents/scripts/notification/focus-tmux-pane.sh'" "$execute_cmd" "quoted tmux focus helper"
@@ -208,9 +159,10 @@ test_shared() {
   assert_string_contains "team'\\''s" "$execute_cmd" "escaped tmux session"
   assert_string_contains "%7'\\''pane" "$execute_cmd" "escaped tmux pane"
   assert_string_contains "/tmp/tmux'\\''sock" "$execute_cmd" "escaped tmux socket"
+  assert_contains "<-S></tmp/tmux'sock><display-message><-p><-t><%7'pane><#{session_name}>" "$tmux_log" "originating pane session lookup"
   pass "tmux click action escapes single quotes"
 
-  run_adapter "$adapter" '{}' 1
+  run_shared 1
   assert_empty "$stdout_log" "failed notifier stdout"
   assert_contains "terminal-notifier failed" "$stderr_log" "failed notifier guidance"
   pass "failed terminal-notifier is diagnosed and non-fatal"
@@ -221,15 +173,35 @@ test_shared() {
   ln -sf "$fake_bin/date" "$missing_bin/date"
   : > "$stdout_log"; : > "$stderr_log"
   set +e
-  printf '%s' '{}' | env -u TMUX -u TMUX_PANE \
-    PATH="$missing_bin:/usr/bin:/bin" HOME="$repo_root" \
-    "$repo_root/$adapter" >"$stdout_log" 2>"$stderr_log"
+  run_shared 0 "" "" "$missing_bin:/usr/bin:/bin"
   status=$?
   set -e
   assert_equal 0 "$status" "missing notifier status"
   assert_empty "$stdout_log" "missing notifier stdout"
   assert_contains "brew install terminal-notifier" "$stderr_log" "missing notifier guidance"
   pass "missing terminal-notifier is non-fatal"
+}
+
+test_focus_tmux_pane() {
+  run_focus_helper "old-session-name"
+  assert_contains '<-S></tmp/notification-test.sock><switch-client><-t><$12><-c></dev/ttys001>' "$tmux_log" "first client switches to the live pane session"
+  assert_contains '<-S></tmp/notification-test.sock><switch-client><-t><$12><-c></dev/ttys002>' "$tmux_log" "existing all-client focus policy"
+  assert_contains '<-S></tmp/notification-test.sock><select-window><-t><$12:@18>' "$tmux_log" "moved pane window is selected"
+  assert_contains '<-S></tmp/notification-test.sock><select-pane><-t><%27>' "$tmux_log" "original pane is selected"
+  assert_contains 'tell application "WezTerm" to activate' "$osascript_log" "click activates WezTerm"
+  assert_empty "$stdout_log" "focus helper stdout"
+  pass "notification click follows a moved pane or renamed session"
+
+  run_focus_helper ""
+  assert_contains '<switch-client><-t><$12>' "$tmux_log" "live pane resolves without a captured session name"
+  pass "notification click can recover an unavailable original session name"
+
+  run_focus_helper "old-session-name" 1
+  if rg -q '<(switch-client|select-window|select-pane)>' "$tmux_log"; then
+    fail "vanished pane must not switch clients to a stale session"
+  fi
+  assert_contains 'tell application "WezTerm" to activate' "$osascript_log" "vanished pane still activates WezTerm"
+  pass "notification click ignores a pane that no longer exists"
 }
 
 test_syntax() {
@@ -242,7 +214,7 @@ test_syntax() {
     .claude/scripts/notify-waiting.sh
     .claude/scripts/notify-complete.sh
   )
-  if [ "$product" != "claude" ]; then files+=(.codex/scripts/notify-permission.sh .codex/scripts/notify-complete.sh .codex/scripts/notify-turn-ended.sh); fi
+  if [ "$product" != "claude" ]; then files+=(.codex/scripts/notify-permission.sh .codex/scripts/notify-complete.sh .codex/scripts/notify-question.sh .codex/scripts/lib/notify.sh); fi
   local file
   for file in "${files[@]}"; do
     [ -f "$repo_root/$file" ] || fail "missing shell file: $file"
@@ -253,31 +225,33 @@ test_syntax() {
 }
 
 test_config() {
-  UV_CACHE_DIR="$tmp_dir/uv-cache" uv run python - "$repo_root/.codex/config.toml" <<'PY'
-import sys
-import tomllib
-with open(sys.argv[1], "rb") as f:
-    config = tomllib.load(f)
-assert config["notify"] == [
-    "sh",
-    "-c",
-    'exec "$HOME/.codex/scripts/notify-turn-ended.sh" "$1"',
-    "--",
-]
-assert "PermissionRequest" not in config["hooks"]
-assert config["tui"]["notifications"] == ["approval-requested"]
-stop = config["hooks"]["Stop"]
-assert len(stop) == 1
-assert "matcher" not in stop[0]
-assert stop[0]["hooks"][0]["type"] == "command"
-assert stop[0]["hooks"][0]["command"] == "$HOME/.codex/scripts/notify-complete.sh"
-PY
-  pass "Codex TOML hooks and Computer Use notify"
+  awk '
+    /^\[/ { section = $0 }
+    section == "" && /^[[:space:]]*notify[[:space:]]*=/ { bad = 1 }
+    /^\[\[hooks\.(Stop|PermissionRequest|PreToolUse)\]\]/ { bad = 1 }
+    section == "[tui]" && /^[[:space:]]*notifications[[:space:]]*=[[:space:]]*false[[:space:]]*$/ { disabled = 1 }
+    section == "[tui]" && /^[[:space:]]*status_line[[:space:]]*=/ && /"thread-id"/ { thread_id = 1 }
+    END { exit bad || !disabled || !thread_id }
+  ' "$repo_root/.codex/config.toml" || fail "Codex TUI notification configuration"
+  jq -e --arg complete 'bash "$HOME/.codex/scripts/notify-complete.sh"' \
+    --arg permission 'bash "$HOME/.codex/scripts/notify-permission.sh"' \
+    --arg question 'bash "$HOME/.codex/scripts/notify-question.sh"' '
+    .hooks as $hooks |
+    all(({Stop:$complete, PermissionRequest:$permission, PreToolUse:$question} | to_entries)[];
+      .key as $event | .value as $command |
+      [$hooks[$event][] | select(any(.hooks[]; .command == $command))] as $groups |
+      ($groups | length) == 1 and
+      $groups[0].hooks == [{type:"command", command:$command, timeout:5}] and
+      (if $event == "PreToolUse" then
+         $groups[0].matcher == "^(request_user_input|request_user_input_async)$"
+       else $groups[0] | has("matcher") | not end))
+  ' "$repo_root/.codex/hooks.json" >/dev/null || fail "Codex event hook registrations"
+  pass "Codex event hooks without duplicate native notifications"
 }
 
 if [ "$product" != "codex" ]; then test_claude; fi
-if [ "$product" != "claude" ]; then test_codex; fi
 test_shared
+test_focus_tmux_pane
 test_syntax
 if [ "$product" != "claude" ]; then test_config; fi
 echo "1..$pass_count"

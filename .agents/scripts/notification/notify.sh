@@ -1,6 +1,6 @@
 #!/bin/bash
 # Shared desktop notification core for Claude Code and Codex hooks.
-# Usage: notify <title> <summary> <cwd> <session_id> <group_prefix> <sound>
+# Usage: notify <title> <summary> <cwd> <session_id> <group_prefix> <sound> [full]
 
 notify() {
   local base_title="$1"
@@ -19,8 +19,12 @@ notify() {
 
   local normalized summary
   normalized=${raw_summary//$'\n'/ }
-  summary=$(printf '%s' "$normalized" \
-    | awk '{n=(NF<7?NF:7); for(i=1;i<=n;i++) printf "%s%s", $i, (i<n?" ":"")}')
+  if [ "${7:-}" = "full" ]; then
+    summary="$normalized"
+  else
+    summary=$(printf '%s' "$normalized" \
+      | awk '{n=(NF<7?NF:7); for(i=1;i<=n;i++) printf "%s%s", $i, (i<n?" ":"")}')
+  fi
 
   local body="\\[${dir_name}] ${summary}"
   local group="${group_prefix}-${session_id:-default}"
@@ -31,7 +35,7 @@ notify() {
   if [ -n "${TMUX:-}" ] && [ -n "${TMUX_PANE:-}" ] && [ -x "$focus_script" ]; then
     local tmux_socket session_name sq_focus sq_session sq_pane sq_socket
     tmux_socket=$(printf '%s' "$TMUX" | cut -d',' -f1)
-    session_name=$(tmux display-message -p '#{session_name}' 2>/dev/null)
+    session_name=$(tmux -S "$tmux_socket" display-message -p -t "$TMUX_PANE" '#{session_name}' 2>/dev/null) || session_name=
     sq_focus=$(printf '%s' "$focus_script" | sed "s/'/'\\\\''/g")
     sq_session=$(printf '%s' "$session_name" | sed "s/'/'\\\\''/g")
     sq_pane=$(printf '%s' "$TMUX_PANE" | sed "s/'/'\\\\''/g")

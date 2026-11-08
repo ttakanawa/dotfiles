@@ -1,16 +1,9 @@
 #!/bin/bash
-# Stop hook — fires when Codex finishes a response.
+# Notify when the main Codex response finishes.
+source "$(dirname "$0")/lib/notify.sh"
 
-source "$HOME/.agents/scripts/notification/notify.sh"
-
-hook_input=$(cat)
-agent_id=$(printf '%s' "$hook_input" | jq -r '.agent_id // empty')
-[ -n "$agent_id" ] && exit 0
-
-cwd=$(printf '%s' "$hook_input" | jq -r '.cwd // empty')
-session_id=$(printf '%s' "$hook_input" | jq -r '.session_id // empty')
-summary=$(printf '%s' "$hook_input" | jq -r '.last_assistant_message // empty')
-[ -z "$summary" ] && summary="Task completed"
-
-notify "🤖 finished" "$summary" "$cwd" "$session_id" "codex" "/System/Library/Sounds/Purr.aiff" || true
-exit 0
+notify_codex finished "🤖 finished" Purr '
+  select(.hook_event_name == "Stop") |
+  .last_assistant_message // "Task completed" |
+  if . == "" then "Task completed" else . end
+'

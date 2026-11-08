@@ -1,14 +1,7 @@
 # Codex CLI configuration.
 
-notify = ["sh", "-c", 'exec "$HOME/.codex/scripts/notify-turn-ended.sh" "$1"', "--"]
-
-# Human approval alerts come from TUI notifications below. PermissionRequest
-# runs before auto-review, so it is intentionally not registered here.
-[[hooks.Stop]]
-
-[[hooks.Stop.hooks]]
-type = "command"
-command = "$HOME/.codex/scripts/notify-complete.sh"
-
 [tui]
-notifications = ["approval-requested"]
+# Event hooks send desktop notifications with a callback to the original pane.
+notifications = false
+# Shared-server hooks locate the CLI by this visible session identifier.
+status_line = ["thread-id"]
