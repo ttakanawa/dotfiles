@@ -1,0 +1,143 @@
+# ──────────────────────────────
+# ALLOW
+# ──────────────────────────────
+
+# ─── system ───
+prefix_rule(pattern=["which"], decision="allow")
+prefix_rule(pattern=["pwd"], decision="allow")
+prefix_rule(pattern=["date"], decision="allow")
+prefix_rule(pattern=["du"], decision="allow")
+prefix_rule(pattern=["df"], decision="allow")
+
+# ─── glob ───
+prefix_rule(pattern=["ls"], decision="allow")
+prefix_rule(pattern=["find"], decision="allow")
+prefix_rule(pattern=["fd"], decision="allow")
+prefix_rule(pattern=["tree"], decision="allow")
+
+# ─── grep ───
+prefix_rule(pattern=["diff"], decision="allow")
+prefix_rule(pattern=["cat"], decision="allow")
+prefix_rule(pattern=["grep"], decision="allow")
+prefix_rule(pattern=["rg"], decision="allow")
+prefix_rule(pattern=["jq"], decision="allow")
+prefix_rule(pattern=["head"], decision="allow")
+prefix_rule(pattern=["tail"], decision="allow")
+
+# ─── uv ───
+prefix_rule(pattern=["uv", "run"], decision="allow")
+prefix_rule(pattern=["uv", "pip", "list"], decision="allow")
+prefix_rule(pattern=["uv", "pip", "show"], decision="allow")
+prefix_rule(pattern=["uv", "tree"], decision="allow")
+prefix_rule(pattern=["uv", "version"], decision="allow")
+
+# ─── brew ───
+prefix_rule(pattern=["brew", "list"], decision="allow")
+prefix_rule(pattern=["brew", "info"], decision="allow")
+prefix_rule(pattern=["brew", "search"], decision="allow")
+
+# ─── git ───
+prefix_rule(pattern=["git", "status"], decision="allow")
+prefix_rule(pattern=["git", "log"], decision="allow")
+prefix_rule(pattern=["git", "diff"], decision="allow")
+prefix_rule(pattern=["git", "show"], decision="allow")
+prefix_rule(pattern=["git", "rev-parse"], decision="allow")
+prefix_rule(pattern=["git", "ls-files"], decision="allow")
+prefix_rule(pattern=["git", "remote", "-v"], decision="allow")
+prefix_rule(pattern=["git", "config", "--get"], decision="allow")
+prefix_rule(pattern=["git", "shortlog"], decision="allow")
+prefix_rule(pattern=["git", "tag", "-l"], decision="allow")
+prefix_rule(pattern=["git", "fetch"], decision="allow")
+
+# ─── ghq ───
+prefix_rule(pattern=["ghq", "root"], decision="allow")
+prefix_rule(pattern=["ghq", "list"], decision="allow")
+
+# ─── gh ───
+prefix_rule(pattern=["gh", "pr", "list"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "view"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "status"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "checks"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "diff"], decision="allow")
+prefix_rule(pattern=["gh", "issue", "list"], decision="allow")
+prefix_rule(pattern=["gh", "issue", "view"], decision="allow")
+prefix_rule(pattern=["gh", "issue", "status"], decision="allow")
+prefix_rule(pattern=["gh", "run", "list"], decision="allow")
+prefix_rule(pattern=["gh", "run", "view"], decision="allow")
+prefix_rule(pattern=["gh", "repo", "view"], decision="allow")
+prefix_rule(pattern=["gh", "repo", "list"], decision="allow")
+prefix_rule(pattern=["gh", "release", "list"], decision="allow")
+prefix_rule(pattern=["gh", "release", "view"], decision="allow")
+prefix_rule(pattern=["gh", "search"], decision="allow")
+
+# ─── glab ───
+prefix_rule(pattern=["glab", "mr", "list"], decision="allow")
+prefix_rule(pattern=["glab", "mr", "view"], decision="allow")
+prefix_rule(pattern=["glab", "mr", "status"], decision="allow")
+prefix_rule(pattern=["glab", "mr", "checks"], decision="allow")
+prefix_rule(pattern=["glab", "mr", "diff"], decision="allow")
+prefix_rule(pattern=["glab", "issue", "list"], decision="allow")
+prefix_rule(pattern=["glab", "issue", "view"], decision="allow")
+prefix_rule(pattern=["glab", "issue", "status"], decision="allow")
+prefix_rule(pattern=["glab", "ci", "list"], decision="allow")
+prefix_rule(pattern=["glab", "ci", "view"], decision="allow")
+prefix_rule(pattern=["glab", "ci", "status"], decision="allow")
+prefix_rule(pattern=["glab", "repo", "view"], decision="allow")
+prefix_rule(pattern=["glab", "repo", "list"], decision="allow")
+prefix_rule(pattern=["glab", "release", "list"], decision="allow")
+prefix_rule(pattern=["glab", "release", "view"], decision="allow")
+
+# ─── docker ───
+prefix_rule(pattern=["docker", "ps"], decision="allow")
+prefix_rule(pattern=["docker", "images"], decision="allow")
+prefix_rule(pattern=["docker", "inspect"], decision="allow")
+prefix_rule(pattern=["docker", "logs"], decision="allow")
+prefix_rule(pattern=["docker", "stats"], decision="allow")
+prefix_rule(pattern=["docker", "info"], decision="allow")
+prefix_rule(pattern=["docker", "version"], decision="allow")
+prefix_rule(pattern=["docker", "network", "ls"], decision="allow")
+prefix_rule(pattern=["docker", "network", "inspect"], decision="allow")
+prefix_rule(pattern=["docker", "volume", "ls"], decision="allow")
+prefix_rule(pattern=["docker", "volume", "inspect"], decision="allow")
+prefix_rule(pattern=["docker", "top"], decision="allow")
+prefix_rule(pattern=["docker", "port"], decision="allow")
+prefix_rule(pattern=["docker", "history"], decision="allow")
+prefix_rule(pattern=["docker", "diff"], decision="allow")
+prefix_rule(pattern=["docker", "compose", "ps"], decision="allow")
+prefix_rule(pattern=["docker", "compose", "logs"], decision="allow")
+prefix_rule(pattern=["docker", "compose", "config"], decision="allow")
+
+# ─── podman ───
+prefix_rule(pattern=["podman", "ps"], decision="allow")
+prefix_rule(pattern=["podman", "images"], decision="allow")
+prefix_rule(pattern=["podman", "inspect"], decision="allow")
+prefix_rule(pattern=["podman", "logs"], decision="allow")
+prefix_rule(pattern=["podman", "stats"], decision="allow")
+prefix_rule(pattern=["podman", "info"], decision="allow")
+prefix_rule(pattern=["podman", "version"], decision="allow")
+prefix_rule(pattern=["podman", "network", "ls"], decision="allow")
+prefix_rule(pattern=["podman", "network", "inspect"], decision="allow")
+prefix_rule(pattern=["podman", "volume", "ls"], decision="allow")
+prefix_rule(pattern=["podman", "volume", "inspect"], decision="allow")
+prefix_rule(pattern=["podman", "top"], decision="allow")
+prefix_rule(pattern=["podman", "port"], decision="allow")
+prefix_rule(pattern=["podman", "history"], decision="allow")
+prefix_rule(pattern=["podman", "diff"], decision="allow")
+prefix_rule(pattern=["podman", "compose", "ps"], decision="allow")
+prefix_rule(pattern=["podman", "compose", "logs"], decision="allow")
+prefix_rule(pattern=["podman", "compose", "config"], decision="allow")
+
+# ─── tmux ───
+prefix_rule(pattern=["tmux", "ls"], decision="allow")
+prefix_rule(pattern=["tmux", "list-sessions"], decision="allow")
+prefix_rule(pattern=["tmux", "list-windows"], decision="allow")
+prefix_rule(pattern=["tmux", "list-panes"], decision="allow")
+prefix_rule(pattern=["tmux", "list-buffers"], decision="allow")
+prefix_rule(pattern=["tmux", "list-clients"], decision="allow")
+prefix_rule(pattern=["tmux", "list-keys"], decision="allow")
+prefix_rule(pattern=["tmux", "list-commands"], decision="allow")
+prefix_rule(pattern=["tmux", "display-message"], decision="allow")
+prefix_rule(pattern=["tmux", "show-options"], decision="allow")
+prefix_rule(pattern=["tmux", "show-environment"], decision="allow")
+prefix_rule(pattern=["tmux", "show-window-options"], decision="allow")
+prefix_rule(pattern=["tmux", "info"], decision="allow")

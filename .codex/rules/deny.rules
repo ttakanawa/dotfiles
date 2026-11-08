@@ -1,0 +1,7 @@
+# ──────────────────────────────
+# DENY
+# ──────────────────────────────
+
+# ─── shell ───
+prefix_rule(pattern=["python"], decision="forbidden", justification="Use uv run python instead.")
+prefix_rule(pattern=["python3"], decision="forbidden", justification="Use uv run python3 instead.")

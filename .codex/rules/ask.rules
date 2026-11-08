@@ -1,0 +1,12 @@
+# ──────────────────────────────
+# ASK
+# ──────────────────────────────
+
+# ─── aws ───
+prefix_rule(pattern=["aws"], decision="prompt")
+
+# ─── shell ───
+prefix_rule(pattern=["sh"], decision="prompt")
+
+# ─── system ───
+prefix_rule(pattern=["chmod"], decision="prompt")
