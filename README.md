@@ -187,16 +187,21 @@ Keep this section in sync with `.claude/agents/`. When agents are added or remov
 
 | Skill | Description |
 | ------ | ------------- |
-| `/open-pr` | Create GitLab MR or GitHub PR interactively |
+| `/ast-grep` | Search code using AST patterns and structural rules |
 | `/code-review` | Review GitLab MRs, GitHub PRs, commits, or diffs |
-| `/commit-staged` | Staged changes → Conventional Commits message |
-| `/update-commit-message` | Regenerate commit message via rebase |
-| `/v` | Neovim environment guide |
+| `/commit-staged` | Create a Conventional Commits message from staged changes |
+| `/explain-schema` | Explain database tables and relationships with a diagram |
+| `/find-skills` | Discover and install agent skills |
 | `/get-session-file` | Get the file path of a Claude Code session by session ID |
 | `/get-session-info` | Look up Claude Code session info by session ID, cwd, or status |
-| `/second-opinion` | Ask subagent/teammate a second opinion |
-| `/handoff` | Generate session handoff as direct instructions |
 | `/markdown-writing-style` | Apply markdown formatting rules when writing or editing markdown content |
+| `/open-pr` | Create GitLab MR or GitHub PR interactively |
+| `/orca-cli` | Manage Orca worktrees, terminals, automations, and browser |
+| `/orca-linear` | Manage Linear tickets through the Orca CLI |
+| `/orchestration` | Coordinate Orca worker agents and collect results |
+| `/shellcheck-configuration` | Configure ShellCheck and improve shell script quality |
+| `/update-commit-message` | Regenerate commit message via rebase |
+| `/v` | Neovim environment guide |
 
 ### Contexts
 
