@@ -31,7 +31,8 @@ return {
           },
         },
         virtualtext = {
-          auto_trigger_ft = { "*" },
+          -- Request completions manually with <A-n> or <A-p>.
+          auto_trigger_ft = {},
           auto_trigger_ignore_ft = { "TelescopePrompt", "snacks_picker_input" },
           keymap = {
             accept = "<A-A>",
