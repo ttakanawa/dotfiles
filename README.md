@@ -205,15 +205,3 @@ Keep this section in sync with [agents](.claude/agents/). Update it whenever age
 | `dev` | Active development — implementation, coding |
 | `research` | Exploration — understanding before acting |
 | `review` | Code review — quality, security, maintainability |
-
-## Shared AI Configuration
-
-Multiple AI coding assistants share common instructions from `.claude/CLAUDE.md`:
-
-| Tool | Global Instructions | Config |
-| ------ | ------------------- | ------ |
-| Claude Code | `~/.claude/CLAUDE.md` (symlink) | `~/.claude/settings.json` |
-| Codex | `~/.codex/AGENTS.md` → `.claude/CLAUDE.md` | `~/.codex/config.toml` |
-| OpenCode | `~/.config/opencode/AGENTS.md` → `.claude/CLAUDE.md` | `~/.config/opencode/opencode.json` |
-
-Shared custom Agent Skills live in `~/.agents/skills`. `~/.claude/skills` is a symlink to that directory so the same skill definitions are available in Claude Code, Codex, and OpenCode.
