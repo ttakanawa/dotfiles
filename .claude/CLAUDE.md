@@ -17,6 +17,10 @@ Before presenting choices, explain why the question matters:
 
 Before making changes, explain the overall picture of what will change and how, then ask for confirmation before proceeding.
 
+## Keep Guidance Current
+
+When user instructions supersede or conflict with project- or user-level memories, rules, or skills, ask whether to update the affected guidance.
+
 ## Leverage Agents and Skills
 
 Proactively use agents and skills — both user-level and project-level — whenever they can improve task quality or efficiency. Do not wait for the user to request them.
