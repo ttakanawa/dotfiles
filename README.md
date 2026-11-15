@@ -192,6 +192,7 @@ Keep this section in sync with [agents](.claude/agents/). Update it whenever age
 | `/orca-cli` | Manage Orca worktrees, terminals, automations, and browser |
 | `/orca-linear` | Manage Linear tickets through the Orca CLI |
 | `/orchestration` | Coordinate Orca worker agents and collect results |
+| `/setup-environment` | Set up or change development environments using mise and uv |
 | `/shellcheck-configuration` | Configure ShellCheck and improve shell script quality |
 | `/update-commit-message` | Regenerate commit message via rebase |
 | `/v` | Neovim environment guide |
