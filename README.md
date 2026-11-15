@@ -152,7 +152,7 @@ Never add attribution footers (e.g., "Generated with Claude Code") to any output
 | `Codex` | `~/.codex/config.toml` | `[mcp_servers.<name>]` in TOML |
 | `OpenCode` | `~/.config/opencode/opencode.json` | `mcp` in JSON / JSONC |
 
-### Agents
+### Claude Code Agents
 
 <https://code.claude.com/docs/en/sub-agents>
 
