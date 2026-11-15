@@ -138,7 +138,7 @@ Catppuccin Frappe across all tools (Neovim, tmux, WezTerm).
 - `zk-nvim.lua`
   - zk-org/zk-nvim - Zettelkasten note management
 
-## Claude Code
+## AI Coding Agents
 
 ### Attribution
 
