@@ -48,7 +48,7 @@ All documentation and comments in this repository are written in English.
 │   ├── agents/                  # Custom agents
 │   ├── commands/                # Slash commands
 │   ├── contexts/                # Context profiles (dev, research, review)
-│   ├── skills/                  → symlink → ../.agents/skills
+│   ├── skills/                  # Claude Code-specific skills and links to shared skills
 │   └── scripts/                 # Hook scripts (notification, logging)
 ├── .codex/
 │   ├── .gitignore               # Allowlist for tracked Codex files
@@ -83,7 +83,7 @@ All documentation and comments in this repository are written in English.
 
 ## Symlink Structure
 
-`link_dotfiles.sh` symlinks most managed paths into `$HOME`, so they act as global configs. Codex is handled separately: `~/.codex` remains a real directory for runtime state, while only Git-managed configuration and code link back to this repository.
+[link_dotfiles.sh](link_dotfiles.sh#L142-L170) links managed paths into `$HOME`, so they act as global configs. Codex keeps a real directory for runtime state and links selected configuration files and directories back to this repository.
 
   ```text
   $HOME/
@@ -91,17 +91,23 @@ All documentation and comments in this repository are written in English.
   ├── .zshrc             → dotfiles/.zshrc
   ├── .zshenv            → dotfiles/.zshenv
   ├── .config/           → dotfiles/.config/   # = ~/.config/ (XDG_CONFIG_HOME)
+  │   └── opencode/
+  │       └── AGENTS.md  → ../../.claude/CLAUDE.md
   ├── .agents/           → dotfiles/.agents/
   ├── .claude/           → dotfiles/.claude/
-  └── .codex/                                      # Real directory
-      ├── config.toml    → dotfiles/.codex/config.toml
-      ├── hooks.json     → dotfiles/.codex/hooks.json
+  │   ├── CLAUDE.md                            # Shared AI instructions
+  │   └── skills/                              # Real directory: local skills and individual links
+  └── .codex/                                  # Real directory
+      ├── config.toml      → dotfiles/.codex/config.toml
+      ├── hooks.json       → dotfiles/.codex/hooks.json
       ├── keybindings.json → dotfiles/.codex/keybindings.json
-      ├── AGENTS.md      → dotfiles/.codex/AGENTS.md
-      ├── rules/         → dotfiles/.codex/rules/
-      ├── scripts/       → dotfiles/.codex/scripts/
-      └── ...                                      # Auth, sessions, caches, and other runtime state
+      ├── AGENTS.md        → dotfiles/.codex/AGENTS.md
+      ├── rules/           → dotfiles/.codex/rules/
+      ├── scripts/         → dotfiles/.codex/scripts/
+      └── ...                                  # Auth, sessions, caches, and other runtime state
   ```
+
+Within the repository, the [Codex instruction link](.codex/AGENTS.md) also points to [CLAUDE.md](.claude/CLAUDE.md#L1-L59), so Claude Code, Codex, and OpenCode share the same instruction source.
 
 ## Terminal
 
