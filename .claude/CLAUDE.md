@@ -54,6 +54,8 @@ Punctuation (。、) follows the same rule as English periods and commas: no spa
 
 ## CLI tools
 
+Use uv for Python execution; do not invoke python or python3 directly.
+
 Additional CLI tools installed include:
 
-`fd`, `rg`, `jq`, `tree`, `ghb`, `glab`, `uv`, `bunx`
+`fd`, `rg`, `jq`, `tree`, `ghb`, `glab`, `uv`, `bunx`, `mise`
