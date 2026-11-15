@@ -48,7 +48,6 @@ All documentation and comments in this repository are written in English.
 │   ├── agents/                  # Custom agents
 │   ├── commands/                # Slash commands
 │   ├── contexts/                # Context profiles (dev, research, review)
-│   ├── rules/                   # Claude Code-specific rules (auto-loaded)
 │   ├── skills/                  → symlink → ../.agents/skills
 │   └── scripts/                 # Hook scripts (notification, logging)
 ├── .codex/
@@ -153,23 +152,11 @@ Never add attribution footers (e.g., "Generated with Claude Code") to any output
 | `Codex` | `~/.codex/config.toml` | `[mcp_servers.<name>]` in TOML |
 | `OpenCode` | `~/.config/opencode/opencode.json` | `mcp` in JSON / JSONC |
 
-### Rules
-
-<https://code.claude.com/docs/en/memory>
-
-| Rule | Description |
-| ------ | ------------- |
-| `agents.md` | Show available agents |
-| `ask-user-question.md` | Use AskUserQuestion tool |
-
-The following rules are shared across all AI tools via `.claude/CLAUDE.md`:
-`writing-style`, `tools`
-
 ### Agents
 
 <https://code.claude.com/docs/en/sub-agents>
 
-Keep this section in sync with `.claude/agents/`. When agents are added or removed, update both this section and `.claude/rules/agents.md` accordingly.
+Keep this section in sync with [agents](.claude/agents/). Update it whenever agents are added or removed.
 
 | Agent | Description |
 | ------ | ------------- |
@@ -222,7 +209,5 @@ Multiple AI coding assistants share common instructions from `.claude/CLAUDE.md`
 | Claude Code | `~/.claude/CLAUDE.md` (symlink) | `~/.claude/settings.json` |
 | Codex | `~/.codex/AGENTS.md` → `.claude/CLAUDE.md` | `~/.codex/config.toml` |
 | OpenCode | `~/.config/opencode/AGENTS.md` → `.claude/CLAUDE.md` | `~/.config/opencode/opencode.json` |
-
-Claude Code additionally loads tool-specific rules from `.claude/rules/`.
 
 Shared custom Agent Skills live in `~/.agents/skills`. `~/.claude/skills` is a symlink to that directory so the same skill definitions are available in Claude Code, Codex, and OpenCode.
