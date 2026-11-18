@@ -6,9 +6,10 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/stablyai/orca.git",
       "skillPath": "skills/orca-cli/SKILL.md",
-      "skillFolderHash": "e96accd66bb1e31ca7a859d18013b28be295f97e",
+      "skillFolderHash": "154e3b5eae2d8e67c5a28b99b822894c3f053ff3",
       "installedAt": "2026-10-12T12:40:12.900Z",
-      "updatedAt": "2026-11-08T02:49:22.571Z"
+      "updatedAt": "2026-11-18T13:48:57.684Z",
+      "commit": "3bb9bcba317b9417c6590627ead2fdc2bee2d111"
     },
     "find-skills": {
       "source": "vercel-labs/skills",
@@ -24,27 +25,30 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/stablyai/orca.git",
       "skillPath": "skills/orca-linear/SKILL.md",
-      "skillFolderHash": "8e747165847651926ca54804b012689ebcbd9432",
+      "skillFolderHash": "9bdf4bc1ba00d887e93c14a0c84476f2756c9f2d",
       "installedAt": "2026-10-12T13:08:58.561Z",
-      "updatedAt": "2026-10-12T13:08:58.561Z"
+      "updatedAt": "2026-11-18T13:49:00.078Z",
+      "commit": "3bb9bcba317b9417c6590627ead2fdc2bee2d111"
     },
     "orchestration": {
       "source": "stablyai/orca",
       "sourceType": "github",
       "sourceUrl": "https://github.com/stablyai/orca.git",
       "skillPath": "skills/orchestration/SKILL.md",
-      "skillFolderHash": "503493f3a3942a80590e80345e5dc07ac328978b",
+      "skillFolderHash": "e9634d4e858f11f2408a7627dea56de594bf1167",
       "installedAt": "2026-10-12T13:24:49.888Z",
-      "updatedAt": "2026-11-08T02:49:24.968Z"
+      "updatedAt": "2026-11-18T13:49:02.879Z",
+      "commit": "3bb9bcba317b9417c6590627ead2fdc2bee2d111"
     },
     "commit-staged": {
       "source": "ttakanawa/agent-skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/ttakanawa/agent-skills.git",
       "skillPath": "skills/commit-staged/SKILL.md",
-      "skillFolderHash": "5526ed2b68e5125a90f25817cb394ca80d18c3af",
+      "skillFolderHash": "5a13a86c616f7077498bd040c6d7bc49a7b27745",
       "installedAt": "2026-10-14T15:17:58.224Z",
-      "updatedAt": "2026-10-14T15:17:58.224Z"
+      "updatedAt": "2026-11-18T13:49:10.895Z",
+      "commit": "694aa2ec78f7446dbf91277f300c3a4aa96fc735"
     },
     "markdown-writing-style": {
       "source": "ttakanawa/agent-skills",
@@ -60,18 +64,20 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/ttakanawa/agent-skills.git",
       "skillPath": "skills/open-pr/SKILL.md",
-      "skillFolderHash": "3559a78ae60e399fb5922072b629de38e7d1d862",
+      "skillFolderHash": "b86d3f10747d30c85d8adddccef2281320316fc6",
       "installedAt": "2026-10-14T15:17:58.226Z",
-      "updatedAt": "2026-10-14T15:17:58.226Z"
+      "updatedAt": "2026-11-18T13:49:03.166Z",
+      "commit": "5d2cd0f025dd53e52a401a35f71f0d0b50ffd0b9"
     },
     "update-commit-message": {
       "source": "ttakanawa/agent-skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/ttakanawa/agent-skills.git",
       "skillPath": "skills/update-commit-message/SKILL.md",
-      "skillFolderHash": "2f61e265583be186436413f16fffd0fcbddb0fea",
+      "skillFolderHash": "5605046b8ccedc4bd2484186cc0fed3ed184edd4",
       "installedAt": "2026-10-14T15:17:58.226Z",
-      "updatedAt": "2026-11-07T18:24:22.345Z"
+      "updatedAt": "2026-11-18T13:49:11.882Z",
+      "commit": "694aa2ec78f7446dbf91277f300c3a4aa96fc735"
     },
     "shellcheck-configuration": {
       "source": "wshobson/agents",
