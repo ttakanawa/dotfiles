@@ -1,7 +1,6 @@
 # Codex CLI configuration.
 # Git-managed preferences.
 
-model = "gpt-6.1-sol"
 model_reasoning_effort = "xhigh"
 plan_mode_reasoning_effort = "xhigh"
 approval_policy = "on-request"
