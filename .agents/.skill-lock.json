@@ -45,10 +45,10 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/ttakanawa/agent-skills.git",
       "skillPath": "skills/commit-staged/SKILL.md",
-      "skillFolderHash": "5a13a86c616f7077498bd040c6d7bc49a7b27745",
+      "skillFolderHash": "46767cf43b8b702b79310377cea108c8da42eb85",
       "installedAt": "2026-10-14T15:17:58.224Z",
-      "updatedAt": "2026-11-18T13:49:10.895Z",
-      "commit": "694aa2ec78f7446dbf91277f300c3a4aa96fc735"
+      "updatedAt": "2026-11-18T14:01:32.413Z",
+      "commit": "c806809f57cf3a4c6eeda77dab20b9d3ce3d778b"
     },
     "markdown-writing-style": {
       "source": "ttakanawa/agent-skills",
