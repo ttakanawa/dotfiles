@@ -17,6 +17,8 @@ Before presenting choices, explain why the question matters:
 
 Before making changes, explain the overall picture of what will change and how, then ask for confirmation before proceeding.
 
+When asking for confirmation, display the proposed action or exact wording in a separate paragraph or block immediately before the question.
+
 ## Keep Guidance Current
 
 When user instructions supersede or conflict with project- or user-level memories, rules, or skills, ask whether to update the affected guidance.
